@@ -53,13 +53,15 @@ class TextScramble {
 }
 
 // ——————————————————————————————————————————————————
-// Example
+// Phrases
 // ——————————————————————————————————————————————————
 
 const phrases = [
-  '110001',
+  '000000',
+  '010101',
+  '111111',
   '101010',
-  'Binary'  
+  'Binary'
 ]
 
 const el = document.querySelector('.bin')

@@ -77,7 +77,7 @@
 		<div class="wrap">
 			<div class="content-left">
 				<h1 id="container">Rohit Choudhari</h1>
-				<h4>Trying to find the perfect <span class="animated infinite fadeInDown">balance</span> between fun and coding</h4>
+				<h4 class="slidder">Trying to find the perfect <span class="sliddy">balance</span> between fun and coding</h4>
 			</div>
 		</div>
 		<br><br><br>
@@ -86,9 +86,9 @@
 		<div class="wrap">
 			<h2 class="text-landing aligncenter hoverer">Experiences</h2>
 			<ul class="flexblock aligncenter">
-				<li class="bgchanger"><h3>2017</h3><p>Intern at Tata Power SED<br>Technical Head, <a href="https://mpstme.acm.org/" target="_blank">ACM</a><br>Subhead Performing Arts, Sattva<br>Intern at <a href="http://www.universesimplified.org/" target="_blank">Universe Simplified</a></p></li>
-				<li class="bgchanger"><h3>2016-2017</h3><p>Social Impact Executive<br>ACM Technical Executive</p></li>
-				<li class="bgchanger"><h3>2016</h3><p>Publicity, Taqneeq</p></li>
+				<li><h3 class="head">2017</h3><p class="bgchanger">Intern at Tata Power SED<br>Technical Head, <a href="https://mpstme.acm.org/" target="_blank">ACM</a><br>Subhead Performing Arts, Sattva<br>Intern at <a href="http://www.universesimplified.org/" target="_blank">Universe Simplified</a></p></li>
+				<li><h3 class="head">2016-2017</h3><p class="bgchanger">Social Impact Executive<br>ACM Technical Executive</p></li>
+				<li><h3 class="head">2016</h3><p class="bgchanger">Publicity, Taqneeq</p></li>
 			</ul>
 		</div>
 		<br><br><br>
@@ -164,11 +164,12 @@
 <script src="js/scrambler.js"></script>
 <script src="js/scramble.js"></script>
 <script src="js/shuffle.js"></script>
-<script src="js/script.js"></script>
+<!-- <script src="js/script.js"></script> -->
   <script type="text/javascript">
-    $( document ).ready(function() {
-      var heading = "Rohit Choudhari"
-      $("h1").scramble("createEmpty", heading.length).scramble("setText", heading).scramble("descramble");
+    $(document).ready(function(){
+      var container = $("#container")
+      userText = $('#userText');
+      container.shuffleLetters();
     });
   </script>
 
@@ -194,11 +195,19 @@
   <script>
     $(document).ready(function(){
       $('.hoverer').hover(function() {
-          $(".bgchanger").css('background-color', 'black');
+          $(".head").css('color', 'red');
+          $(".bgchanger").delay('slow').css('color', 'pink');
       }, function(){
-        $('.bgchanger').css('background-color','');
+        $('.bgchanger').css('color','white');
+        $(".head").css('color', 'tomato');
       });
     });
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      $('.slidder').addClass('animated slideInLeft');
+    })
   </script>
 
 
