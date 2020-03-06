@@ -1,0 +1,16 @@
+// Import variables (overrides Bootstrap defaults)
+@import "base/variables.scss";
+
+// Import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Import base styles
+@import "base/page.scss";
+
+// Import components styles
+@import "components/divider.scss";
+@import "components/buttons.scss";
+
+// Import layout styles
+@import "layout/navbar.scss";
+@import "layout/footer.scss";

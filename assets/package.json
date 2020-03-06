@@ -1,0 +1,19 @@
+{
+  "name": "assets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sass/freelancer.scss",
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url sass/freelancer.scss css/free.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "author": "InfernapeXavier",
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.13.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  }
+}
