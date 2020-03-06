@@ -7243,9 +7243,9 @@ a.text-dark:hover, a.text-dark:focus {
 
 .footer {
   padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
   background-color: #202747;
   color: #fff; }
 
 .copyright {
-  background-color: #101424; }
+  background-color: #202747; }

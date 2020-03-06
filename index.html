@@ -9,7 +9,26 @@
     <meta name="description" content="" />
     <meta name="author" content="InfernapeXavier" />
 
-    <title>Hello</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+
+    <title>Rohit Choudhari</title>
 
     <!-- Custom fonts for this theme -->
     <script
@@ -27,6 +46,12 @@
       type="text/css"
     />
 
+    <!-- Bulma -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+
     <!-- Theme CSS -->
     <link href="assets/css/free.css" rel="stylesheet" />
   </head>
@@ -39,7 +64,7 @@
     >
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top"
-          >Start Bootstrap</a
+          >Rohit Choudhari</a
         >
         <button
           class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -58,15 +83,22 @@
             <li class="nav-item mx-0 mx-lg-1">
               <a
                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                href="#portfolio"
-                >Portfolio</a
+                href="#about"
+                >About</a
               >
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a
                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                href="#about"
-                >About</a
+                href="#projects"
+                >Projects</a
+              >
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a
+                class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                href="#other"
+                >Other Work</a
               >
             </li>
             <li class="nav-item mx-0 mx-lg-1">
@@ -81,24 +113,102 @@
       </div>
     </nav>
 
+    <section class="hero bg-success is-fullheight" id="about">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Fullheight title
+          </h1>
+          <h2 class="subtitle">
+            Fullheight subtitle
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero bg-danger is-fullheight" id="projects">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Fullheight title
+          </h1>
+          <h2 class="subtitle">
+            Fullheight subtitle
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero bg-success is-fullheight" id="other">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Fullheight title
+          </h1>
+          <h2 class="subtitle">
+            Fullheight subtitle
+          </h2>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer bg-secondary text-center">
+    <footer class="footer bg-secondary text-center" id="contact">
       <div class="container">
         <div class="row">
           <!-- Footer Social Icons -->
           <div class="col mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Around the Web</h4>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-facebook-f"></i>
+            <a
+              class="btn btn-outline-light btn-social mx-1"
+              href="mailto:rohitc.ufl@gmail.com"
+            >
+              <i class="fas fa-inbox"></i>
             </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-twitter"></i>
+            <a
+              class="btn btn-outline-light btn-social mx-1"
+              href="https://github.com/InfernapeXavier"
+            >
+              <i class="fab fa-github"></i>
             </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-linkedin-in"></i>
+            <a
+              class="btn btn-outline-light btn-social mx-1"
+              href="https://linkedin.com/in/InfernapeXavier"
+            >
+              <i class="fab fa-linkedin-in"></i>
             </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-dribbble"></i>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <!-- Footer Social Icons -->
+          <div class="col mb-5 mb-lg-0">
+            <a
+              class="btn btn-outline-light btn-social mx-1"
+              href="https://twitter.com/InfernapeXavier"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              class="btn btn-outline-light btn-social mx-1"
+              href="https://steamcommunity.com/id/KidInX"
+            >
+              <i class="fab fa-steam"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <!-- Footer Social Icons -->
+          <div class="col mb-5 mb-lg-0">
+            <a
+              class="btn btn-outline-light btn-social mx-1"
+              href="https://bit.ly/rohitcresume"
+              target="_blank"
+            >
+              <i class="fas fa-file-pdf"></i>
             </a>
           </div>
         </div>
@@ -106,7 +216,7 @@
     </footer>
 
     <!-- Copyright Section -->
-    <section class="copyright py-4 text-center text-white bg-secondary">
+    <section class="copyright py-4 text-center text-white">
       <div class="container">
         <small
           >Made with &nbsp;<i class="fas fa-heartbeat"></i>&nbsp; and
