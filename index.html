@@ -54,6 +54,8 @@
 
     <!-- Theme CSS -->
     <link href="assets/css/free.css" rel="stylesheet" />
+    <link href="assets/css/cssanimation.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.css" rel="stylesheet" />
   </head>
 
   <body id="page-top">
@@ -63,9 +65,13 @@
       id="mainNav"
     >
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"
-          >Rohit Choudhari</a
+        <a
+          class="navbar-brand js-scroll-trigger animated fadeInLeft"
+          href="#page-top"
+          data-scrolly-down="blurIn"
         >
+          Rohit Choudhari
+        </a>
         <button
           class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
           type="button"
@@ -108,6 +114,14 @@
                 >Contact</a
               >
             </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a
+                class="nav-link py-3 px-0 px-lg-3 rounded"
+                href="https://bit.ly/rohitcresume"
+                target="_blank"
+                ><i class="fas fa-file-pdf"></i>&nbsp;Resume</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -116,14 +130,14 @@
     <section class="hero bg-secondary is-fullheight is-dark" id="about">
       <div class="hero-body">
         <div class="container align-bottom">
-          <h1 class="title ">
+          <h1 class="title" data-scrolly-down="fadeInLeft">
             Hi! I'm Rohit
           </h1>
-          <h2 class="subtitle">
+          <h2 class="subtitle" data-scrolly-down="blurIn">
             And I believe in all things Binary
           </h2>
           <hr />
-          <h3 class="d-lg-none">
+          <h3 class="d-lg-none" data-scrolly-down="shockInBottom">
             I am a Computer Science grad student at
             <a href="https://www.ufl.edu"> UF</a>
             <br class="d-none d-lg-block" />
@@ -134,7 +148,10 @@
             <a href="https://nowmozilla.club">Open Source Club</a>!
           </h3>
 
-          <h3 class="d-none d-lg-block text-monospace">
+          <h3
+            class="d-none d-lg-block text-monospace"
+            data-scrolly-down="fadeIn"
+          >
             I am a Computer Science grad student at
             <a href="https://www.ufl.edu"> UF</a>
             <br class="d-none d-lg-block" />
@@ -154,7 +171,7 @@
     >
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
+          <h1 class="title" data-scrolly-down="blurInTop">
             Projects
           </h1>
           <h2 class="subtitle">
@@ -163,6 +180,7 @@
         </div>
       </div>
     </section>
+
     <section class="hero bg-primary is-fullheight-with-navbar is-dark">
       <div class="hero-body">
         <div class="container">
@@ -233,13 +251,6 @@
                 >
                   <i class="fab fa-steam"></i>
                 </a>
-                <a
-                  class="btn btn-outline-light btn-social mx-1"
-                  href="https://bit.ly/rohitcresume"
-                  target="_blank"
-                >
-                  <i class="fas fa-file-pdf"></i>
-                </a>
               </div>
             </div>
           </div>
@@ -267,44 +278,31 @@
                 >
                   <i class="fab fa-linkedin-in"></i>
                 </a>
-                <br />
-                <br />
                 <a
                   class="btn btn-outline-light btn-social mx-1"
                   href="https://twitter.com/InfernapeXavier"
                 >
                   <i class="fab fa-twitter"></i>
                 </a>
-                <a
-                  class="btn btn-outline-light btn-social mx-1"
-                  href="https://steamcommunity.com/id/KidInX"
-                >
-                  <i class="fab fa-steam"></i>
-                </a>
-                <a
-                  class="btn btn-outline-light btn-social mx-1"
-                  href="https://bit.ly/rohitcresume"
-                  target="_blank"
-                >
-                  <i class="fas fa-file-pdf"></i>
-                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <section class="copyright py-4 text-center text-white">
-        <div class="container">
-          <small
-            >Made with &nbsp;<i class="fas fa-heartbeat"></i>&nbsp; and
-            <a
-              href="https://github.com/InfernapeXavier/InfernapeXavier.github.io"
-            >
-              &nbsp;Code</a
-            >
-          </small>
-        </div>
-      </section>
+      <div class="hero-foot">
+        <section class="copyright py-4 text-center text-white">
+          <div class="container">
+            <small
+              >Made with &nbsp;<i class="fas fa-heartbeat"></i>&nbsp; and
+              <a
+                href="https://github.com/InfernapeXavier/InfernapeXavier.github.io"
+              >
+                &nbsp;Code</a
+              >
+            </small>
+          </div>
+        </section>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -409,9 +407,20 @@
     ></script>
 
     <!-- Plugin JavaScript -->
-    <script src="assets/js/plugins/jquery.easing.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.easing.js"></script>
+    <script
+      type="text/javascript"
+      src="assets/js/letteranimation.min.js"
+    ></script>
+    <script type="text/javascript" src="assets/js/scrolly.min.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="assets/js/freelancer.js"></script>
+
+    <script>
+      window.onload = function() {
+        scrolly();
+      };
+    </script>
   </body>
 </html>
