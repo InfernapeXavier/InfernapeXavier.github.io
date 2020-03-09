@@ -1,5 +1,5 @@
 {
-  "name": "sass builder",
+  "name": "sass_builder",
   "version": "1.0.0",
   "description": "Scripts for building css from sass. Scripts taken from official Bulma.io",
   "main": "sass/freelancer.scss",
@@ -14,7 +14,9 @@
     "node-sass": "^4.13.1"
   },
   "dependencies": {
+    "@material/card": "^5.1.0",
     "bootstrap": "^4.4.1",
-    "bulma": "^0.8.0"
+    "bulma": "^0.8.0",
+    "tailwindcss": "^1.2.0"
   }
 }
