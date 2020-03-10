@@ -21,3 +21,45 @@
 // Import layout styles
 @import "layout/navbar.scss";
 @import "layout/footer.scss";
+
+// Card Content
+// <div
+// class="max-w-sm bg-info overflow-hidden shadow-lg border-8 border-danger"
+// >
+// <img
+//   class="w-full"
+//   src="https://tailwindcss.com/img/card-top.jpg"
+//   alt="Sunset in the mountains"
+// />
+// <div class="px-6 py-4">
+//   <div class="font-bold text-secondary text-xl mb-2">
+//     Bean-Stock
+//   </div>
+//   <p class="text-gray-700 text-base">
+//     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+//     Voluptatibus quia, nulla! Maiores et perferendis eaque,
+//     exercitationem praesentium nihil.
+//   </p>
+// </div>
+// <div class="px-6 py-4">
+//   <div class="container">
+//     <div class="row">
+//       <div class="col-sm">
+//         <i class="fab fa-python text-danger fa-lg"></i>
+//       </div>
+//       <div class="col-sm">
+//         <i class="fas fa-flask text-danger fa-lg"></i>
+//       </div>
+//       <div class="col-sm">
+//         <i class="fab fa-bootstrap text-danger fa-lg"></i>
+//       </div>
+//       <div class="col-sm">
+//         <img
+//           src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
+//           style="height: 1.33rem;"
+//         />
+//       </div>
+//     </div>
+//   </div>
+// </div>
+// </div>
