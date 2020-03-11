@@ -51,6 +51,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-tooltip/dist/css/bulma-tooltip.min.css"
+    />
 
     <!-- Tailwinf CSS -->
     <link
@@ -170,141 +174,6 @@
       </div>
     </section>
 
-    <!-- <div class="container-fluid bg-secondary" id="projects">
-      <div class="container">
-        <div class="row h-100">
-          <div class="col-md my-auto">
-            <div
-              class="max-w-sm bg-info overflow-hidden shadow-lg border-r-8 border-danger"
-            >
-              <img
-                class="w-full"
-                src="https://tailwindcss.com/img/card-top.jpg"
-                alt="Sunset in the mountains"
-              />
-              <div class="px-6 py-4">
-                <div class="font-bold text-secondary text-xl mb-2">
-                  Bean-Stock
-                </div>
-                <p class="text-gray-700 text-base">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                  exercitationem praesentium nihil.
-                </p>
-              </div>
-              <div class="px-6 py-4">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-sm">
-                      <i class="fab fa-python text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <i class="fas fa-flask text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <i class="fab fa-bootstrap text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <img
-                        src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
-                        style="height: 1.33rem;"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md my-auto">
-            <div
-              class="max-w-sm bg-info overflow-hidden shadow-lg border-r-8 border-danger"
-            >
-              <img
-                class="w-full"
-                src="https://tailwindcss.com/img/card-top.jpg"
-                alt="Sunset in the mountains"
-              />
-              <div class="px-6 py-4">
-                <div class="font-bold text-secondary text-xl mb-2">
-                  Bean-Stock
-                </div>
-                <p class="text-gray-700 text-base">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                  exercitationem praesentium nihil.
-                </p>
-              </div>
-              <div class="px-6 py-4">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-sm">
-                      <i class="fab fa-python text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <i class="fas fa-flask text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <i class="fab fa-bootstrap text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <img
-                        src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
-                        style="height: 1.33rem;"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md my-auto">
-            <div
-              class="max-w-sm bg-info overflow-hidden shadow-lg border-8 border-danger"
-            >
-              <img
-                class="w-full"
-                src="https://tailwindcss.com/img/card-top.jpg"
-                alt="Sunset in the mountains"
-              />
-              <div class="px-6 py-4">
-                <div class="font-bold text-secondary text-xl mb-2">
-                  Bean-Stock
-                </div>
-                <p class="text-gray-700 text-base">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                  exercitationem praesentium nihil.
-                </p>
-              </div>
-              <div class="px-6 py-4">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-sm">
-                      <i class="fab fa-python text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <i class="fas fa-flask text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <i class="fab fa-bootstrap text-danger fa-lg"></i>
-                    </div>
-                    <div class="col-sm">
-                      <img
-                        src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
-                        style="height: 1.33rem;"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <section
       class="hero bg-secondary is-fullheight-with-navbar is-dark"
       id="projects"
@@ -321,7 +190,7 @@
               >
                 <img
                   class="w-full"
-                  src="https://tailwindcss.com/img/card-top.jpg"
+                  src="https://source.unsplash.com/osWDvhPlGLU/800x487"
                   alt="Sunset in the mountains"
                 />
                 <div class="px-6 py-4">
@@ -337,16 +206,103 @@
                 <div class="px-6 py-4">
                   <div class="container">
                     <div class="row">
-                      <div class="col-sm">
-                        <i class="fab fa-python text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-python text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Python"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fas fa-flask text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fas fa-flask text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Flask"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fab fa-bootstrap text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-bootstrap text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Bootstrap"
+                        ></i>
                       </div>
-                      <div class="col-sm">
+                      <div
+                        class="col"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="PANDAS"
+                      >
+                        <img
+                          src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
+                          style="height: 1.33rem;"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div
+              class="column is-mobile is-half-tablet is-half-desktop is-one-third-widescreen is-one-third-fullhd"
+            >
+              <div
+                class="max-w-sm bg-info overflow-hidden rounded shadow-lg border-8 border-danger"
+              >
+                <img
+                  class="w-full"
+                  src="https://source.unsplash.com/hIgeoQjS_iE/800x487"
+                  alt="Sunset in the mountains"
+                />
+                <div class="px-6 py-4">
+                  <div class="font-bold text-secondary text-xl mb-2">
+                    Bean-Stock
+                  </div>
+                  <p class="text-gray-700 text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                    exercitationem praesentium nihil.
+                  </p>
+                </div>
+                <div class="px-6 py-4">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <i
+                          class="fab fa-python text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Python"
+                        ></i>
+                      </div>
+                      <div class="col">
+                        <i
+                          class="fas fa-flask text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Flask"
+                        ></i>
+                      </div>
+                      <div class="col">
+                        <i
+                          class="fab fa-bootstrap text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Bootstrap"
+                        ></i>
+                      </div>
+                      <div
+                        class="col"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="PANDAS"
+                      >
                         <img
                           src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
                           style="height: 1.33rem;"
@@ -384,16 +340,36 @@
                 <div class="px-6 py-4">
                   <div class="container">
                     <div class="row">
-                      <div class="col-sm">
-                        <i class="fab fa-python text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-python text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Python"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fas fa-flask text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fas fa-flask text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Flask"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fab fa-bootstrap text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-bootstrap text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Bootstrap"
+                        ></i>
                       </div>
-                      <div class="col-sm">
+                      <div
+                        class="col"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="PANDAS"
+                      >
                         <img
                           src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
                           style="height: 1.33rem;"
@@ -431,16 +407,36 @@
                 <div class="px-6 py-4">
                   <div class="container">
                     <div class="row">
-                      <div class="col-sm">
-                        <i class="fab fa-python text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-python text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Python"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fas fa-flask text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fas fa-flask text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Flask"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fab fa-bootstrap text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-bootstrap text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Bootstrap"
+                        ></i>
                       </div>
-                      <div class="col-sm">
+                      <div
+                        class="col"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="PANDAS"
+                      >
                         <img
                           src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
                           style="height: 1.33rem;"
@@ -478,109 +474,36 @@
                 <div class="px-6 py-4">
                   <div class="container">
                     <div class="row">
-                      <div class="col-sm">
-                        <i class="fab fa-python text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-python text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Python"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fas fa-flask text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fas fa-flask text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Flask"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <i class="fab fa-bootstrap text-danger fa-lg"></i>
+                      <div class="col">
+                        <i
+                          class="fab fa-bootstrap text-danger fa-lg"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Bootstrap"
+                        ></i>
                       </div>
-                      <div class="col-sm">
-                        <img
-                          src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
-                          style="height: 1.33rem;"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <div
-              class="column is-mobile is-half-tablet is-half-desktop is-one-third-widescreen is-one-third-fullhd"
-            >
-              <div
-                class="max-w-sm bg-info overflow-hidden rounded shadow-lg border-8 border-danger"
-              >
-                <img
-                  class="w-full"
-                  src="https://tailwindcss.com/img/card-top.jpg"
-                  alt="Sunset in the mountains"
-                />
-                <div class="px-6 py-4">
-                  <div class="font-bold text-secondary text-xl mb-2">
-                    Bean-Stock
-                  </div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                    exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm">
-                        <i class="fab fa-python text-danger fa-lg"></i>
-                      </div>
-                      <div class="col-sm">
-                        <i class="fas fa-flask text-danger fa-lg"></i>
-                      </div>
-                      <div class="col-sm">
-                        <i class="fab fa-bootstrap text-danger fa-lg"></i>
-                      </div>
-                      <div class="col-sm">
-                        <img
-                          src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
-                          style="height: 1.33rem;"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card -->
-            <!-- Card -->
-            <div
-              class="column is-mobile is-half-tablet is-half-desktop is-one-third-widescreen is-one-third-fullhd"
-            >
-              <div
-                class="max-w-sm bg-info overflow-hidden rounded shadow-lg border-8 border-danger"
-              >
-                <img
-                  class="w-full"
-                  src="https://tailwindcss.com/img/card-top.jpg"
-                  alt="Sunset in the mountains"
-                />
-                <div class="px-6 py-4">
-                  <div class="font-bold text-secondary text-xl mb-2">
-                    Bean-Stock
-                  </div>
-                  <p class="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                    exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm">
-                        <i class="fab fa-python text-danger fa-lg"></i>
-                      </div>
-                      <div class="col-sm">
-                        <i class="fas fa-flask text-danger fa-lg"></i>
-                      </div>
-                      <div class="col-sm">
-                        <i class="fab fa-bootstrap text-danger fa-lg"></i>
-                      </div>
-                      <div class="col-sm">
+                      <div
+                        class="col"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="PANDAS"
+                      >
                         <img
                           src="https://avatars1.githubusercontent.com/u/21206976?s=200&v=4"
                           style="height: 1.33rem;"
@@ -819,6 +742,12 @@
 
     <!-- Custom scripts for this template -->
     <script src="assets/js/freelancer.js"></script>
+
+    <script>
+      $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
     <script>
       window.onload = function() {
