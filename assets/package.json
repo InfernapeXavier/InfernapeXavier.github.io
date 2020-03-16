@@ -4,7 +4,7 @@
   "description": "Scripts for building css from sass. Scripts taken from official Bulma.io",
   "main": "sass/freelancer.scss",
   "scripts": {
-    "css-build": "node-sass --omit-source-map-url sass/freelancer.scss css/free.css",
+    "css-build": "node-sass --omit-source-map-url sass/freelancer.scss css/freelancer.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch"
   },
