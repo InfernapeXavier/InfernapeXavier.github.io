@@ -804,17 +804,39 @@
     </div>
 
     <!-- Bulma -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
       defer
+    /> -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    /></noscript>
 
     <!-- Tailwind CSS -->
-    <link
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@1.2.0/dist/tailwind.min.css"
       rel="stylesheet"
+    /> -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@1.2.0/dist/tailwind.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/tailwindcss@1.2.0/dist/tailwind.min.css"
+    /></noscript>
 
     <!-- Theme/Custom CSS -->
     <link href="assets/css/free.min.css" rel="stylesheet" />
