@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Questrial-Regular
+font link: https://fonts.google.com/specimen/Questrial
+font author: Joe Prince
+font author site: https://dribbble.com/joeprince
+
+
+icon designer: Hello Many
+icon designer link: /HelloMany
+        
+{"bg":"#C08979","icon":"#4D3223","font":"#ffffff","slogan":"#ffffff"}
+      
