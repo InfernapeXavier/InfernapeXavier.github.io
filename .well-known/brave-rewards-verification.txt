@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: rohitc.tech
+Token: ddba9032ec921e189cb31f48737bfdf48c05cc25cb864f98847d48efc048de2d
