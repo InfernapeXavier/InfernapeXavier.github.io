@@ -51,19 +51,19 @@
 }
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 a:visited {
   color: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 a:hover {
   color: #d28075;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 a:active {
   color: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .tool {
   width: 4rem;
