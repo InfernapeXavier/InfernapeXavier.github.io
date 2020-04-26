@@ -109,3 +109,8 @@ dist
 # CloudFlare
 cert
 key
+
+# Node
+assets/node_modules/
+
+.vscode
