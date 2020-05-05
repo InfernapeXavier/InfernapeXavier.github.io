@@ -7,11 +7,11 @@ My interests include Databases and Systems engineering.
 
 #### Tools I've worked with
 
-`Python Flask C/C++ SQL Bulma Bootstrap JavaScript TailwindCSS Android`
+`Python Rust Flask C/C++ SQL Bulma Bootstrap JavaScript TailwindCSS Android`
 
 #### Tools I'm learning
 
-`Rust MongoDB Alexa-Skills-Kit`
+`MongoDB Alexa-Skills-Kit`
 
 Head on over to [my website](https://rohitc.tech) to learn more about my projects!
 
