@@ -1,16 +1,18 @@
 {
-  "name": "sass_builder",
+  "name": "builder",
   "version": "1.0.0",
   "description": "Scripts for building css from sass. Scripts taken from official Bulma.io",
   "main": "sass/freelancer.scss",
   "scripts": {
     "css-build": "node-sass --omit-source-map-url sass/freelancer.scss css/freelancer.css",
     "css-watch": "npm run css-build -- --watch",
-    "start": "npm run css-watch"
+    "start": "npm run css-watch",
+    "purger": "func() { purgecss --css \"$1\" --content ../../index.html,../../404.html --output \"$2\"; }; func"
   },
   "author": "InfernapeXavier",
   "license": "MIT",
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.2.0",
     "cssnano": "^4.1.10",
     "node-sass": "^4.14.1"
   },
