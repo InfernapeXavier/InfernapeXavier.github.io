@@ -20,7 +20,7 @@
     "@material/card": "^6.0.0",
     "@popperjs/core": "^2.4.0",
     "bootstrap": "^4.5.0",
-    "bulma": "^0.8.2",
+    "bulma": "^0.9.0",
     "jquery": "^3.5.1",
     "minimist": "^1.2.3",
     "tailwindcss": "^1.4.6"
