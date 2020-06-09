@@ -41,6 +41,9 @@ readers do not read off random characters that represent icons */
 .fa-github:before {
   content: "\f09b"; }
 
+.fa-gitlab:before {
+  content: "\f296"; }
+
 .fa-heartbeat:before {
   content: "\f21e"; }
 
