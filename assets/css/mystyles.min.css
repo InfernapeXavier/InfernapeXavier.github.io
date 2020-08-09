@@ -9,28 +9,28 @@
 .project-links {
   float: right;
 }
-a:link {
+.project-links a:link {
   color: #95a0ab;
   background-color: transparent;
   text-decoration: none;
 }
 
-a:visited {
+.project-links a:visited {
   color: #202747;
   background-color: transparent;
   text-decoration: none;
 }
 
-a:hover {
+.project-links a:hover {
   color: #ffb94a;
   background-color: transparent;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-a:active {
+.project-links a:active {
   color: #ffb94a;
   background-color: transparent;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .tool {
   width: 4rem;
