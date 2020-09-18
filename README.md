@@ -21,3 +21,8 @@ I built this website using what my friend [@mihir3k](https://github.com/mihir3k)
 Generally I would not do this, but I wanted my website to feel personal and I really like some parts of all three of these frameworks.
 
 So, this website is indeed abomination and the embodiment of _No Compromise_
+
+### Credits
+
+Icons: [Simple Icons](https://simpleicons.org/) using [Icongram](https://icongr.am/)
+Colors: [ColorMind](http://colormind.io/)
