@@ -3,15 +3,15 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/563580da-230b-411b-a47e-e27a7d05d4d7/deploy-status)](https://app.netlify.com/sites/infernapexavier/deploys)
 
 I'm Rohit, a Computer Science student pursuing my MS in Computer Science at the [University of Florida](https://www.ufl.edu).
-My interests include Databases and Systems engineering.
+My interests include Databases and Distributed Systems.
 
 #### Tools I've worked with
 
-`Python Rust Flask C/C++ SQL Bulma Bootstrap JavaScript TailwindCSS Android`
+`Python Rust Flask C/C++ SQL JavaScript Android MongoDB Alexa-Skills-Kit`
 
 #### Tools I'm learning
 
-`MongoDB Alexa-Skills-Kit`
+`Golang F# .NET Platform`
 
 Head on over to [my website](https://rohitc.tech) to learn more about my projects!
 
