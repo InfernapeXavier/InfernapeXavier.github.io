@@ -7,11 +7,11 @@ My interests include Databases and Distributed Systems.
 
 #### Tools I've worked with
 
-`Python Rust Flask C/C++ SQL JavaScript Android MongoDB Alexa-Skills-Kit`
+`Python Rust Flask C/C++ SQL JavaScript Android MongoDB Redis Alexa-Skills`
 
 #### Tools I'm learning
 
-`Golang F# .NET Platform`
+`Golang TypeScript`
 
 Head on over to [my website](https://rohitc.tech) to learn more about my projects!
 
