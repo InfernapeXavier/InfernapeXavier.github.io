@@ -2,16 +2,16 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/563580da-230b-411b-a47e-e27a7d05d4d7/deploy-status)](https://app.netlify.com/sites/infernapexavier/deploys)
 
-I'm Rohit, a Computer Science student pursuing my MS in Computer Science at the [University of Florida](https://www.ufl.edu).
-My interests include Databases and Distributed Systems.
+Hello, I'm Rohit, a Software Engineer at [academia.edu](https://academia.edu). I graduated with a Master's degree in Computer Science from the [University of Florida](https://www.ufl.edu).
+My interests include _Databases_, _Distributed Systems_ and _Security_.
 
 #### Tools I've worked with
 
-`Python Rust Flask C/C++ SQL JavaScript Android MongoDB Redis Alexa-Skills`
+`Python Rust Flask C/C++ SQL JavaScript Android MongoDB Redis Alexa-Skills Golang TypeScript`
 
 #### Tools I'm learning
 
-`Golang TypeScript`
+`Ruby React`
 
 Head on over to [my website](https://rohitc.tech) to learn more about my projects!
 
