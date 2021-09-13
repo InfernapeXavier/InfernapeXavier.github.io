@@ -19,7 +19,7 @@
   "dependencies": {
     "@material/card": "^12.0.0",
     "@popperjs/core": "^2.10.1",
-    "bootstrap": "^5.1.0",
+    "bootstrap": "^5.1.1",
     "bulma": "^0.9.3",
     "jquery": "^3.6.0",
     "minimist": "^1.2.3",
