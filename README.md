@@ -7,11 +7,11 @@ My interests include _Databases_, _Distributed Systems_ and _Security_.
 
 #### Tools I've worked with
 
-`Python Rust Flask C/C++ SQL JavaScript Android MongoDB Redis Alexa-Skills Golang TypeScript`
+`Python Rust Rails Ruby Flask C/C++ SQL JavaScript Android MongoDB Redis Alexa-Skills Golang TypeScript`
 
 #### Tools I'm learning
 
-`Ruby React`
+`React`
 
 Head on over to [my website](https://rohitc.tech) to learn more about my projects!
 
