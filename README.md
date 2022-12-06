@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/563580da-230b-411b-a47e-e27a7d05d4d7/deploy-status)](https://app.netlify.com/sites/infernapexavier/deploys)
 
 Hello, I'm Rohit, a Software Engineer at [academia.edu](https://academia.edu). I graduated with a Master's degree in Computer Science from the [University of Florida](https://www.ufl.edu).
-My interests include _Databases_, _Distributed Systems_ and _Security_.
+My interests include _Databases_ and _Distributed Systems.
 
 #### Tools I've worked with
 
