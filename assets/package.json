@@ -14,7 +14,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "cssnano": "^5.1.14",
-    "node-sass": "^7.0.3"
+    "node-sass": "^8.0.0"
   },
   "dependencies": {
     "@material/card": "^14.0.0",
