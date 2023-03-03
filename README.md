@@ -3,15 +3,15 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/563580da-230b-411b-a47e-e27a7d05d4d7/deploy-status)](https://app.netlify.com/sites/infernapexavier/deploys)
 
 Hello, I'm Rohit, a Software Engineer at [academia.edu](https://academia.edu). I graduated with a Master's degree in Computer Science from the [University of Florida](https://www.ufl.edu).
-My interests include _Databases_ and _Distributed Systems.
+My interests include _Databases_ and _Distributed Systems_.
 
 #### Tools I've worked with
 
-`Python Rust Rails Ruby Flask C/C++ SQL JavaScript Android MongoDB Redis Alexa-Skills Golang TypeScript`
+`Python` `Rust` `Rails` `Ruby` `Flask` `C/C++` `SQL` `JavaScript` `Android` `MongoDB` `Redis` `Alexa-Skills` `Golang` `TypeScript` `AWS` `GH Actions`
 
 #### Tools I'm learning
 
-`React`
+`React` `Terraform` `ElasticSearch`
 
 Head on over to [my website](https://rohitc.tech) to learn more about my projects!
 
