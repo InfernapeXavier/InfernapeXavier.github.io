@@ -47,40 +47,40 @@
     @apply bg-gradient-to-r from-rose-pine-rose via-rose-pine-iris to-rose-pine-pine 
            bg-clip-text text-transparent font-extrabold;
   }
+}
 
-  .card {
-    @apply bg-rose-pine-surface/50 backdrop-blur-sm rounded-xl p-8
-           shadow-lg hover:shadow-xl transition-all duration-300
-           border border-rose-pine-highlight hover:border-rose-pine-subtle
-           group;
-  }
+/* Components that can't use @apply with certain utilities */
+.card {
+  @apply bg-rose-pine-surface/50 backdrop-blur-sm rounded-xl p-8
+         shadow-lg hover:shadow-xl transition-all duration-300
+         border border-rose-pine-highlight hover:border-rose-pine-subtle;
+}
 
-  .button {
-    @apply px-6 py-3 rounded-lg font-medium tracking-wide
-           bg-rose-pine-pine/90 text-rose-pine-text
-           hover:bg-rose-pine-foam/90 hover:text-rose-pine-base 
-           transition-all duration-300 backdrop-blur-sm
-           shadow-lg hover:shadow-xl
-           hover:scale-105 active:scale-100;
-  }
+.button {
+  @apply px-6 py-3 rounded-lg font-medium tracking-wide
+         bg-rose-pine-pine/90 text-rose-pine-text
+         hover:bg-rose-pine-foam/90 hover:text-rose-pine-base 
+         transition-all duration-300 backdrop-blur-sm
+         shadow-lg hover:shadow-xl
+         hover:scale-105 active:scale-100;
+}
 
-  .link {
-    @apply text-rose-pine-foam hover:text-rose-pine-rose 
-           underline-offset-4 hover:underline 
-           transition-colors font-medium;
-  }
+.link {
+  @apply text-rose-pine-foam hover:text-rose-pine-rose 
+         underline-offset-4 hover:underline 
+         transition-colors font-medium;
+}
 
-  .prose {
-    @apply text-lg leading-relaxed tracking-wide;
-  }
+.prose {
+  @apply text-lg leading-relaxed tracking-wide;
+}
 
-  .prose p {
-    @apply mb-6 text-rose-pine-text/90;
-  }
+.prose p {
+  @apply mb-6 text-rose-pine-text/90;
+}
 
-  .prose a {
-    @apply font-medium;
-  }
+.prose a {
+  @apply font-medium;
 }
 
 /* Custom scrollbar */

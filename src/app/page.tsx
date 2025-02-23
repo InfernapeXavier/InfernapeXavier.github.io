@@ -62,7 +62,7 @@ export default function Home() {
         <div className="section-container">
           <h2 className="section-heading mb-12">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card animate-fade-in">
+            <div className="card group animate-fade-in">
               <h3 className="text-2xl font-semibold mb-4 text-rose-pine-foam">
                 Coming Soon...
               </h3>
