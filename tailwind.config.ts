@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)"],
-        mono: ["var(--font-monacode)"],
+        mono: ["var(--font-mono)"],
       },
       colors: {
         // Rose Pine Base

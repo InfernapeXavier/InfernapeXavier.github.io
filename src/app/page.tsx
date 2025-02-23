@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <>
+    <main className="pt-16 font-sans">
       <section
         id="about"
         className="min-h-screen bg-rose-pine-base flex items-center"
@@ -114,6 +114,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

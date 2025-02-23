@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 
@@ -8,15 +7,16 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-  preload: true,
+  preload: false,
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const monacode = localFont({
-  src: "../fonts/MonaCode-Regular.woff2",
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
   display: "swap",
-  variable: "--font-monacode",
-  preload: true,
+  variable: "--font-mono",
+  preload: false,
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -27,6 +27,27 @@ export const metadata: Metadata = {
   keywords:
     "developer, uf graduate, rohit, choudhari, InfernapeXavier, software engineer, full-stack engineer, academia.edu",
   authors: [{ name: "InfernapeXavier" }],
+  manifest: "/assets/favicon/site.webmanifest",
+  icons: [
+    { rel: "icon", url: "/favicon.ico" },
+    {
+      rel: "icon",
+      url: "/assets/favicon/favicon-32x32.png",
+      sizes: "32x32",
+      type: "image/png",
+    },
+    {
+      rel: "icon",
+      url: "/assets/favicon/favicon-16x16.png",
+      sizes: "16x16",
+      type: "image/png",
+    },
+    {
+      rel: "apple-touch-icon",
+      url: "/assets/favicon/apple-touch-icon.png",
+      sizes: "180x180",
+    },
+  ],
   openGraph: {
     type: "profile",
     firstName: "Rohit",
@@ -51,16 +72,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${monacode.variable} scroll-smooth`}
-    >
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/assets/favicon/apple-touch-icon.png"
-        />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="icon"
           type="image/png"
@@ -73,13 +87,16 @@ export default function RootLayout({
           sizes="16x16"
           href="/assets/favicon/favicon-16x16.png"
         />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/assets/favicon/apple-touch-icon.png"
+        />
         <link rel="manifest" href="/assets/favicon/site.webmanifest" />
       </head>
       <body>
-        <div className={`${inter.className} font-sans antialiased`}>
-          <Navbar />
-          <main className="min-h-screen pt-16">{children}</main>
-        </div>
+        <Navbar />
+        {children}
       </body>
     </html>
   );
