@@ -39,12 +39,39 @@
   }
 
   .section-container {
-    @apply container mx-auto px-6 py-20;
+    @apply container mx-auto px-6 py-20 relative;
   }
 
   .text-gradient {
     @apply bg-gradient-to-r from-rose-pine-rose via-rose-pine-iris to-rose-pine-pine 
            bg-clip-text text-transparent font-extrabold;
+  }
+
+  /* Decorative elements */
+  .floating-shapes::before {
+    content: "";
+    @apply absolute -z-10 w-64 h-64 rounded-full 
+           bg-gradient-to-br from-rose-pine-rose/10 to-rose-pine-pine/10
+           blur-3xl animate-float-slow;
+    top: 20%;
+    left: 10%;
+  }
+
+  .floating-shapes::after {
+    content: "";
+    @apply absolute -z-10 w-96 h-96 rounded-full 
+           bg-gradient-to-tr from-rose-pine-foam/10 to-rose-pine-iris/10
+           blur-3xl animate-float-slow-reverse;
+    bottom: 10%;
+    right: 5%;
+  }
+
+  .grid-pattern {
+    @apply absolute inset-0 -z-20;
+    background-image: linear-gradient(to right, rgb(42 40 55 / 0.1) 1px, transparent 1px),
+                     linear-gradient(to bottom, rgb(42 40 55 / 0.1) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
   }
 }
 
@@ -59,25 +86,56 @@
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right bottom,
+    transparent,
+    rgb(144 140 170 / 0.05)
+  );
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   border-color: rgb(144 140 170);
+  transform: translateY(-2px);
+}
+
+.card:hover::before {
+  transform: translateY(0);
 }
 
 .button {
   @apply px-6 py-3 rounded-lg font-medium tracking-wide
-         bg-rose-pine-pine/90 text-rose-pine-text
+         bg-rose-pine-pine/90 text-rose-pine-text relative
          hover:bg-rose-pine-foam/90 hover:text-rose-pine-base 
          transition-all duration-300 backdrop-blur-sm
-         shadow-lg hover:shadow-xl
+         shadow-lg hover:shadow-xl overflow-hidden
          hover:scale-105 active:scale-100;
+}
+
+.button::before {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-r from-transparent 
+         via-rose-pine-text/10 to-transparent -translate-x-full;
+  transition: transform 0.6s ease;
+}
+
+.button:hover::before {
+  transform: translateX(100%);
 }
 
 .link {
   @apply text-rose-pine-foam hover:text-rose-pine-rose 
-         underline-offset-4 hover:underline 
+         underline-offset-4 hover:underline relative
          transition-colors font-medium;
 }
 
@@ -104,4 +162,29 @@
 
 ::-webkit-scrollbar-thumb {
   @apply bg-rose-pine-highlight rounded-full hover:bg-rose-pine-highlight-med transition-colors;
+}
+
+/* Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, -5px) rotate(2deg); }
+  50% { transform: translate(10px, 5px) rotate(-2deg); }
+  75% { transform: translate(-5px, 10px) rotate(1deg); }
+}
+
+@keyframes float-slow-reverse {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-5px, 5px) rotate(-2deg); }
+  50% { transform: translate(-10px, -5px) rotate(2deg); }
+  75% { transform: translate(5px, -10px) rotate(-1deg); }
+}
+
+@layer utilities {
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+
+  .animate-float-slow-reverse {
+    animation: float-slow-reverse 25s ease-in-out infinite;
+  }
 }

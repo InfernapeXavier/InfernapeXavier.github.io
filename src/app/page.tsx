@@ -39,10 +39,12 @@ export default function Home() {
     <main className="pt-16 font-sans">
       <section
         id="about"
-        className="min-h-screen bg-rose-pine-base flex items-center"
+        className="min-h-screen bg-rose-pine-base flex items-center relative overflow-hidden"
       >
+        <div className="floating-shapes" />
+        <div className="grid-pattern" />
         <div className="section-container">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl relative">
             <h1 className="section-heading">
               Hi! I&apos;m{" "}
               <span className="text-gradient inline-block hover:scale-105 transition-transform cursor-default">
@@ -112,7 +114,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="min-h-screen bg-rose-pine-surface">
+      <section
+        id="projects"
+        className="min-h-screen bg-rose-pine-surface relative overflow-hidden"
+      >
+        <div className="floating-shapes" />
+        <div className="grid-pattern" />
         <div className="section-container">
           <h2 className="section-heading mb-12">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -138,7 +145,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="min-h-screen bg-rose-pine-base">
+      <section
+        id="contact"
+        className="min-h-screen bg-rose-pine-base relative overflow-hidden"
+      >
+        <div className="floating-shapes" />
+        <div className="grid-pattern" />
         <div className="section-container">
           <h2 className="section-heading mb-12">Let&apos;s Connect</h2>
           <div className="flex flex-col items-center space-y-12 animate-fade-in">
