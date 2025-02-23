@@ -21,15 +21,6 @@ export const projects: Project[] = [
     isInProgress: true,
   },
   {
-    title: "Personal Website",
-    description:
-      "A modern, responsive personal website built with Next.js 14, TypeScript, and Tailwind CSS. Features server-side rendering, optimized images and fonts, and a clean, minimalist design.",
-    image: "/projects/personal-website.webp",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
-    githubUrl: "https://github.com/InfernapeXavier/InfernapeXavier.github.io",
-    liveUrl: "https://rohitc.tech",
-  },
-  {
     title: "RustyBase",
     description:
       'A database built in Rust without using any "unsafe" blocks of code or external crates! RustyBase is an ongoing project but in its current form has the basic layout of a database, along with a fully functioning Lexer and Parser and uses TPCH data for benchmarks.',
