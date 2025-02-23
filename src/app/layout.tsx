@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const monacode = localFont({
+  src: "../fonts/MonaCode-Regular.woff2",
+  display: "swap",
+  variable: "--font-monacode",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohitc.tech"),
@@ -37,7 +48,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html
+      lang="en"
+      className={`scroll-smooth ${inter.variable} ${monacode.variable}`}
+    >
       <head>
         <link
           rel="apple-touch-icon"
@@ -58,7 +72,7 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/assets/favicon/site.webmanifest" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} font-sans`}>
         <Navbar />
         <main className="min-h-screen pt-16">{children}</main>
       </body>

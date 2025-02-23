@@ -12,7 +12,8 @@ export default function Home() {
             Hi! I&apos;m <span className="text-gradient">Rohit</span>
           </h1>
           <h2 className="section-subheading">
-            And I believe in all things Binary
+            And I believe in all things{" "}
+            <span className="font-mono">Binary</span>
           </h2>
           <div className="h-px bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-8" />
 
@@ -31,7 +32,7 @@ export default function Home() {
             </p>
             <p className="text-lg text-rose-pine-text">
               I am currently working on{" "}
-              <a href="https://github.com/annie-mei" className="link">
+              <a href="https://github.com/annie-mei" className="link font-mono">
                 Annie Mei
               </a>
               !

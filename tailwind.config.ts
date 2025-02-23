@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+        mono: ["var(--font-monacode)"],
+      },
       colors: {
         // Rose Pine Base
         "rose-pine": {
