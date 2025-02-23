@@ -42,17 +42,30 @@ export default function Skills() {
             onMouseEnter={() => setActiveTooltip(skill.name)}
             onMouseLeave={() => setActiveTooltip(null)}
           >
-            <div className="w-12 h-12 bg-rose-pine-highlight rounded-lg p-2 transition-all duration-300 hover:bg-rose-pine-highlight-med hover:scale-110">
-              <Image
-                src={skill.icon}
-                alt={skill.name}
-                width={32}
-                height={32}
-                className="w-full h-full object-contain"
-              />
+            <div className="w-12 h-12 bg-rose-pine-highlight rounded-lg p-2 transition-all duration-300 hover:bg-rose-pine-highlight-med hover:scale-110 relative">
+              {/* White version (default) */}
+              <div className="absolute inset-0 p-2 transition-opacity duration-300 group-hover:opacity-0">
+                <Image
+                  src={skill.icon}
+                  alt={skill.name}
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-contain brightness-0 invert opacity-50 group-hover:opacity-0"
+                />
+              </div>
+              {/* Colored version (revealed on hover) */}
+              <div className="absolute inset-0 p-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <Image
+                  src={skill.icon}
+                  alt={skill.name}
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
             {activeTooltip === skill.name && (
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-rose-pine-surface text-rose-pine-text text-sm rounded shadow-lg whitespace-nowrap">
+              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-rose-pine-surface text-rose-pine-text text-sm rounded shadow-lg whitespace-nowrap z-10">
                 {skill.name}
               </div>
             )}
