@@ -1,0 +1,49 @@
+---
+description: Next.js Development Standards
+globs: ["**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"]
+---
+
+<rule>
+name: nextjs_development
+description: Standards for Next.js development in the project
+
+# Next.js Development Rules
+
+This file contains rules for Next.js development in the project.
+
+## Import Organization
+
+Imports should be organized in the following order:
+
+1. React imports
+2. Next.js imports
+3. Component imports (@/components/*)
+4. Library imports (@/lib/*)
+5. Style imports (@/styles/*)
+6. Other internal imports (@/*)
+7. Relative imports
+
+## Component Organization
+
+Components should be organized in the following order:
+
+1. Imports
+2. Types
+3. Interfaces
+4. Constants
+5. Component Props
+6. Component Definition
+7. Exports
+
+## Best Practices
+
+- Use TypeScript for all new components
+- Implement proper prop typing
+- Follow React hooks rules
+- Implement proper error boundaries
+- Use proper loading states
+
+metadata:
+  priority: high
+  version: 1.0
+</rule> 

@@ -1,0 +1,135 @@
+---
+description: Git Development Standards
+globs: **/.git/**", "**/.gitignore
+---
+---
+description: Git Development Standards
+globs: ["**/.git/**", "**/.gitignore"]
+---
+
+<rule>
+name: git_standards
+description: Standards for Git usage and version control practices
+
+# Git Development Standards
+
+This file contains rules for Git usage and version control in the project.
+
+## Branch Naming
+
+Branches should follow this naming convention:
+- `feature/`: For new features (e.g., `feature/nextjs-modern`)
+- `fix/`: For bug fixes (e.g., `fix/header-alignment`)
+- `refactor/`: For code refactoring (e.g., `refactor/component-structure`)
+- `docs/`: For documentation updates (e.g., `docs/api-endpoints`)
+- `style/`: For styling changes (e.g., `style/dark-theme`)
+- `perf/`: For performance improvements (e.g., `perf/image-optimization`)
+
+## Commit Messages
+
+Commit messages should follow the Conventional Commits specification:
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Types:
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code
+- `refactor`: Code change that neither fixes a bug nor adds a feature
+- `perf`: Code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `chore`: Changes to the build process or auxiliary tools
+
+Example:
+```
+feat(nav): add responsive navigation menu
+
+- Add hamburger menu for mobile view
+- Implement slide-in animation
+- Add keyboard navigation support
+
+Closes #123
+```
+
+## Pull Request Guidelines
+
+1. Title Format:
+   ```
+   [Type] Brief description of changes
+   ```
+
+2. Description Template:
+   ```markdown
+   ## Changes
+   - Bullet points of specific changes
+
+   ## Testing
+   - How to test the changes
+   - Any specific test cases
+
+   ## Screenshots
+   (if applicable)
+
+   ## Related Issues
+   Closes #issue_number
+   ```
+
+## Git Workflow
+
+1. Feature Development:
+   ```bash
+   git checkout -b feature/name
+   # Make changes
+   git add .
+   git commit -m "feat(scope): description"
+   ```
+
+2. Keeping Branch Updated:
+   ```bash
+   git fetch origin
+   git rebase origin/main
+   ```
+
+3. Code Review Process:
+   - Create pull request
+   - Address review comments
+   - Squash commits if needed
+   - Merge only when approved
+
+## Best Practices
+
+- Keep commits atomic and focused
+- Write clear, descriptive commit messages
+- Regularly sync with main branch
+- Delete merged feature branches
+- Never commit sensitive information
+- Use .gitignore appropriately
+
+## Git Hooks
+
+Recommended pre-commit hooks:
+- Lint staged files
+- Run type checking
+- Format code
+- Run relevant tests
+
+## Security
+
+- Never commit:
+  - API keys
+  - Passwords
+  - Private tokens
+  - Environment files
+  - Build artifacts
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>

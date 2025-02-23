@@ -1,0 +1,82 @@
+---
+description: CSS and Styling Standards
+globs: ["**/*.css", "**/*.scss", "**/*.module.css", "**/*.module.scss"]
+---
+
+<rule>
+name: styling_standards
+description: Standards for CSS and styling in the project
+
+# Styling Rules
+
+This file contains rules for CSS and styling in the project.
+
+## CSS Organization
+
+Stylesheets should be organized in the following order:
+
+1. Variables
+2. Reset styles
+3. Typography
+4. Layout
+5. Components
+6. Utilities
+
+## Property Order
+
+CSS properties should be grouped and ordered as follows:
+
+### Positioning
+- position
+- top
+- right
+- bottom
+- left
+- z-index
+
+### Display & Box Model
+- display
+- flex/grid properties
+- width
+- height
+- margin
+- padding
+- border
+
+### Typography
+- font-family
+- font-size
+- font-weight
+- line-height
+- text-align
+- color
+
+### Visual
+- background
+- box-shadow
+- border-radius
+- opacity
+
+### Animation
+- transform
+- transition
+- animation
+
+### Misc
+- cursor
+- pointer-events
+- user-select
+
+## Best Practices
+
+- Use CSS Modules for component-specific styles
+- Implement mobile-first responsive design
+- Follow BEM naming convention when applicable
+- Minimize use of !important
+- Use CSS Custom Properties for theming
+- Implement proper dark mode support
+
+metadata:
+  priority: high
+  version: 1.0
+</rule> 
