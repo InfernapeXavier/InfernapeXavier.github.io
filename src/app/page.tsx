@@ -155,12 +155,12 @@ export default function Home() {
         <div className="grid-pattern" />
         <div className="section-container">
           <h2 className="section-heading mb-12">Let&apos;s Connect</h2>
-          <div className="flex flex-col items-center space-y-12 animate-fade-in">
-            <p className="text-2xl text-rose-pine-subtle text-center max-w-2xl font-light tracking-wide">
+          <div className="flex flex-col space-y-12 animate-fade-in max-w-2xl">
+            <p className="text-2xl text-rose-pine-subtle font-light tracking-wide">
               I&apos;m always interested in hearing about new opportunities,
               collaborations, or just having a chat about technology.
             </p>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap gap-6">
               <a
                 href="mailto:website@rohitc.tech"
                 className="button flex items-center space-x-3"
