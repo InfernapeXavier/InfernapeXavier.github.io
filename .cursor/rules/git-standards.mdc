@@ -21,6 +21,17 @@ All commits MUST follow these confirmation steps:
    - Any new files being added
 3. Never auto-commit without user review
 4. Allow user to modify commit message if needed
+5. After committing, verify no uncommitted changes remain:
+   ```bash
+   # After commit, check status
+   git status
+   
+   # If uncommitted changes exist:
+   # 1. Review the changes
+   # 2. Decide if they belong in the current commit
+   # 3. Either stage and amend the commit, or
+   # 4. Create a new commit for separate concerns
+   ```
 
 ## Branch Naming
 
