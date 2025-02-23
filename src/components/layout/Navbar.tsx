@@ -22,26 +22,26 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-rose-pine-surface/80 backdrop-blur-md border-b border-rose-pine-highlight">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-rose-pine-surface/80 backdrop-blur-md border-b border-rose-pine-highlight/50">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between h-16">
           {/* Brand/Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link
               href="/"
-              className="text-xl font-bold tracking-wider text-rose-pine-text hover:text-rose-pine-foam transition-colors"
+              className="text-xl font-bold tracking-tight text-rose-pine-text hover:text-rose-pine-foam transition-all duration-300"
             >
-              <span className="text-gradient">Rohit Choudhari</span>
+              <span className="text-gradient font-mono">RC</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-4">
+          <div className="hidden md:flex md:items-center md:space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`nav-link ${
+                className={`nav-link group ${
                   pathname === link.href ? "nav-link-active" : ""
                 }`}
                 {...(link.external && {
@@ -49,7 +49,11 @@ export default function Navbar() {
                   rel: "noreferrer",
                 })}
               >
-                {link.icon && <span className="mr-2">{link.icon}</span>}
+                {link.icon && (
+                  <span className="mr-2 group-hover:scale-110 transition-transform inline-block">
+                    {link.icon}
+                  </span>
+                )}
                 {link.label}
               </Link>
             ))}
@@ -75,15 +79,15 @@ export default function Navbar() {
       <div
         className={`${
           isMenuOpen ? "animate-slide-down" : "hidden"
-        } md:hidden bg-rose-pine-surface/80 backdrop-blur-md border-b border-rose-pine-highlight`}
+        } md:hidden bg-rose-pine-surface/90 backdrop-blur-md border-b border-rose-pine-highlight/50`}
         id="mobile-menu"
       >
-        <div className="px-2 pt-2 pb-3 space-y-1">
+        <div className="px-4 pt-2 pb-4 space-y-2">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`nav-link block ${
+              className={`nav-link block group ${
                 pathname === link.href ? "nav-link-active" : ""
               }`}
               {...(link.external && {
@@ -92,7 +96,11 @@ export default function Navbar() {
               })}
               onClick={() => setIsMenuOpen(false)}
             >
-              {link.icon && <span className="mr-2">{link.icon}</span>}
+              {link.icon && (
+                <span className="mr-2 group-hover:scale-110 transition-transform inline-block">
+                  {link.icon}
+                </span>
+              )}
               {link.label}
             </Link>
           ))}

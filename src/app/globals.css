@@ -19,7 +19,7 @@
 
 @layer components {
   .nav-link {
-    @apply px-3 py-2 rounded-md text-sm font-medium 
+    @apply px-3 py-2 rounded-md text-sm font-medium tracking-wide
            text-rose-pine-subtle hover:text-rose-pine-text 
            hover:bg-rose-pine-highlight transition-colors;
   }
@@ -29,47 +29,63 @@
   }
 
   .section-heading {
-    @apply text-4xl md:text-6xl font-bold mb-4 
-           text-rose-pine-text animate-fade-in;
-  }
-
-  .section-subheading {
-    @apply text-2xl md:text-3xl text-rose-pine-subtle mb-8 
+    @apply text-5xl md:text-7xl font-bold mb-6 
+           text-rose-pine-text tracking-tight leading-none
            animate-fade-in;
   }
 
+  .section-subheading {
+    @apply text-xl md:text-2xl text-rose-pine-subtle mb-8 
+           tracking-wide font-light animate-fade-in;
+  }
+
   .section-container {
-    @apply container mx-auto px-4 py-16;
+    @apply container mx-auto px-6 py-20;
   }
 
   .text-gradient {
     @apply bg-gradient-to-r from-rose-pine-rose via-rose-pine-iris to-rose-pine-pine 
-           bg-clip-text text-transparent;
+           bg-clip-text text-transparent font-extrabold;
   }
 
   .card {
-    @apply bg-rose-pine-surface rounded-lg p-6 
-           shadow-lg hover:shadow-xl transition-shadow
-           border border-rose-pine-highlight;
+    @apply bg-rose-pine-surface/50 backdrop-blur-sm rounded-xl p-8
+           shadow-lg hover:shadow-xl transition-all duration-300
+           border border-rose-pine-highlight hover:border-rose-pine-subtle
+           group;
   }
 
   .button {
-    @apply px-4 py-2 rounded-md font-medium 
-           bg-rose-pine-pine text-rose-pine-text
-           hover:bg-rose-pine-foam hover:text-rose-pine-base 
-           transition-colors;
+    @apply px-6 py-3 rounded-lg font-medium tracking-wide
+           bg-rose-pine-pine/90 text-rose-pine-text
+           hover:bg-rose-pine-foam/90 hover:text-rose-pine-base 
+           transition-all duration-300 backdrop-blur-sm
+           shadow-lg hover:shadow-xl
+           hover:scale-105 active:scale-100;
   }
 
   .link {
     @apply text-rose-pine-foam hover:text-rose-pine-rose 
            underline-offset-4 hover:underline 
-           transition-colors;
+           transition-colors font-medium;
+  }
+
+  .prose {
+    @apply text-lg leading-relaxed tracking-wide;
+  }
+
+  .prose p {
+    @apply mb-6 text-rose-pine-text/90;
+  }
+
+  .prose a {
+    @apply font-medium;
   }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -77,9 +93,5 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-rose-pine-highlight rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-rose-pine-highlight-med;
+  @apply bg-rose-pine-highlight rounded-full hover:bg-rose-pine-highlight-med transition-colors;
 }
