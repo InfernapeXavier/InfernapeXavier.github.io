@@ -1,28 +1,36 @@
-# Hello There
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/563580da-230b-411b-a47e-e27a7d05d4d7/deploy-status)](https://app.netlify.com/sites/infernapexavier/deploys)
+## Getting Started
 
-Hello, I'm Rohit, a Software Engineer at [academia.edu](https://academia.edu). I graduated with a Master's degree in Computer Science from the [University of Florida](https://www.ufl.edu).
-My interests include _Databases_ and _Distributed Systems_.
+First, run the development server:
 
-#### Tools I've worked with
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-`Python` `Rust` `Rails` `Ruby` `Flask` `C/C++` `SQL` `JavaScript` `Android` `MongoDB` `Redis` `Alexa-Skills` `Golang` `TypeScript` `AWS` `GH Actions`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-#### Tools I'm learning
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-`React` `Terraform` `ElasticSearch`
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Head on over to [my website](https://rohitc.tech) to learn more about my projects!
+## Learn More
 
-### This Website
+To learn more about Next.js, take a look at the following resources:
 
-I built this website using what my friend [@boromihir](https://github.com/boromihir) called an _abominable_ combination of `Bootstrap Bulma TailwindCSS`
-Generally I would not do this, but I wanted my website to feel personal and I really like some parts of all three of these frameworks.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-So, this website is indeed an abomination and the embodiment of _No Compromise_
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Credits
+## Deploy on Vercel
 
-Icons: [Simple Icons](https://simpleicons.org/) using [Icongram](https://icongr.am/)
-Colors: [ColorMind](http://colormind.io/)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -129,6 +129,61 @@ This file serves as a central repository for project knowledge, learnings, and b
 
 **Date**: [Current Date]
 
+### Next.js Project Setup
+
+**Context**: Setting up a modern Next.js project structure while preserving the existing site content.
+
+**Solution**: Created a new Next.js project with TypeScript, Tailwind CSS, and modern features while keeping a backup of the original site.
+
+**Implementation**:
+
+1. Backed up existing site:
+
+   ```bash
+   mkdir -p _backup
+   cp -r assets index.html robots.txt sitemap.xml 404.html _backup/
+   ```
+
+2. Set up Next.js project:
+
+   - Created temporary directory due to npm naming restrictions
+   - Used create-next-app with modern features:
+     ```bash
+     npx create-next-app@latest . --typescript --tailwind --app --src-dir --import-alias "@/*" --use-yarn
+     ```
+   - Features enabled:
+     - TypeScript for type safety
+     - Tailwind CSS for styling
+     - App Router for modern routing
+     - src directory for better organization
+     - ESLint for code quality
+     - Import aliases for cleaner imports
+
+3. Project Structure:
+   ```
+   PROJECT_ROOT/
+   ├── src/
+   │   ├── app/
+   │   │   ├── layout.tsx
+   │   │   └── page.tsx
+   │   ├── components/
+   │   └── styles/
+   ├── public/
+   │   └── assets/
+   ├── _backup/
+   │   └── [original site files]
+   └── docs/
+       └── knowledge.md
+   ```
+
+**References**:
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
+
+**Date**: [Current Date]
+
 ## Styling Solutions
 
 [To be populated as we implement styling solutions]
