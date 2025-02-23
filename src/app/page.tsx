@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import ProjectCard from "@/components/ProjectCard";
+import Skills from "@/components/Skills";
 import { projects } from "@/data/projects";
 
 export default function Home() {
@@ -55,6 +56,10 @@ export default function Home() {
                 </a>
                 !
               </p>
+            </div>
+
+            <div className="mt-16">
+              <Skills />
             </div>
           </div>
         </div>
