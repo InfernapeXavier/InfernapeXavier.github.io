@@ -3,7 +3,7 @@ export interface Project {
   description: string;
   image: string;
   technologies: string[];
-  githubUrl?: string;
+  githubUrl: string;
   liveUrl?: string;
   isInProgress?: boolean;
 }
@@ -12,12 +12,22 @@ export const projects: Project[] = [
   {
     title: "Annie Mei",
     description:
-      "A Discord bot that provides anime and manga information, with features like search, recommendations, and tracking. Annie Mei is built with Rust, GraphQL, PostgreSQL, and Redis, and is currently serving multiple servers.",
-    image: "/projects/annie-mei.webp",
-    technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis"],
+      "A Discord bot that helps you track your anime and manga progress. Built with Rust, it uses GraphQL to interact with AniList's API, and PostgreSQL + Redis for caching and data persistence. The bot features a robust permission system and supports multiple guilds.",
+    image: "/images/annie-mei.png",
+    technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "Discord API"],
     githubUrl: "https://github.com/InfernapeXavier/annie-mei",
     liveUrl:
-      "https://discord.com/oauth2/authorize?client_id=1001234567890&scope=bot&permissions=8",
+      "https://discord.com/api/oauth2/authorize?client_id=931012939816767498&permissions=534723950656&scope=bot%20applications.commands",
+    isInProgress: true,
+  },
+  {
+    title: "Personal Website",
+    description:
+      "A modern, responsive personal website built with Next.js 14, TypeScript, and Tailwind CSS. Features server-side rendering, optimized images and fonts, and a clean, minimalist design.",
+    image: "/images/personal-website.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
+    githubUrl: "https://github.com/InfernapeXavier/InfernapeXavier.github.io",
+    liveUrl: "https://rohitk.xyz",
   },
   {
     title: "RustyBase",
