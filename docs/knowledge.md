@@ -203,6 +203,70 @@ This file serves as a central repository for project knowledge, learnings, and b
 
 **Date**: [Current Date]
 
+### Basic Layout and Navigation Setup
+
+**Context**: Setting up the foundational layout and navigation structure for the modern Next.js website.
+
+**Solution**: Created reusable layout components and implemented responsive navigation following modern web practices.
+
+**Implementation**:
+
+1. Created Navigation Component (`src/components/layout/Navbar.tsx`):
+
+   - Responsive design with mobile menu
+   - Smooth scroll to sections
+   - Active link highlighting
+   - External link handling (Resume)
+
+   ```tsx
+   const navLinks = [
+     { href: "#about", label: "About" },
+     { href: "#projects", label: "Work" },
+     { href: "#contact", label: "Contact" },
+     {
+       href: "https://bit.ly/rohitcresume",
+       label: "Resume",
+       icon: <FaFilePdf />,
+       external: true,
+     },
+   ];
+   ```
+
+2. Set up Root Layout (`src/app/layout.tsx`):
+
+   - Meta tags and SEO configuration
+   - Favicon setup
+   - Google Fonts integration
+   - Global navigation
+
+   ```tsx
+   export const metadata: Metadata = {
+     title: "Rohit Choudhari (academia.edu)",
+     description: "...",
+     // ... other meta configurations
+   };
+   ```
+
+3. Created Basic Page Structure:
+
+   - Full-height sections
+   - Responsive typography
+   - Mobile-first approach
+   - Semantic HTML structure
+
+4. Asset Management:
+   - Moved favicons to `public/assets/favicon/`
+   - Set up proper asset paths
+   - Maintained original branding
+
+**References**:
+
+- [Next.js App Router Documentation](https://nextjs.org/docs/app)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [React Icons](https://react-icons.github.io/react-icons/)
+
+**Date**: [Current Date]
+
 ## Styling Solutions
 
 [To be populated as we implement styling solutions]
