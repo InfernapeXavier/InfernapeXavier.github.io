@@ -23,10 +23,11 @@ This file serves as a central repository for project knowledge, learnings, and b
 
 **Implementation**:
 
-1. Created feature branch:
+1. Created and pushed feature branch:
 
    ```bash
    git checkout -b feature/nextjs-modern
+   git push -u origin feature/nextjs-modern
    ```
 
 2. Established Cursor rules in `.cursor/rules/`:
@@ -46,6 +47,7 @@ This file serves as a central repository for project knowledge, learnings, and b
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - Project Cursor rules in `.cursor/rules/`
+- [GitHub Repository](https://github.com/InfernapeXavier/InfernapeXavier.github.io)
 
 **Date**: [Current Date]
 
