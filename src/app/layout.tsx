@@ -6,16 +6,20 @@ import Navbar from "@/components/layout/Navbar";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  preload: true,
   variable: "--font-inter",
-  preload: false,
+  fallback: ["system-ui", "sans-serif"],
+  adjustFontFallback: true,
   weight: ["300", "400", "500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
+  preload: true,
   variable: "--font-mono",
-  preload: false,
+  fallback: ["monospace"],
+  adjustFontFallback: true,
   weight: ["400", "500", "600", "700"],
 });
 

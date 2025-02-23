@@ -1,7 +1,38 @@
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import ProjectCard from "@/components/ProjectCard";
-import Skills from "@/components/Skills";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { projects } from "@/data/projects";
+
+// Lazy load components that are not immediately visible
+const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
+  loading: () => (
+    <div className="card animate-pulse">
+      <div className="w-full h-48 bg-rose-pine-highlight rounded-lg mb-4" />
+      <div className="h-8 bg-rose-pine-highlight rounded w-3/4 mb-4" />
+      <div className="h-24 bg-rose-pine-highlight rounded mb-4" />
+      <div className="flex gap-2 mb-4">
+        <div className="h-6 w-20 bg-rose-pine-highlight rounded" />
+        <div className="h-6 w-20 bg-rose-pine-highlight rounded" />
+      </div>
+    </div>
+  ),
+});
+
+const Skills = dynamic(() => import("@/components/Skills"), {
+  loading: () => (
+    <div className="animate-pulse">
+      <div className="h-8 bg-rose-pine-highlight rounded w-1/4 mb-6" />
+      <div className="flex flex-wrap gap-4">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="w-12 h-12 bg-rose-pine-highlight rounded-lg"
+          />
+        ))}
+      </div>
+    </div>
+  ),
+});
 
 export default function Home() {
   return (
@@ -57,10 +88,26 @@ export default function Home() {
                 !
               </p>
             </div>
+          </div>
 
-            <div className="mt-16">
+          <div className="mt-24 max-w-4xl">
+            <Suspense
+              fallback={
+                <div className="animate-pulse">
+                  <div className="h-8 bg-rose-pine-highlight rounded w-1/4 mb-6" />
+                  <div className="flex flex-wrap gap-4">
+                    {[...Array(8)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-12 h-12 bg-rose-pine-highlight rounded-lg"
+                      />
+                    ))}
+                  </div>
+                </div>
+              }
+            >
               <Skills />
-            </div>
+            </Suspense>
           </div>
         </div>
       </section>
@@ -70,7 +117,22 @@ export default function Home() {
           <h2 className="section-heading mb-12">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
+              <Suspense
+                key={project.title}
+                fallback={
+                  <div className="card animate-pulse">
+                    <div className="w-full h-48 bg-rose-pine-highlight rounded-lg mb-4" />
+                    <div className="h-8 bg-rose-pine-highlight rounded w-3/4 mb-4" />
+                    <div className="h-24 bg-rose-pine-highlight rounded mb-4" />
+                    <div className="flex gap-2 mb-4">
+                      <div className="h-6 w-20 bg-rose-pine-highlight rounded" />
+                      <div className="h-6 w-20 bg-rose-pine-highlight rounded" />
+                    </div>
+                  </div>
+                }
+              >
+                <ProjectCard {...project} />
+              </Suspense>
             ))}
           </div>
         </div>
