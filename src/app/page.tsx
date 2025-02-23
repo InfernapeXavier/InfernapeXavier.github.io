@@ -1,4 +1,6 @@
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import ProjectCard from "@/components/ProjectCard";
+import { projects } from "@/data/projects";
 
 export default function Home() {
   return (
@@ -62,14 +64,9 @@ export default function Home() {
         <div className="section-container">
           <h2 className="section-heading mb-12">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card group animate-fade-in">
-              <h3 className="text-2xl font-semibold mb-4 text-rose-pine-foam">
-                Coming Soon...
-              </h3>
-              <p className="text-rose-pine-subtle text-lg">
-                Exciting projects are in the works!
-              </p>
-            </div>
+            {projects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
           </div>
         </div>
       </section>
