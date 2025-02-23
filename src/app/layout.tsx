@@ -3,6 +3,7 @@ import { Outfit, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -128,7 +129,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${outfit.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
@@ -151,40 +156,52 @@ export default function RootLayout({
         <link rel="manifest" href="/assets/favicon/site.webmanifest" />
       </head>
       <body>
-        <Script
-          id="schema-org"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Rohit Choudhari",
-              alternateName: ["InfernapeXavier", "SekkenSenzai"],
-              description:
-                "Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform.",
-              image: "https://rohitc.tech/assets/logo/cover.png",
-              url: "https://rohitc.tech",
-              sameAs: [
-                "https://github.com/InfernapeXavier",
-                "https://linkedin.com/in/infernapexavier/",
-                "https://twitter.com/InfernapeXavier",
-              ],
-              jobTitle: "Infrastructure Engineer",
-              worksFor: {
-                "@type": "Organization",
-                name: "Academia.edu",
-                url: "https://www.academia.edu",
-              },
-              alumniOf: {
-                "@type": "CollegeOrUniversity",
-                name: "University of Florida",
-                url: "https://www.ufl.edu",
-              },
-            }),
-          }}
-        />
-        <Navbar />
-        {children}
+        <ThemeProvider>
+          <div className="min-h-screen transition-colors duration-300">
+            <a href="#main" className="skip-to-content">
+              Skip to main content
+            </a>
+            <Script
+              id="schema-org"
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Person",
+                  name: "Rohit Choudhari",
+                  alternateName: ["InfernapeXavier", "SekkenSenzai"],
+                  description:
+                    "Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform.",
+                  image: "https://rohitc.tech/assets/logo/cover.png",
+                  url: "https://rohitc.tech",
+                  sameAs: [
+                    "https://github.com/InfernapeXavier",
+                    "https://linkedin.com/in/infernapexavier/",
+                    "https://twitter.com/InfernapeXavier",
+                  ],
+                  jobTitle: "Infrastructure Engineer",
+                  worksFor: {
+                    "@type": "Organization",
+                    name: "Academia.edu",
+                    url: "https://www.academia.edu",
+                  },
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "University of Florida",
+                    url: "https://www.ufl.edu",
+                  },
+                }),
+              }}
+            />
+            <Navbar />
+            <main
+              id="main"
+              className="transition-opacity duration-300 animate-fade-in"
+            >
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

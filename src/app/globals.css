@@ -4,7 +4,37 @@
 
 @layer base {
   :root {
-    @apply bg-rose-pine-base text-rose-pine-text;
+    /* Light theme colors */
+    --color-base: 250 250 250;      /* #fafafa */
+    --color-surface: 241 245 249;    /* #f1f5f9 */
+    --color-overlay: 226 232 240;    /* #e2e8f0 */
+    --color-muted: 100 116 139;      /* #64748b */
+    --color-subtle: 71 85 105;       /* #475569 */
+    --color-text: 15 23 42;          /* #0f172a */
+    --color-highlight: 241 245 249;   /* #f1f5f9 */
+  }
+
+  :root.dark {
+    /* Dark theme (Rose Pine) colors */
+    --color-base: 25 23 36;          /* #191724 */
+    --color-surface: 31 29 46;       /* #1f1d2e */
+    --color-overlay: 38 35 58;       /* #26233a */
+    --color-muted: 110 106 134;      /* #6e6a86 */
+    --color-subtle: 144 140 170;     /* #908caa */
+    --color-text: 224 222 244;       /* #e0def4 */
+    --color-highlight: 42 40 55;     /* #2a2837 */
+  }
+
+  /* Improved focus styles for better accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-rose-pine-foam ring-offset-2 ring-offset-rose-pine-base;
+  }
+
+  /* Skip to main content link */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 
+           focus:z-50 focus:px-4 focus:py-2 focus:bg-rose-pine-surface 
+           focus:text-rose-pine-text focus:rounded-lg focus:shadow-lg;
   }
 
   html {
@@ -12,7 +42,7 @@
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased bg-rose-pine-base text-rose-pine-text transition-colors duration-300;
     letter-spacing: -0.01em;
   }
 }
@@ -21,7 +51,9 @@
   .nav-link {
     @apply px-3 py-2 rounded-lg text-lg font-medium
            text-rose-pine-subtle hover:text-rose-pine-text 
-           hover:bg-rose-pine-highlight transition-colors;
+           hover:bg-rose-pine-highlight transition-colors
+           focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
+           focus:ring-offset-2 focus:ring-offset-rose-pine-base;
     letter-spacing: 0;
   }
 
@@ -83,44 +115,21 @@
 
 /* Components that can't use @apply with certain utilities */
 .card {
-  background-color: rgb(31 29 46 / 0.5);
-  backdrop-filter: blur(4px);
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
-  border: 1px solid rgb(42 40 55);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-  position: relative;
-  overflow: hidden;
+  @apply bg-rose-pine-surface/50 backdrop-blur-[4px] rounded-2xl p-8
+         shadow-lg border border-rose-pine-highlight
+         transition-all duration-300 relative overflow-hidden
+         hover:shadow-xl hover:border-rose-pine-subtle hover:-translate-y-1
+         focus-within:ring-2 focus-within:ring-rose-pine-foam;
 }
 
 .card::before {
   content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right bottom,
-    transparent,
-    rgb(144 140 170 / 0.05)
-  );
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  box-shadow:
-    0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-  border-color: rgb(144 140 170);
-  transform: translateY(-2px);
+  @apply absolute inset-0 bg-gradient-to-b from-transparent to-rose-pine-subtle/5
+         transform translate-y-full transition-transform duration-300;
 }
 
 .card:hover::before {
-  transform: translateY(0);
+  @apply translate-y-0;
 }
 
 .button {
@@ -129,7 +138,9 @@
          hover:bg-rose-pine-foam/90 hover:text-rose-pine-base 
          transition-all duration-300 backdrop-blur-sm
          shadow-lg hover:shadow-xl overflow-hidden
-         hover:scale-105 active:scale-100;
+         hover:scale-105 active:scale-100
+         focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
+         focus:ring-offset-2 focus:ring-offset-rose-pine-base;
   letter-spacing: 0;
 }
 
@@ -141,13 +152,15 @@
 }
 
 .button:hover::before {
-  transform: translateX(100%);
+  @apply translate-x-full;
 }
 
 .link {
   @apply text-rose-pine-foam hover:text-rose-pine-rose 
          underline-offset-4 hover:underline relative
-         transition-colors font-medium;
+         transition-colors font-medium
+         focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
+         focus:ring-offset-2 focus:ring-offset-rose-pine-base;
   letter-spacing: 0;
 }
 
@@ -166,7 +179,7 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  @apply w-2;
 }
 
 ::-webkit-scrollbar-track {
@@ -174,40 +187,35 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-rose-pine-highlight rounded-full hover:bg-rose-pine-highlight-med transition-colors;
+  @apply bg-rose-pine-highlight rounded-full 
+         hover:bg-rose-pine-highlight-med transition-colors;
+}
+
+/* Remove animations when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Animations */
 @keyframes float-slow {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(5px, -5px) rotate(2deg);
-  }
-  50% {
-    transform: translate(10px, 5px) rotate(-2deg);
-  }
-  75% {
-    transform: translate(-5px, 10px) rotate(1deg);
-  }
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, -5px) rotate(2deg); }
+  50% { transform: translate(10px, 5px) rotate(-2deg); }
+  75% { transform: translate(-5px, 10px) rotate(1deg); }
 }
 
 @keyframes float-slow-reverse {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(-5px, 5px) rotate(-2deg);
-  }
-  50% {
-    transform: translate(-10px, -5px) rotate(2deg);
-  }
-  75% {
-    transform: translate(5px, -10px) rotate(-1deg);
-  }
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-5px, 5px) rotate(-2deg); }
+  50% { transform: translate(-10px, -5px) rotate(2deg); }
+  75% { transform: translate(5px, -10px) rotate(-1deg); }
 }
 
 @layer utilities {
