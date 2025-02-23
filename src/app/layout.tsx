@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rohitc.tech"),
   title: "Rohit Choudhari (academia.edu)",
   description:
     "Rohit Choudhari is a Software Engineer at Academia.edu. He completed his MS in CS from the University of Florida. His interests are databases. He is currently working on Annie-Mei, a discord bot that gives you anime/manga information. Find him around the web as InfernapeXavier!",
