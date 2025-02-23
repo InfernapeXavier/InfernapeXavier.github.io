@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
       colors: {
@@ -61,6 +61,23 @@ const config: Config = {
         DEFAULT: {
           css: {
             color: "#e0def4", // rose-pine-text
+            fontFamily: "var(--font-sans)",
+            h1: {
+              color: "#e0def4", // rose-pine-text
+              fontFamily: "var(--font-sans)",
+            },
+            h2: {
+              color: "#e0def4", // rose-pine-text
+              fontFamily: "var(--font-sans)",
+            },
+            h3: {
+              color: "#e0def4", // rose-pine-text
+              fontFamily: "var(--font-sans)",
+            },
+            h4: {
+              color: "#e0def4", // rose-pine-text
+              fontFamily: "var(--font-sans)",
+            },
             a: {
               color: "#9ccfd8", // rose-pine-foam
               "&:hover": {
@@ -68,18 +85,6 @@ const config: Config = {
               },
             },
             strong: {
-              color: "#e0def4", // rose-pine-text
-            },
-            h1: {
-              color: "#e0def4", // rose-pine-text
-            },
-            h2: {
-              color: "#e0def4", // rose-pine-text
-            },
-            h3: {
-              color: "#e0def4", // rose-pine-text
-            },
-            h4: {
               color: "#e0def4", // rose-pine-text
             },
           },

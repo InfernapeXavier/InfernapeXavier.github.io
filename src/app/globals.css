@@ -13,14 +13,16 @@
 
   body {
     @apply antialiased;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer components {
   .nav-link {
-    @apply px-3 py-2 rounded-md text-sm font-medium tracking-wide
+    @apply px-3 py-2 rounded-lg text-sm font-medium
            text-rose-pine-subtle hover:text-rose-pine-text 
            hover:bg-rose-pine-highlight transition-colors;
+    letter-spacing: 0;
   }
 
   .nav-link-active {
@@ -29,13 +31,15 @@
 
   .section-heading {
     @apply text-5xl md:text-7xl font-bold mb-6 
-           text-rose-pine-text tracking-tight leading-none
+           text-rose-pine-text leading-tight
            animate-fade-in;
+    letter-spacing: -0.03em;
   }
 
   .section-subheading {
     @apply text-xl md:text-2xl text-rose-pine-subtle mb-8 
-           tracking-wide font-light animate-fade-in;
+           font-light animate-fade-in;
+    letter-spacing: -0.01em;
   }
 
   .section-container {
@@ -45,6 +49,7 @@
   .text-gradient {
     @apply bg-gradient-to-r from-rose-pine-rose via-rose-pine-iris to-rose-pine-pine 
            bg-clip-text text-transparent font-extrabold;
+    letter-spacing: -0.02em;
   }
 
   /* Decorative elements */
@@ -79,7 +84,7 @@
 .card {
   background-color: rgb(31 29 46 / 0.5);
   backdrop-filter: blur(4px);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   border: 1px solid rgb(42 40 55);
@@ -114,12 +119,13 @@
 }
 
 .button {
-  @apply px-6 py-3 rounded-lg font-medium tracking-wide
+  @apply px-6 py-3 rounded-xl font-medium
          bg-rose-pine-pine/90 text-rose-pine-text relative
          hover:bg-rose-pine-foam/90 hover:text-rose-pine-base 
          transition-all duration-300 backdrop-blur-sm
          shadow-lg hover:shadow-xl overflow-hidden
          hover:scale-105 active:scale-100;
+  letter-spacing: 0;
 }
 
 .button::before {
@@ -137,10 +143,12 @@
   @apply text-rose-pine-foam hover:text-rose-pine-rose 
          underline-offset-4 hover:underline relative
          transition-colors font-medium;
+  letter-spacing: 0;
 }
 
 .prose {
-  @apply text-lg leading-relaxed tracking-wide;
+  @apply text-lg leading-relaxed;
+  letter-spacing: -0.01em;
 }
 
 .prose p {
