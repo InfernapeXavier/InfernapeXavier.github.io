@@ -58,7 +58,7 @@ export default function Home() {
             <div className="h-0.5 w-1/4 bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-12 opacity-50" />
 
             <div className="prose prose-invert space-y-6 animate-fade-in">
-              <p className="text-lg text-rose-pine-text/90">
+              <p className="text-xl text-rose-pine-text/90">
                 I am a Software Engineer at{" "}
                 <a
                   href="https://www.academia.edu"
@@ -70,13 +70,13 @@ export default function Home() {
                   </span>
                 </a>
               </p>
-              <p className="text-lg text-rose-pine-text/90">
+              <p className="text-xl text-rose-pine-text/90">
                 I love solving hard problems with people
               </p>
-              <p className="text-lg text-rose-pine-text/90">
+              <p className="text-xl text-rose-pine-text/90">
                 I am fast with tech and I love talking about it
               </p>
-              <p className="text-lg text-rose-pine-text/90">
+              <p className="text-xl text-rose-pine-text/90">
                 I am currently working on{" "}
                 <a
                   href="https://github.com/annie-mei"
