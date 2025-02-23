@@ -101,19 +101,38 @@ This file serves as a central repository for project knowledge, learnings, and b
 
 1. Created `.cursor/rules/git-standards.mdc` with:
 
+   - Commit confirmation requirements
    - Branch naming conventions (feature/, fix/, refactor/, etc.)
    - Conventional Commits specification
    - Pull request templates and guidelines
    - Git workflow procedures
    - Security best practices
 
-2. Example usage:
+2. Commit Confirmation Process:
+
+   ```bash
+   # Stage changes
+   git add .
+
+   # Review staged changes
+   git diff --staged
+
+   # Get user confirmation for:
+   # - Files being committed
+   # - Commit message
+   # - Any new files
+
+   # Only after confirmation:
+   git commit -m "type(scope): description"
+   ```
+
+3. Example usage:
 
    ```bash
    # Branch naming
    git checkout -b feature/new-feature-name
 
-   # Commit message
+   # Commit message (after confirmation)
    git commit -m "feat(component): add new feature description
 
    - Detailed change 1

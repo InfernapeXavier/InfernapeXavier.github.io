@@ -1,9 +1,5 @@
 ---
 description: Git Development Standards
-globs: **/.git/**", "**/.gitignore
----
----
-description: Git Development Standards
 globs: ["**/.git/**", "**/.gitignore"]
 ---
 
@@ -14,6 +10,17 @@ description: Standards for Git usage and version control practices
 # Git Development Standards
 
 This file contains rules for Git usage and version control in the project.
+
+## Commit Confirmation
+
+All commits MUST follow these confirmation steps:
+1. Show staged changes to user before committing
+2. Get explicit confirmation for:
+   - Files being committed
+   - Commit message and description
+   - Any new files being added
+3. Never auto-commit without user review
+4. Allow user to modify commit message if needed
 
 ## Branch Naming
 
@@ -88,6 +95,7 @@ Closes #123
    git checkout -b feature/name
    # Make changes
    git add .
+   # Show changes to user and get confirmation
    git commit -m "feat(scope): description"
    ```
 
@@ -111,6 +119,8 @@ Closes #123
 - Delete merged feature branches
 - Never commit sensitive information
 - Use .gitignore appropriately
+- Always review changes before committing
+- Get explicit confirmation for all commits
 
 ## Git Hooks
 
@@ -119,6 +129,7 @@ Recommended pre-commit hooks:
 - Run type checking
 - Format code
 - Run relevant tests
+- Show diff for review
 
 ## Security
 
@@ -132,4 +143,4 @@ Recommended pre-commit hooks:
 metadata:
   priority: high
   version: 1.0
-</rule>
+</rule> 
