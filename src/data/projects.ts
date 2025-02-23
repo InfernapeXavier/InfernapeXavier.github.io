@@ -12,13 +12,12 @@ export const projects: Project[] = [
   {
     title: "Annie Mei",
     description:
-      "A Discord bot built with Rust, GraphQL, PostgreSQL, and Redis. Annie Mei helps server admins manage their communities with features like role management, moderation, and fun commands. The bot is currently serving multiple servers and is actively maintained.",
+      "A Discord bot that provides anime and manga information, with features like search, recommendations, and tracking. Annie Mei is built with Rust, GraphQL, PostgreSQL, and Redis, and is currently serving multiple servers.",
     image: "/projects/annie-mei.webp",
     technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis"],
     githubUrl: "https://github.com/InfernapeXavier/annie-mei",
     liveUrl:
       "https://discord.com/oauth2/authorize?client_id=1001234567890&scope=bot&permissions=8",
-    isInProgress: true,
   },
   {
     title: "RustyBase",
@@ -27,7 +26,6 @@ export const projects: Project[] = [
     image: "/projects/rustybase.webp",
     technologies: ["Rust"],
     githubUrl: "https://gitlab.com/InfernapeXavier/RustyBase",
-    isInProgress: true,
   },
   {
     title: "Bean-Stock",
