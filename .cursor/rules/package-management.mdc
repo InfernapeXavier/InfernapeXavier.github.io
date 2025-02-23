@@ -1,0 +1,77 @@
+---
+description: Package Management Standards
+globs: ["**/package.json", "**/Brewfile", "**/requirements.txt"]
+---
+
+<rule>
+name: package_management
+description: Standards for package management across different tools and languages
+
+# Package Management Standards
+
+This file contains rules for managing packages and dependencies in the project.
+
+## CLI Tools Installation
+
+Always prefer Homebrew (brew) for installing CLI tools:
+
+1. Primary Package Manager:
+   - Use `brew` as the primary package manager for CLI tools
+   - Avoid using `npm -g`, `pip install --user`, etc. for global CLI tools
+   - Document all project CLI tools in a `Brewfile`
+
+2. Installation Process:
+   ```bash
+   # Check if package is available via brew
+   brew search <package-name>
+   
+   # Install package
+   brew install <package-name>
+   
+   # For casks (GUI applications)
+   brew install --cask <application-name>
+   ```
+
+3. Brewfile Management:
+   - Keep a `Brewfile` in the project root for required CLI tools
+   - Update Brewfile when adding new development dependencies:
+     ```bash
+     brew bundle dump --force  # Create/update Brewfile
+     ```
+   - Install all tools from Brewfile:
+     ```bash
+     brew bundle install  # Install everything from Brewfile
+     ```
+
+4. Exceptions:
+   - Language-specific tools (e.g., npm for Node.js projects)
+   - Tools not available in Homebrew
+   - Platform-specific requirements
+
+## Other Package Managers
+
+1. Node.js:
+   - Use Yarn for project dependencies
+   - Avoid npm except for `npx` when needed
+   - Keep yarn.lock in version control
+
+2. Python:
+   - Use pip with requirements.txt or Poetry
+   - Virtual environments for isolation
+
+3. Ruby:
+   - Use Bundler with Gemfile
+   - Keep Gemfile.lock in version control
+
+## Best Practices
+
+1. Document all package manager decisions
+2. Keep lock files in version control
+3. Regular dependency updates
+4. Security audits of dependencies
+5. Clean installation process for new developers
+
+metadata:
+  priority: high
+  version: 1.0
+</rule> 
