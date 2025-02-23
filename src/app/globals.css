@@ -7,11 +7,6 @@
     @apply bg-rose-pine-base text-rose-pine-text;
   }
 
-  body {
-    @apply antialiased;
-  }
-
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
@@ -51,9 +46,20 @@
 
 /* Components that can't use @apply with certain utilities */
 .card {
-  @apply bg-rose-pine-surface/50 backdrop-blur-sm rounded-xl p-8
-         shadow-lg hover:shadow-xl transition-all duration-300
-         border border-rose-pine-highlight hover:border-rose-pine-subtle;
+  background-color: rgb(31 29 46 / 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: 1px solid rgb(42 40 55);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-color: rgb(144 140 170);
 }
 
 .button {

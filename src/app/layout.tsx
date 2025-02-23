@@ -8,12 +8,15 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+  preload: true,
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const monacode = localFont({
   src: "../fonts/MonaCode-Regular.woff2",
   display: "swap",
   variable: "--font-monacode",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -50,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${inter.variable} ${monacode.variable}`}
+      className={`${inter.variable} ${monacode.variable} scroll-smooth`}
     >
       <head>
         <link
@@ -72,9 +75,11 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/assets/favicon/site.webmanifest" />
       </head>
-      <body className={`${inter.className} font-sans`}>
-        <Navbar />
-        <main className="min-h-screen pt-16">{children}</main>
+      <body>
+        <div className={`${inter.className} font-sans antialiased`}>
+          <Navbar />
+          <main className="min-h-screen pt-16">{children}</main>
+        </div>
       </body>
     </html>
   );
