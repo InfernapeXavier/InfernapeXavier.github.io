@@ -132,6 +132,51 @@ Closes #123
 - Use .gitignore appropriately
 - Always review changes before committing
 - Get explicit confirmation for all commits
+- Ensure clean working tree after commits
+
+## Clean Commits
+
+1. Before finalizing any commit:
+   ```bash
+   # Check what's staged
+   git diff --staged
+   
+   # Check what's not staged
+   git diff
+   
+   # Review overall status
+   git status
+   ```
+
+2. After every commit:
+   ```bash
+   # Verify no leftover changes
+   git status
+   ```
+
+3. If unstaged changes exist:
+   - Review each change carefully
+   - Determine if changes belong with current commit
+   - Either:
+     a. Stage and amend the current commit:
+        ```bash
+        git add .
+        git commit --amend --no-edit
+        ```
+     b. Create a new commit if changes are separate:
+        ```bash
+        git add .
+        git commit -m "feat/fix/etc: separate changes"
+        ```
+     c. Stash changes if they're for later:
+        ```bash
+        git stash save "description of changes"
+        ```
+
+4. Never leave uncommitted changes without:
+   - Documentation of why they're left uncommitted
+   - A plan for handling them
+   - Assignment of responsibility for follow-up
 
 ## Git Hooks
 
