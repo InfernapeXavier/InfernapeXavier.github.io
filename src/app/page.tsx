@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { projects } from "@/data/projects";
@@ -159,6 +159,13 @@ export default function Home() {
               collaborations, or just having a chat about technology.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
+              <a
+                href="mailto:website@rohitc.tech"
+                className="button flex items-center space-x-3"
+              >
+                <FaEnvelope className="text-2xl" />
+                <span>Email</span>
+              </a>
               <a
                 href="https://github.com/InfernapeXavier"
                 target="_blank"
