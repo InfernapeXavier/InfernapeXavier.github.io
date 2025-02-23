@@ -19,7 +19,7 @@
 
 @layer components {
   .nav-link {
-    @apply px-3 py-2 rounded-lg text-sm font-medium
+    @apply px-3 py-2 rounded-lg text-lg font-medium
            text-rose-pine-subtle hover:text-rose-pine-text 
            hover:bg-rose-pine-highlight transition-colors;
     letter-spacing: 0;
