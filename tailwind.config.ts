@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   content: [
@@ -52,9 +53,37 @@ const config: Config = {
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: "#e0def4", // rose-pine-text
+            a: {
+              color: "#9ccfd8", // rose-pine-foam
+              "&:hover": {
+                color: "#ebbcba", // rose-pine-rose
+              },
+            },
+            strong: {
+              color: "#e0def4", // rose-pine-text
+            },
+            h1: {
+              color: "#e0def4", // rose-pine-text
+            },
+            h2: {
+              color: "#e0def4", // rose-pine-text
+            },
+            h3: {
+              color: "#e0def4", // rose-pine-text
+            },
+            h4: {
+              color: "#e0def4", // rose-pine-text
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
 
 export default config;
