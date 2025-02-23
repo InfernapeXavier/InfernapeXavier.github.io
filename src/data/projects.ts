@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: "Annie Mei",
     description:
       "A Discord bot that helps you track your anime and manga progress. Built with Rust, it uses GraphQL to interact with AniList's API, and PostgreSQL + Redis for caching and data persistence. The bot features a robust permission system and supports multiple guilds.",
-    image: "/projects/anniemei.webp",
+    image: "/projects/annie-mei.webp",
     technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "Discord API"],
     githubUrl: "https://github.com/InfernapeXavier/annie-mei",
     liveUrl:
