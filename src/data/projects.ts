@@ -24,10 +24,10 @@ export const projects: Project[] = [
     title: "Personal Website",
     description:
       "A modern, responsive personal website built with Next.js 14, TypeScript, and Tailwind CSS. Features server-side rendering, optimized images and fonts, and a clean, minimalist design.",
-    image: "/images/personal-website.png",
+    image: "/projects/personal-website.webp",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
     githubUrl: "https://github.com/InfernapeXavier/InfernapeXavier.github.io",
-    liveUrl: "https://rohitk.xyz",
+    liveUrl: "https://rohitc.tech",
   },
   {
     title: "RustyBase",
