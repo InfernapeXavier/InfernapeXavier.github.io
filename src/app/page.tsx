@@ -1,65 +1,37 @@
-import Image from "next/image";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 export default function Home() {
   return (
     <>
       <section
         id="about"
-        className="min-h-screen bg-gray-900 text-white flex items-center"
+        className="min-h-screen bg-rose-pine-base flex items-center"
       >
-        <div className="container mx-auto px-4 py-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Hi! I&apos;m Rohit
+        <div className="section-container">
+          <h1 className="section-heading">
+            Hi! I&apos;m <span className="text-gradient">Rohit</span>
           </h1>
-          <h2 className="text-2xl md:text-3xl text-gray-400 mb-8">
+          <h2 className="section-subheading">
             And I believe in all things Binary
           </h2>
-          <hr className="border-gray-700 mb-8" />
+          <div className="h-px bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-8" />
 
-          {/* Mobile version */}
-          <div className="md:hidden space-y-4">
-            <p>
+          <div className="prose prose-invert space-y-4 animate-fade-in">
+            <p className="text-lg text-rose-pine-text">
               I am a Software Engineer at{" "}
-              <a
-                href="https://www.academia.edu"
-                className="text-blue-400 hover:text-blue-300"
-              >
+              <a href="https://www.academia.edu" className="link">
                 Academia.edu
               </a>
             </p>
-            <p>I love solving hard problems with people</p>
-            <p>I am fast with tech and I love talking about it</p>
-            <p>
-              I am currently working on{" "}
-              <a
-                href="https://github.com/annie-mei"
-                className="text-blue-400 hover:text-blue-300"
-              >
-                Annie Mei
-              </a>
-              !
+            <p className="text-lg text-rose-pine-text">
+              I love solving hard problems with people
             </p>
-          </div>
-
-          {/* Desktop version */}
-          <div className="hidden md:block font-mono space-y-4">
-            <p>
-              I am a Software Engineer at{" "}
-              <a
-                href="https://www.academia.edu"
-                className="text-blue-400 hover:text-blue-300"
-              >
-                Academia.edu
-              </a>
+            <p className="text-lg text-rose-pine-text">
+              I am fast with tech and I love talking about it
             </p>
-            <p>I love solving hard problems with people</p>
-            <p>I am fast with tech and I love talking about it</p>
-            <p>
+            <p className="text-lg text-rose-pine-text">
               I am currently working on{" "}
-              <a
-                href="https://github.com/annie-mei"
-                className="text-blue-400 hover:text-blue-300"
-              >
+              <a href="https://github.com/annie-mei" className="link">
                 Annie Mei
               </a>
               !
@@ -68,19 +40,61 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="min-h-screen bg-gray-800 text-white">
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold mb-8">Projects</h2>
-          {/* Project cards will go here */}
-          <div className="text-gray-400">Coming soon...</div>
+      <section id="projects" className="min-h-screen bg-rose-pine-surface">
+        <div className="section-container">
+          <h2 className="section-heading">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Project cards will go here */}
+            <div className="card animate-fade-in">
+              <h3 className="text-xl font-semibold mb-2 text-rose-pine-foam">
+                Coming Soon...
+              </h3>
+              <p className="text-rose-pine-subtle">
+                Exciting projects are in the works!
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="contact" className="min-h-screen bg-gray-900 text-white">
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold mb-8">Contact</h2>
-          {/* Contact information will go here */}
-          <div className="text-gray-400">Coming soon...</div>
+      <section id="contact" className="min-h-screen bg-rose-pine-base">
+        <div className="section-container">
+          <h2 className="section-heading">Let&apos;s Connect</h2>
+          <div className="flex flex-col items-center space-y-8 animate-fade-in">
+            <p className="text-xl text-rose-pine-subtle text-center max-w-2xl">
+              I&apos;m always interested in hearing about new opportunities,
+              collaborations, or just having a chat about technology.
+            </p>
+            <div className="flex space-x-6">
+              <a
+                href="https://github.com/InfernapeXavier"
+                target="_blank"
+                rel="noreferrer"
+                className="button flex items-center space-x-2"
+              >
+                <FaGithub className="text-xl" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/rohitc3"
+                target="_blank"
+                rel="noreferrer"
+                className="button flex items-center space-x-2"
+              >
+                <FaLinkedin className="text-xl" />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://twitter.com/InfernapeXavier"
+                target="_blank"
+                rel="noreferrer"
+                className="button flex items-center space-x-2"
+              >
+                <FaTwitter className="text-xl" />
+                <span>Twitter</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>

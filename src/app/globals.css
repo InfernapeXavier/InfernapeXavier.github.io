@@ -2,20 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    @apply bg-rose-pine-base text-rose-pine-text;
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium 
+           text-rose-pine-subtle hover:text-rose-pine-text 
+           hover:bg-rose-pine-highlight transition-colors;
+  }
+
+  .nav-link-active {
+    @apply bg-rose-pine-highlight text-rose-pine-text;
+  }
+
+  .section-heading {
+    @apply text-4xl md:text-6xl font-bold mb-4 
+           text-rose-pine-text animate-fade-in;
+  }
+
+  .section-subheading {
+    @apply text-2xl md:text-3xl text-rose-pine-subtle mb-8 
+           animate-fade-in;
+  }
+
+  .section-container {
+    @apply container mx-auto px-4 py-16;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-rose-pine-rose via-rose-pine-iris to-rose-pine-pine 
+           bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply bg-rose-pine-surface rounded-lg p-6 
+           shadow-lg hover:shadow-xl transition-shadow
+           border border-rose-pine-highlight;
+  }
+
+  .button {
+    @apply px-4 py-2 rounded-md font-medium 
+           bg-rose-pine-pine text-rose-pine-text
+           hover:bg-rose-pine-foam hover:text-rose-pine-base 
+           transition-colors;
+  }
+
+  .link {
+    @apply text-rose-pine-foam hover:text-rose-pine-rose 
+           underline-offset-4 hover:underline 
+           transition-colors;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-rose-pine-base;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-rose-pine-highlight rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-rose-pine-highlight-med;
 }
