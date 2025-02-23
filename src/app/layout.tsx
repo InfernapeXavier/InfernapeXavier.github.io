@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 
@@ -25,13 +26,50 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohitc.tech"),
-  title: "Rohit Choudhari (academia.edu)",
+  title: {
+    default: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
+    template: "%s | Rohit Choudhari",
+  },
   description:
-    "Rohit Choudhari is a Software Engineer at Academia.edu. He completed his MS in CS from the University of Florida. His interests are databases. He is currently working on Annie-Mei, a discord bot that gives you anime/manga information. Find him around the web as InfernapeXavier!",
-  keywords:
-    "developer, uf graduate, rohit, choudhari, InfernapeXavier, software engineer, full-stack engineer, academia.edu",
-  authors: [{ name: "InfernapeXavier" }],
+    "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+  keywords: [
+    "infrastructure engineer",
+    "software engineer",
+    "ruby developer",
+    "python developer",
+    "terraform",
+    "infrastructure as code",
+    "rust developer",
+    "academia.edu",
+    "university of florida",
+    "annie-mei",
+    "discord bot",
+    "InfernapeXavier",
+    "SekkenSenzai",
+    "rohit choudhari",
+  ],
+  authors: [
+    { name: "Rohit Choudhari", url: "https://github.com/InfernapeXavier" },
+  ],
+  creator: "Rohit Choudhari",
+  publisher: "Rohit Choudhari",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   manifest: "/assets/favicon/site.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: [
     { rel: "icon", url: "/favicon.ico" },
     {
@@ -56,17 +94,31 @@ export const metadata: Metadata = {
     type: "profile",
     firstName: "Rohit",
     lastName: "Choudhari",
-    title: "Rohit Choudhari",
+    title: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
     description:
-      "Rohit Choudhari is a Software Engineer at Academia.edu. He completed his MS in CS from the University of Florida. His interests are databases. He is currently working on Annie-Mei, a discord bot that gives you anime/manga information. Find him around the web as InfernapeXavier!",
+      "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+    url: "https://rohitc.tech",
+    siteName: "Rohit Choudhari's Portfolio",
+    locale: "en_US",
     images: [
       {
         url: "https://rohitc.tech/assets/logo/cover.png",
         width: 1200,
         height: 630,
-        alt: "Rohit Choudhari",
+        alt: "Rohit Choudhari - Infrastructure Engineer",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
+    description:
+      "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+    creator: "@InfernapeXavier",
+    images: ["https://rohitc.tech/assets/logo/cover.png"],
+  },
+  verification: {
+    google: "your-google-site-verification", // You'll need to add this
   },
 };
 
@@ -99,6 +151,38 @@ export default function RootLayout({
         <link rel="manifest" href="/assets/favicon/site.webmanifest" />
       </head>
       <body>
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Rohit Choudhari",
+              alternateName: ["InfernapeXavier", "SekkenSenzai"],
+              description:
+                "Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform.",
+              image: "https://rohitc.tech/assets/logo/cover.png",
+              url: "https://rohitc.tech",
+              sameAs: [
+                "https://github.com/InfernapeXavier",
+                "https://linkedin.com/in/infernapexavier/",
+                "https://twitter.com/InfernapeXavier",
+              ],
+              jobTitle: "Infrastructure Engineer",
+              worksFor: {
+                "@type": "Organization",
+                name: "Academia.edu",
+                url: "https://www.academia.edu",
+              },
+              alumniOf: {
+                "@type": "CollegeOrUniversity",
+                name: "University of Florida",
+                url: "https://www.ufl.edu",
+              },
+            }),
+          }}
+        />
         <Navbar />
         {children}
       </body>
