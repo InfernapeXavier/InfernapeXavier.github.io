@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: "Annie Mei",
     description:
       "A Discord bot that helps you track your anime and manga progress. Built with Rust, it uses GraphQL to interact with AniList's API, and PostgreSQL + Redis for caching and data persistence. The bot features a robust permission system and supports multiple guilds.",
-    image: "/images/annie-mei.png",
+    image: "/projects/anniemei.webp",
     technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "Discord API"],
     githubUrl: "https://github.com/InfernapeXavier/annie-mei",
     liveUrl:
@@ -43,6 +43,7 @@ export const projects: Project[] = [
       "Using a 3-pronged approach to the problem of Stock-Market Forecasting, Bean-Stock gives the user all the information they need to make an informed decision on where to invest next by using ML, NLP and our secret-sauce Health Analysis.",
     image: "/projects/beanstock.webp",
     technologies: ["Python", "Flask", "Bootstrap", "PANDAS", "Sci-Kit"],
+    githubUrl: "https://github.com/InfernapeXavier/Bean-Stock",
     liveUrl: "https://bean-stock.herokuapp.com",
   },
   {
@@ -68,5 +69,6 @@ export const projects: Project[] = [
       "An Android application aimed at decluttering the workspace, ACM Connect was aimed at providing the members of ACM MPSTME with all the tools they will ever need in one package with features like Messaging, User profiles and schedules.",
     image: "/projects/android.webp",
     technologies: ["Java", "Android Studio", "Firebase"],
+    githubUrl: "https://github.com/InfernapeXavier/ACM-Connect",
   },
 ];
