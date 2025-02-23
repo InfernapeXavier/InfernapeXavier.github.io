@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    /* Light theme colors */
-    --color-base: 250 250 250;      /* #fafafa */
-    --color-surface: 241 245 249;    /* #f1f5f9 */
-    --color-overlay: 226 232 240;    /* #e2e8f0 */
-    --color-muted: 100 116 139;      /* #64748b */
-    --color-subtle: 71 85 105;       /* #475569 */
-    --color-text: 15 23 42;          /* #0f172a */
-    --color-highlight: 241 245 249;   /* #f1f5f9 */
+    /* Light theme colors (Rose Pine Dawn) */
+    --color-base: 250 244 237;      /* #faf4ed */
+    --color-surface: 255 250 243;    /* #fffaf3 */
+    --color-overlay: 242 233 222;    /* #f2e9de */
+    --color-muted: 152 147 165;      /* #9893a5 */
+    --color-subtle: 110 106 134;     /* #6e6a86 */
+    --color-text: 87 82 121;         /* #575279 */
+    --color-highlight: 235 227 217;   /* #ebe3d9 */
   }
 
   :root.dark {
@@ -27,14 +27,14 @@
 
   /* Improved focus styles for better accessibility */
   :focus-visible {
-    @apply outline-none ring-2 ring-rose-pine-foam ring-offset-2 ring-offset-rose-pine-base;
+    @apply outline-none ring-2 ring-rose-pine-foam ring-offset-2 ring-offset-theme-base;
   }
 
   /* Skip to main content link */
   .skip-to-content {
     @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 
-           focus:z-50 focus:px-4 focus:py-2 focus:bg-rose-pine-surface 
-           focus:text-rose-pine-text focus:rounded-lg focus:shadow-lg;
+           focus:z-50 focus:px-4 focus:py-2 focus:bg-theme-surface 
+           focus:text-theme-text focus:rounded-lg focus:shadow-lg;
   }
 
   html {
@@ -42,7 +42,7 @@
   }
 
   body {
-    @apply antialiased bg-rose-pine-base text-rose-pine-text transition-colors duration-300;
+    @apply antialiased bg-theme-base text-theme-text transition-colors duration-300;
     letter-spacing: -0.01em;
   }
 }
@@ -50,26 +50,26 @@
 @layer components {
   .nav-link {
     @apply px-3 py-2 rounded-lg text-lg font-medium
-           text-rose-pine-subtle hover:text-rose-pine-text 
-           hover:bg-rose-pine-highlight transition-colors
+           text-theme-subtle hover:text-theme-text 
+           hover:bg-theme-highlight transition-colors
            focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
-           focus:ring-offset-2 focus:ring-offset-rose-pine-base;
+           focus:ring-offset-2 focus:ring-offset-theme-base;
     letter-spacing: 0;
   }
 
   .nav-link-active {
-    @apply bg-rose-pine-highlight text-rose-pine-text;
+    @apply bg-theme-highlight text-theme-text;
   }
 
   .section-heading {
     @apply text-5xl md:text-7xl font-bold mb-6 
-           text-rose-pine-text leading-tight
+           text-theme-text leading-tight
            animate-fade-in;
     letter-spacing: -0.03em;
   }
 
   .section-subheading {
-    @apply text-xl md:text-2xl text-rose-pine-subtle mb-8 
+    @apply text-xl md:text-2xl text-theme-subtle mb-8 
            font-light animate-fade-in;
     letter-spacing: -0.01em;
   }
@@ -79,7 +79,8 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-rose-pine-rose via-rose-pine-iris to-rose-pine-pine 
+    @apply bg-gradient-to-r from-rose-pine-dawn-rose via-rose-pine-dawn-iris to-rose-pine-dawn-pine 
+           dark:from-rose-pine-rose dark:via-rose-pine-iris dark:to-rose-pine-pine 
            bg-clip-text text-transparent font-extrabold;
     letter-spacing: -0.02em;
   }
@@ -88,7 +89,8 @@
   .floating-shapes::before {
     content: "";
     @apply absolute -z-10 w-64 h-64 rounded-full 
-           bg-gradient-to-br from-rose-pine-rose/10 to-rose-pine-pine/10
+           bg-gradient-to-br from-rose-pine-dawn-rose/10 to-rose-pine-dawn-pine/10
+           dark:from-rose-pine-rose/10 dark:to-rose-pine-pine/10
            blur-3xl animate-float-slow;
     top: 20%;
     left: 10%;
@@ -97,7 +99,8 @@
   .floating-shapes::after {
     content: "";
     @apply absolute -z-10 w-96 h-96 rounded-full 
-           bg-gradient-to-tr from-rose-pine-foam/10 to-rose-pine-iris/10
+           bg-gradient-to-tr from-rose-pine-dawn-foam/10 to-rose-pine-dawn-iris/10
+           dark:from-rose-pine-foam/10 dark:to-rose-pine-iris/10
            blur-3xl animate-float-slow-reverse;
     bottom: 10%;
     right: 5%;
@@ -106,8 +109,8 @@
   .grid-pattern {
     @apply absolute inset-0 -z-20;
     background-image:
-      linear-gradient(to right, rgb(42 40 55 / 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(42 40 55 / 0.1) 1px, transparent 1px);
+      linear-gradient(to right, rgb(var(--color-highlight) / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--color-highlight) / 0.1) 1px, transparent 1px);
     background-size: 4rem 4rem;
     mask-image: radial-gradient(circle at center, black, transparent 80%);
   }
@@ -115,16 +118,16 @@
 
 /* Components that can't use @apply with certain utilities */
 .card {
-  @apply bg-rose-pine-surface/50 backdrop-blur-[4px] rounded-2xl p-8
-         shadow-lg border border-rose-pine-highlight
+  @apply bg-theme-surface/50 backdrop-blur-[4px] rounded-2xl p-8
+         shadow-lg border border-theme-highlight
          transition-all duration-300 relative overflow-hidden
-         hover:shadow-xl hover:border-rose-pine-subtle hover:-translate-y-1
+         hover:shadow-xl hover:border-theme-subtle hover:-translate-y-1
          focus-within:ring-2 focus-within:ring-rose-pine-foam;
 }
 
 .card::before {
   content: "";
-  @apply absolute inset-0 bg-gradient-to-b from-transparent to-rose-pine-subtle/5
+  @apply absolute inset-0 bg-gradient-to-b from-transparent to-theme-subtle/5
          transform translate-y-full transition-transform duration-300;
 }
 
@@ -134,20 +137,20 @@
 
 .button {
   @apply px-6 py-3 rounded-xl font-medium
-         bg-rose-pine-pine/90 text-rose-pine-text relative
-         hover:bg-rose-pine-foam/90 hover:text-rose-pine-base 
+         bg-rose-pine-dawn-pine/90 dark:bg-rose-pine-pine/90 text-theme-text relative
+         hover:bg-rose-pine-dawn-foam/90 dark:hover:bg-rose-pine-foam/90 hover:text-theme-base 
          transition-all duration-300 backdrop-blur-sm
          shadow-lg hover:shadow-xl overflow-hidden
          hover:scale-105 active:scale-100
-         focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
-         focus:ring-offset-2 focus:ring-offset-rose-pine-base;
+         focus:outline-none focus:ring-2 focus:ring-rose-pine-dawn-foam dark:focus:ring-rose-pine-foam
+         focus:ring-offset-2 focus:ring-offset-theme-base;
   letter-spacing: 0;
 }
 
 .button::before {
   content: "";
   @apply absolute inset-0 bg-gradient-to-r from-transparent 
-         via-rose-pine-text/10 to-transparent -translate-x-full;
+         via-theme-text/10 to-transparent -translate-x-full;
   transition: transform 0.6s ease;
 }
 
@@ -156,11 +159,11 @@
 }
 
 .link {
-  @apply text-rose-pine-foam hover:text-rose-pine-rose 
+  @apply text-rose-pine-dawn-pine dark:text-rose-pine-foam hover:text-rose-pine-dawn-rose dark:hover:text-rose-pine-rose 
          underline-offset-4 hover:underline relative
          transition-colors font-medium
-         focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
-         focus:ring-offset-2 focus:ring-offset-rose-pine-base;
+         focus:outline-none focus:ring-2 focus:ring-rose-pine-dawn-foam dark:focus:ring-rose-pine-foam
+         focus:ring-offset-2 focus:ring-offset-theme-base;
   letter-spacing: 0;
 }
 
@@ -170,7 +173,7 @@
 }
 
 .prose p {
-  @apply mb-6 text-rose-pine-text/90;
+  @apply mb-6 text-theme-text/90;
 }
 
 .prose a {
@@ -183,12 +186,12 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-rose-pine-base;
+  @apply bg-theme-base;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-rose-pine-highlight rounded-full 
-         hover:bg-rose-pine-highlight-med transition-colors;
+  @apply bg-theme-highlight rounded-full 
+         hover:bg-theme-overlay transition-colors;
 }
 
 /* Remove animations when reduced motion is preferred */

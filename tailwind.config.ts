@@ -7,6 +7,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -14,23 +15,32 @@ const config: Config = {
         mono: ["var(--font-mono)"],
       },
       colors: {
-        // Rose Pine Base
+        theme: {
+          base: "rgb(var(--color-base) / <alpha-value>)",
+          surface: "rgb(var(--color-surface) / <alpha-value>)",
+          overlay: "rgb(var(--color-overlay) / <alpha-value>)",
+          muted: "rgb(var(--color-muted) / <alpha-value>)",
+          subtle: "rgb(var(--color-subtle) / <alpha-value>)",
+          text: "rgb(var(--color-text) / <alpha-value>)",
+          highlight: "rgb(var(--color-highlight) / <alpha-value>)",
+        },
+        // Rose Pine colors for accents (dark mode)
         "rose-pine": {
-          base: "#191724",
-          surface: "#1f1d2e",
-          overlay: "#26233a",
-          muted: "#6e6a86",
-          subtle: "#908caa",
-          text: "#e0def4",
           love: "#eb6f92",
           gold: "#f6c177",
           rose: "#ebbcba",
           pine: "#31748f",
           foam: "#9ccfd8",
           iris: "#c4a7e7",
-          highlight: "#2a2837",
-          "highlight-med": "#403d52",
-          "highlight-high": "#524f67",
+        },
+        // Rose Pine Dawn colors for accents (light mode)
+        "rose-pine-dawn": {
+          love: "#b4637a",
+          gold: "#ea9d34",
+          rose: "#d7827e",
+          pine: "#286983",
+          foam: "#56949f",
+          iris: "#907aa9",
         },
       },
       backgroundImage: {
@@ -60,32 +70,43 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            color: "#e0def4", // rose-pine-text
+            color: "rgb(var(--color-text))",
             fontFamily: "var(--font-sans)",
             h1: {
-              color: "#e0def4", // rose-pine-text
+              color: "rgb(var(--color-text))",
               fontFamily: "var(--font-sans)",
             },
             h2: {
-              color: "#e0def4", // rose-pine-text
+              color: "rgb(var(--color-text))",
               fontFamily: "var(--font-sans)",
             },
             h3: {
-              color: "#e0def4", // rose-pine-text
+              color: "rgb(var(--color-text))",
               fontFamily: "var(--font-sans)",
             },
             h4: {
-              color: "#e0def4", // rose-pine-text
+              color: "rgb(var(--color-text))",
               fontFamily: "var(--font-sans)",
             },
             a: {
-              color: "#9ccfd8", // rose-pine-foam
+              color: "rgb(var(--color-text))",
               "&:hover": {
-                color: "#ebbcba", // rose-pine-rose
+                color: "rgb(var(--color-subtle))",
               },
             },
             strong: {
-              color: "#e0def4", // rose-pine-text
+              color: "rgb(var(--color-text))",
+            },
+            code: {
+              color: "rgb(var(--color-text))",
+            },
+            pre: {
+              backgroundColor: "rgb(var(--color-surface))",
+              color: "rgb(var(--color-text))",
+            },
+            blockquote: {
+              color: "rgb(var(--color-subtle))",
+              borderLeftColor: "rgb(var(--color-highlight))",
             },
           },
         },

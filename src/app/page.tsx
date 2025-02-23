@@ -53,7 +53,9 @@ export default function Home() {
             </h1>
             <h2 className="section-subheading">
               And I believe in all things{" "}
-              <span className="font-mono text-rose-pine-foam">Binary</span>
+              <span className="font-mono text-rose-pine-dawn-pine dark:text-rose-pine-foam">
+                Binary
+              </span>
             </h2>
             <div className="h-0.5 w-1/4 bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-12 opacity-50" />
 

@@ -16,12 +16,16 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const THEME_KEY = "theme-preference";
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(true); // Default to dark theme
   const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // Check system preferences
+    // Get stored theme preference
+    const storedTheme = localStorage.getItem(THEME_KEY);
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
@@ -29,11 +33,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    setIsDark(prefersDark);
+    // Set initial theme
+    setIsDark(storedTheme === "dark" || (storedTheme === null && prefersDark));
     setIsReducedMotion(prefersReducedMotion);
+    setIsInitialized(true);
 
     // Listen for system preference changes
-    const darkModeListener = (e: MediaQueryListEvent) => setIsDark(e.matches);
+    const darkModeListener = (e: MediaQueryListEvent) => {
+      if (localStorage.getItem(THEME_KEY) === null) {
+        setIsDark(e.matches);
+      }
+    };
     const motionListener = (e: MediaQueryListEvent) =>
       setIsReducedMotion(e.matches);
 
@@ -50,10 +60,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    // Update CSS variables and classes based on theme
+    if (!isInitialized) return;
+
+    // Update CSS classes and store preference
     document.documentElement.classList.toggle("dark", isDark);
     document.documentElement.classList.toggle("light", !isDark);
-  }, [isDark]);
+    localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+  }, [isDark, isInitialized]);
 
   const toggleTheme = () => setIsDark(!isDark);
 

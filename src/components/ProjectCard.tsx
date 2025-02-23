@@ -44,10 +44,10 @@ export default function ProjectCard({
           />
         </div>
       )}
-      <h3 className="text-2xl font-semibold mb-2 text-rose-pine-foam flex items-center gap-2">
+      <h3 className="text-2xl font-semibold mb-2 text-rose-pine-dawn-pine dark:text-rose-pine-foam flex items-center gap-2">
         {title}
         {isInProgress && (
-          <span className="text-sm font-normal px-2 py-1 rounded-full bg-rose-pine-pine/30 text-rose-pine-foam">
+          <span className="text-sm font-normal px-2 py-1 rounded-full bg-rose-pine-dawn-pine/20 dark:bg-rose-pine-pine/30 text-rose-pine-dawn-pine dark:text-rose-pine-foam">
             In Progress
           </span>
         )}
@@ -57,7 +57,7 @@ export default function ProjectCard({
         {technologies.map((tech) => (
           <span
             key={tech}
-            className="px-2 py-1 text-sm rounded-md bg-rose-pine-highlight text-rose-pine-foam"
+            className="px-2 py-1 text-sm rounded-md bg-rose-pine-dawn-pine/10 dark:bg-rose-pine-highlight text-rose-pine-dawn-pine dark:text-rose-pine-foam"
           >
             {tech}
           </span>

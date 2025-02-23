@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-rose-pine-surface/80 backdrop-blur-md border-b border-rose-pine-highlight/50"
+      className="fixed top-0 left-0 right-0 z-50 bg-theme-surface/80 backdrop-blur-md border-b border-theme-highlight/50"
       role="navigation"
       aria-label="Main navigation"
     >
@@ -61,7 +61,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 flex items-center">
             <Link
               href="/"
-              className="text-xl font-bold tracking-tight text-rose-pine-text hover:text-rose-pine-foam transition-all duration-300"
+              className="text-xl font-bold tracking-tight text-theme-text hover:text-rose-pine-foam transition-all duration-300"
               aria-label="Home"
             >
               <span className="text-gradient font-mono">RC</span>
@@ -103,9 +103,9 @@ export default function Navbar() {
               }
             >
               {isDark ? (
-                <FaSun className="text-xl" />
+                <FaSun className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors" />
               ) : (
-                <FaMoon className="text-xl" />
+                <FaMoon className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors" />
               )}
             </button>
           </div>
@@ -121,9 +121,9 @@ export default function Navbar() {
               }
             >
               {isDark ? (
-                <FaSun className="text-xl" />
+                <FaSun className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors" />
               ) : (
-                <FaMoon className="text-xl" />
+                <FaMoon className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors" />
               )}
             </button>
             <button
@@ -134,7 +134,7 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
-              <FaBars className="h-6 w-6" />
+              <FaBars className="h-6 w-6 text-theme-text dark:text-theme-subtle hover:text-theme-text transition-colors" />
             </button>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function Navbar() {
               ? "block"
               : "animate-slide-down"
             : "hidden"
-        } md:hidden bg-rose-pine-surface/90 backdrop-blur-md border-b border-rose-pine-highlight/50`}
+        } md:hidden bg-theme-surface/90 backdrop-blur-md border-b border-theme-highlight/50`}
         id="mobile-menu"
         role="menu"
         aria-orientation="vertical"
