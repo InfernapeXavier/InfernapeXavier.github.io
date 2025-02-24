@@ -26,35 +26,23 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Get stored theme preference
     const storedTheme = localStorage.getItem(THEME_KEY);
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    // Set initial theme
-    setIsDark(storedTheme === "dark" || (storedTheme === null && prefersDark));
+    // Set initial theme - always default to dark unless explicitly set to light
+    setIsDark(storedTheme !== "light");
     setIsReducedMotion(prefersReducedMotion);
     setIsInitialized(true);
 
     // Listen for system preference changes
-    const darkModeListener = (e: MediaQueryListEvent) => {
-      if (localStorage.getItem(THEME_KEY) === null) {
-        setIsDark(e.matches);
-      }
-    };
     const motionListener = (e: MediaQueryListEvent) =>
       setIsReducedMotion(e.matches);
 
-    const darkModeMedia = window.matchMedia("(prefers-color-scheme: dark)");
     const motionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    darkModeMedia.addEventListener("change", darkModeListener);
     motionMedia.addEventListener("change", motionListener);
 
     return () => {
-      darkModeMedia.removeEventListener("change", darkModeListener);
       motionMedia.removeEventListener("change", motionListener);
     };
   }, []);
