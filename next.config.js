@@ -24,6 +24,15 @@ const nextConfig = {
   swcMinify: true,
   // Optimize page loading
   poweredByHeader: false,
+  // Performance optimizations
+  compiler: {
+    // Remove console.log in production
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  experimental: {
+    // Enable package optimizations
+    optimizePackageImports: ["@next/font"],
+  },
   // Security headers
   async headers() {
     return [
@@ -66,10 +75,6 @@ const nextConfig = {
         ],
       },
     ];
-  },
-  // Font optimization
-  experimental: {
-    optimizePackageImports: ["@next/font"],
   },
 };
 
