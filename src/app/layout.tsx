@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     },
   },
   icons: [
-    { rel: "icon", url: "/favicon.ico" },
+    { rel: "icon", url: "/assets/favicon/favicon.ico" },
     {
       rel: "icon",
       url: "/assets/favicon/favicon-32x32.png",
@@ -135,7 +135,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any" />
         <link
           rel="icon"
           type="image/png"
