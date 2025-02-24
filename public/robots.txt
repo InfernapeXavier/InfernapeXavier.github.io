@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://rohitc.tech/sitemap.xml
+
+# Disallow certain paths
+Disallow: /api/
+Disallow: /_next/ 
