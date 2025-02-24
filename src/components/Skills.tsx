@@ -31,7 +31,15 @@ const skills: Skill[] = [
 
 export default function Skills() {
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const [focusedSkill, setFocusedSkill] = useState<string | null>(null);
   const { isDark } = useTheme();
+
+  const handleKeyPress = (e: React.KeyboardEvent, skill: Skill) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setActiveTooltip(skill.name);
+    }
+  };
 
   return (
     <div className="animate-fade-in">
@@ -42,20 +50,37 @@ export default function Skills() {
       >
         TL;DR
       </h3>
-      <div className="flex flex-wrap gap-4">
+      <div
+        className="flex flex-wrap gap-4"
+        role="list"
+        aria-label="Skills and technologies"
+      >
         {skills.map((skill) => (
           <div
             key={skill.name}
             className="relative group"
             onMouseEnter={() => setActiveTooltip(skill.name)}
             onMouseLeave={() => setActiveTooltip(null)}
+            onFocus={() => setFocusedSkill(skill.name)}
+            onBlur={() => setFocusedSkill(null)}
+            role="listitem"
           >
-            <div className="w-12 h-12 bg-theme-surface rounded-lg p-2 transition-all duration-300 hover:bg-theme-highlight hover:scale-110 relative">
+            <div
+              className={`w-12 h-12 bg-theme-surface rounded-lg p-2 transition-all duration-300 hover:bg-theme-highlight hover:scale-110 relative
+                ${focusedSkill === skill.name ? "ring-2 ring-rose-pine-foam" : ""}`}
+              tabIndex={0}
+              onKeyDown={(e) => handleKeyPress(e, skill)}
+              aria-label={skill.name}
+              role="img"
+            >
               {/* Default state icon */}
-              <div className="absolute inset-0 p-2 transition-all duration-300 group-hover:opacity-0">
+              <div
+                className="absolute inset-0 p-2 transition-all duration-300 group-hover:opacity-0"
+                aria-hidden="true"
+              >
                 <Image
                   src={skill.icon}
-                  alt={skill.name}
+                  alt=""
                   width={32}
                   height={32}
                   className={`w-full h-full object-contain ${
@@ -64,18 +89,25 @@ export default function Skills() {
                 />
               </div>
               {/* Hover state icon */}
-              <div className="absolute inset-0 p-2 opacity-0 transition-all duration-300 group-hover:opacity-100">
+              <div
+                className="absolute inset-0 p-2 opacity-0 transition-all duration-300 group-hover:opacity-100"
+                aria-hidden="true"
+              >
                 <Image
                   src={skill.icon}
-                  alt={skill.name}
+                  alt=""
                   width={32}
                   height={32}
                   className="w-full h-full object-contain transform group-hover:scale-110 transition-all duration-300"
                 />
               </div>
             </div>
-            {activeTooltip === skill.name && (
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-theme-surface text-theme-text text-sm rounded shadow-lg whitespace-nowrap z-10 border border-theme-highlight/50 backdrop-blur-sm">
+            {(activeTooltip === skill.name || focusedSkill === skill.name) && (
+              <div
+                className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-theme-surface text-theme-text text-sm rounded shadow-lg whitespace-nowrap z-10 border border-theme-highlight/50 backdrop-blur-sm"
+                role="tooltip"
+                id={`tooltip-${skill.name}`}
+              >
                 {skill.name}
               </div>
             )}

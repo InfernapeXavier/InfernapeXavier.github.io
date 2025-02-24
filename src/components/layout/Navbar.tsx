@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBars, FaFilePdf, FaSun, FaMoon } from "react-icons/fa";
@@ -49,6 +49,18 @@ export default function Navbar() {
     },
   });
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 bg-theme-surface/80 backdrop-blur-md border-b border-theme-highlight/50"
@@ -69,7 +81,11 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-1">
+          <div
+            className="hidden md:flex md:items-center md:space-x-1"
+            role="menubar"
+            aria-label="Desktop navigation"
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -77,6 +93,7 @@ export default function Navbar() {
                 className={`nav-link group ${
                   pathname === link.href ? "nav-link-active" : ""
                 }`}
+                role="menuitem"
                 {...(link.external && {
                   target: "_blank",
                   rel: "noreferrer",
@@ -101,11 +118,18 @@ export default function Navbar() {
               aria-label={
                 isDark ? "Switch to light theme" : "Switch to dark theme"
               }
+              role="menuitem"
             >
               {isDark ? (
-                <FaSun className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors" />
+                <FaSun
+                  className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors"
+                  aria-hidden="true"
+                />
               ) : (
-                <FaMoon className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors" />
+                <FaMoon
+                  className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors"
+                  aria-hidden="true"
+                />
               )}
             </button>
           </div>
@@ -121,9 +145,15 @@ export default function Navbar() {
               }
             >
               {isDark ? (
-                <FaSun className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors" />
+                <FaSun
+                  className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors"
+                  aria-hidden="true"
+                />
               ) : (
-                <FaMoon className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors" />
+                <FaMoon
+                  className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors"
+                  aria-hidden="true"
+                />
               )}
             </button>
             <button
@@ -131,10 +161,14 @@ export default function Navbar() {
               className="nav-link"
               aria-controls="mobile-menu"
               aria-expanded={isMenuOpen}
+              aria-label="Toggle mobile menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
-              <FaBars className="h-6 w-6 text-theme-text dark:text-theme-subtle hover:text-theme-text transition-colors" />
+              <FaBars
+                className="h-6 w-6 text-theme-text dark:text-theme-subtle hover:text-theme-text transition-colors"
+                aria-hidden="true"
+              />
             </button>
           </div>
         </div>
@@ -163,13 +197,13 @@ export default function Navbar() {
               className={`nav-link block group ${
                 pathname === link.href ? "nav-link-active" : ""
               }`}
+              role="menuitem"
               {...(link.external && {
                 target: "_blank",
                 rel: "noreferrer",
                 "aria-label": `${link.label} (opens in new tab)`,
               })}
               onClick={() => setIsMenuOpen(false)}
-              role="menuitem"
             >
               {link.icon && (
                 <span

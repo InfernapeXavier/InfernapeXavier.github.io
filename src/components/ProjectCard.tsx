@@ -45,14 +45,21 @@ export default function ProjectCard({
   priority = false,
 }: ProjectCardProps) {
   const [isImageLoading, setIsImageLoading] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className="card group animate-fade-in">
+    <div
+      className={`card group animate-fade-in ${isFocused ? "ring-2 ring-rose-pine-foam" : ""}`}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      role="article"
+      aria-labelledby={`project-title-${title.toLowerCase().replace(/\s+/g, "-")}`}
+    >
       {image && (
         <div className="relative w-full h-48 mb-4 overflow-hidden rounded-lg bg-rose-pine-highlight/50">
           <Image
             src={image}
-            alt={title}
+            alt={`Screenshot or preview of ${title}`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className={`object-cover transition-all duration-300 group-hover:scale-105 ${
@@ -66,34 +73,46 @@ export default function ProjectCard({
           />
         </div>
       )}
-      <h3 className="text-2xl font-semibold mb-2 text-rose-pine-dawn-pine dark:text-rose-pine-foam flex items-center gap-2">
+      <h3
+        id={`project-title-${title.toLowerCase().replace(/\s+/g, "-")}`}
+        className="text-2xl font-semibold mb-2 text-rose-pine-dawn-pine dark:text-rose-pine-foam flex items-center gap-2"
+      >
         {title}
         {isInProgress && (
-          <span className="text-sm font-normal px-2 py-1 rounded-full bg-rose-pine-dawn-pine/20 dark:bg-rose-pine-pine/30 text-rose-pine-dawn-pine dark:text-rose-pine-foam">
+          <span
+            className="text-sm font-normal px-2 py-1 rounded-full bg-rose-pine-dawn-pine/20 dark:bg-rose-pine-pine/30 text-rose-pine-dawn-pine dark:text-rose-pine-foam"
+            role="status"
+          >
             In Progress
           </span>
         )}
       </h3>
       <p className="text-rose-pine-subtle text-lg mb-4">{description}</p>
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div
+        className="flex flex-wrap gap-2 mb-4"
+        role="list"
+        aria-label="Technologies used"
+      >
         {technologies.map((tech) => (
           <span
             key={tech}
             className="px-2 py-1 text-sm rounded-md bg-rose-pine-dawn-pine/10 dark:bg-rose-pine-highlight text-rose-pine-dawn-pine dark:text-rose-pine-foam"
+            role="listitem"
           >
             {tech}
           </span>
         ))}
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4" role="group" aria-label="Project links">
         {githubUrl && (
           <a
             href={githubUrl}
             target="_blank"
             rel="noreferrer"
             className="link flex items-center gap-2"
+            aria-label={`View ${title} source code on GitHub (opens in new tab)`}
           >
-            <FaGithub className="text-lg" />
+            <FaGithub className="text-lg" aria-hidden="true" />
             <span>GitHub</span>
           </a>
         )}
@@ -103,8 +122,9 @@ export default function ProjectCard({
             target="_blank"
             rel="noreferrer"
             className="link flex items-center gap-2"
+            aria-label={`View ${title} live demo (opens in new tab)`}
           >
-            <FaExternalLinkAlt className="text-lg" />
+            <FaExternalLinkAlt className="text-lg" aria-hidden="true" />
             <span>Live Demo</span>
           </a>
         )}
