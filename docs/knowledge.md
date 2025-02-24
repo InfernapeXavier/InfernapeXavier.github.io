@@ -267,6 +267,157 @@ This file serves as a central repository for project knowledge, learnings, and b
 
 **Date**: [Current Date]
 
+### Website Modernization and Improvements
+
+**Context**: Implementing various improvements to enhance the website's performance, accessibility, SEO, and user experience.
+
+**Solution**: Added multiple features and optimizations across different aspects of the website.
+
+**Implementation**:
+
+1. Performance Optimizations:
+
+   ```typescript
+   // Font optimization in next.config.js
+   experimental: {
+     optimizePackageImports: ['@next/font'],
+   }
+
+   // Loading state component (src/app/loading.tsx)
+   export default function Loading() {
+     return (
+       <div className="min-h-screen bg-rose-pine-base flex items-center justify-center">
+         <div className="space-y-8 text-center">
+           <div className="relative w-24 h-24 mx-auto">
+             <div className="absolute inset-0 border-4 border-rose-pine-dawn-foam/20 dark:border-rose-pine-foam/20 rounded-full animate-pulse" />
+             <div className="absolute inset-0 border-t-4 border-rose-pine-dawn-foam dark:border-rose-pine-foam rounded-full animate-spin" />
+           </div>
+           <p className="text-lg text-rose-pine-subtle animate-pulse">Loading...</p>
+         </div>
+       </div>
+     );
+   }
+   ```
+
+2. SEO Enhancements:
+
+   ```plaintext
+   # robots.txt configuration
+   User-agent: *
+   Allow: /
+
+   Sitemap: https://rohitc.tech/sitemap.xml
+
+   Disallow: /api/
+   Disallow: /_next/
+   ```
+
+3. Security Headers:
+
+   ```javascript
+   // Security headers in next.config.js
+   async headers() {
+     return [
+       {
+         source: "/:path*",
+         headers: [
+           {
+             key: "Strict-Transport-Security",
+             value: "max-age=31536000; includeSubDomains",
+           },
+           {
+             key: "Content-Security-Policy",
+             value: "default-src 'self'; script-src 'self' 'unsafe-inline'...",
+           },
+           // Additional security headers...
+         ],
+       },
+     ];
+   }
+   ```
+
+4. Accessibility Features:
+
+   ```typescript
+   // Skip Link Component (src/components/SkipLink.tsx)
+   export default function SkipLink() {
+     return (
+       <a
+         href="#main"
+         className="fixed top-4 left-4 -translate-y-full focus:translate-y-0 z-50..."
+       >
+         Skip to main content
+       </a>
+     );
+   }
+   ```
+
+5. Error Handling:
+   ```typescript
+   // Custom Error Page (src/app/error.tsx)
+   export default function Error({
+     error,
+     reset,
+   }: {
+     error: Error & { digest?: string };
+     reset: () => void;
+   }) {
+     // Error UI implementation with retry functionality
+   }
+   ```
+
+**Key Features Added**:
+
+1. Loading States:
+
+   - Animated loading spinner
+   - Smooth transitions between pages
+   - Loading feedback for user actions
+
+2. Error Handling:
+
+   - Custom error page with branded styling
+   - Error retry functionality
+   - Development mode error details
+   - User-friendly error messages
+
+3. Accessibility:
+
+   - Skip link for keyboard navigation
+   - Proper ARIA labels
+   - Semantic HTML structure
+   - Focus management
+
+4. SEO:
+
+   - Robots.txt configuration
+   - Sitemap reference
+   - Protected sensitive paths
+   - Enhanced meta tags
+
+5. Security:
+
+   - Strict CSP headers
+   - HSTS configuration
+   - XSS protection
+   - Frame protection
+   - Content type enforcement
+
+6. Performance:
+   - Font optimization
+   - Image optimization settings
+   - Efficient loading strategies
+   - Resource prioritization
+
+**References**:
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- [Google SEO Guidelines](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)
+
+**Date**: [Current Date]
+
 ## Styling Solutions
 
 [To be populated as we implement styling solutions]
