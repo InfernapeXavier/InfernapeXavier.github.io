@@ -178,7 +178,7 @@ export default function Home() {
                 <span>GitHub</span>
               </a>
               <a
-                href="https://linkedin.com/in/rohitc3"
+                href="https://linkedin.com/in/InfernapeXavier"
                 target="_blank"
                 rel="noreferrer"
                 className="button flex items-center space-x-3"
