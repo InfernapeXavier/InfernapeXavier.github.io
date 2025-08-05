@@ -32,8 +32,8 @@
 
   /* Skip to main content link */
   .skip-to-content {
-    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 
-           focus:z-50 focus:px-4 focus:py-2 focus:bg-theme-surface 
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4
+           focus:z-50 focus:px-4 focus:py-2 focus:bg-theme-surface
            focus:text-theme-text focus:rounded-lg focus:shadow-lg;
   }
 
@@ -50,7 +50,7 @@
 @layer components {
   .nav-link {
     @apply px-3 py-2 rounded-lg text-lg font-medium
-           text-theme-subtle hover:text-theme-text 
+           text-theme-subtle hover:text-theme-text
            hover:bg-theme-highlight transition-colors
            focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
            focus:ring-offset-2 focus:ring-offset-theme-base;
@@ -62,14 +62,14 @@
   }
 
   .section-heading {
-    @apply text-5xl md:text-7xl font-bold mb-6 
+    @apply text-5xl md:text-7xl font-bold mb-6
            text-theme-text leading-tight
            animate-fade-in;
     letter-spacing: -0.03em;
   }
 
   .section-subheading {
-    @apply text-xl md:text-2xl text-theme-subtle mb-8 
+    @apply text-xl md:text-2xl text-theme-subtle mb-8
            font-light animate-fade-in;
     letter-spacing: -0.01em;
   }
@@ -79,8 +79,8 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-rose-pine-dawn-rose via-rose-pine-dawn-iris to-rose-pine-dawn-pine 
-           dark:from-rose-pine-rose dark:via-rose-pine-iris dark:to-rose-pine-pine 
+    @apply bg-gradient-to-r from-rose-pine-dawn-rose via-rose-pine-dawn-iris to-rose-pine-dawn-pine
+           dark:from-rose-pine-rose dark:via-rose-pine-iris dark:to-rose-pine-pine
            bg-clip-text text-transparent font-extrabold;
     letter-spacing: -0.02em;
   }
@@ -88,7 +88,7 @@
   /* Decorative elements */
   .floating-shapes::before {
     content: "";
-    @apply absolute -z-10 w-64 h-64 rounded-full 
+    @apply absolute -z-10 w-64 h-64 rounded-full
            bg-gradient-to-br from-rose-pine-dawn-rose/10 to-rose-pine-dawn-pine/10
            dark:from-rose-pine-rose/10 dark:to-rose-pine-pine/10
            blur-3xl animate-float-slow;
@@ -98,7 +98,7 @@
 
   .floating-shapes::after {
     content: "";
-    @apply absolute -z-10 w-96 h-96 rounded-full 
+    @apply absolute -z-10 w-96 h-96 rounded-full
            bg-gradient-to-tr from-rose-pine-dawn-foam/10 to-rose-pine-dawn-iris/10
            dark:from-rose-pine-foam/10 dark:to-rose-pine-iris/10
            blur-3xl animate-float-slow-reverse;
@@ -146,7 +146,7 @@
 .button {
   @apply px-6 py-3 rounded-xl font-medium
          bg-rose-pine-dawn-pine/90 dark:bg-rose-pine-pine/90 text-theme-text relative
-         hover:bg-rose-pine-dawn-foam/90 dark:hover:bg-rose-pine-foam/90 hover:text-theme-base 
+         hover:bg-rose-pine-dawn-foam/90 dark:hover:bg-rose-pine-foam/90 hover:text-theme-base
          transition-all duration-300 backdrop-blur-sm
          shadow-lg hover:shadow-xl overflow-hidden
          hover:scale-105 active:scale-100
@@ -157,7 +157,7 @@
 
 .button::before {
   content: "";
-  @apply absolute inset-0 bg-gradient-to-r from-transparent 
+  @apply absolute inset-0 bg-gradient-to-r from-transparent
          via-theme-text/10 to-transparent -translate-x-full;
   transition: transform 0.6s ease;
 }
@@ -167,7 +167,7 @@
 }
 
 .link {
-  @apply text-rose-pine-dawn-pine dark:text-rose-pine-foam hover:text-rose-pine-dawn-rose dark:hover:text-rose-pine-rose 
+  @apply text-rose-pine-dawn-pine dark:text-rose-pine-foam hover:text-rose-pine-dawn-rose dark:hover:text-rose-pine-rose
          underline-offset-4 hover:underline relative
          transition-colors font-medium
          focus:outline-none focus:ring-2 focus:ring-rose-pine-dawn-foam dark:focus:ring-rose-pine-foam
@@ -198,7 +198,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-theme-highlight rounded-full 
+  @apply bg-theme-highlight rounded-full
          hover:bg-theme-overlay transition-colors;
 }
 
