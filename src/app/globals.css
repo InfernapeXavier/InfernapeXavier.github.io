@@ -5,24 +5,24 @@
 @layer base {
   :root {
     /* Light theme colors (Rose Pine Dawn) */
-    --color-base: 250 244 237;      /* #faf4ed */
-    --color-surface: 255 250 243;    /* #fffaf3 */
-    --color-overlay: 242 233 222;    /* #f2e9de */
-    --color-muted: 152 147 165;      /* #9893a5 */
-    --color-subtle: 110 106 134;     /* #6e6a86 */
-    --color-text: 87 82 121;         /* #575279 */
-    --color-highlight: 235 227 217;   /* #ebe3d9 */
+    --color-base: 250 244 237; /* #faf4ed */
+    --color-surface: 255 250 243; /* #fffaf3 */
+    --color-overlay: 242 233 222; /* #f2e9de */
+    --color-muted: 152 147 165; /* #9893a5 */
+    --color-subtle: 110 106 134; /* #6e6a86 */
+    --color-text: 87 82 121; /* #575279 */
+    --color-highlight: 235 227 217; /* #ebe3d9 */
   }
 
   :root.dark {
     /* Dark theme (Rose Pine) colors */
-    --color-base: 25 23 36;          /* #191724 */
-    --color-surface: 31 29 46;       /* #1f1d2e */
-    --color-overlay: 38 35 58;       /* #26233a */
-    --color-muted: 110 106 134;      /* #6e6a86 */
-    --color-subtle: 144 140 170;     /* #908caa */
-    --color-text: 224 222 244;       /* #e0def4 */
-    --color-highlight: 42 40 55;     /* #2a2837 */
+    --color-base: 25 23 36; /* #191724 */
+    --color-surface: 31 29 46; /* #1f1d2e */
+    --color-overlay: 38 35 58; /* #26233a */
+    --color-muted: 110 106 134; /* #6e6a86 */
+    --color-subtle: 144 140 170; /* #908caa */
+    --color-text: 224 222 244; /* #e0def4 */
+    --color-highlight: 42 40 55; /* #2a2837 */
   }
 
   /* Improved focus styles for better accessibility */
@@ -109,8 +109,16 @@
   .grid-pattern {
     @apply absolute inset-0 -z-20;
     background-image:
-      linear-gradient(to right, rgb(var(--color-highlight) / 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(var(--color-highlight) / 0.1) 1px, transparent 1px);
+      linear-gradient(
+        to right,
+        rgb(var(--color-highlight) / 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(var(--color-highlight) / 0.1) 1px,
+        transparent 1px
+      );
     background-size: 4rem 4rem;
     mask-image: radial-gradient(circle at center, black, transparent 80%);
   }
@@ -208,17 +216,35 @@
 
 /* Animations */
 @keyframes float-slow {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(5px, -5px) rotate(2deg); }
-  50% { transform: translate(10px, 5px) rotate(-2deg); }
-  75% { transform: translate(-5px, 10px) rotate(1deg); }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5px, -5px) rotate(2deg);
+  }
+  50% {
+    transform: translate(10px, 5px) rotate(-2deg);
+  }
+  75% {
+    transform: translate(-5px, 10px) rotate(1deg);
+  }
 }
 
 @keyframes float-slow-reverse {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(-5px, 5px) rotate(-2deg); }
-  50% { transform: translate(-10px, -5px) rotate(2deg); }
-  75% { transform: translate(5px, -10px) rotate(-1deg); }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-5px, 5px) rotate(-2deg);
+  }
+  50% {
+    transform: translate(-10px, -5px) rotate(2deg);
+  }
+  75% {
+    transform: translate(5px, -10px) rotate(-1deg);
+  }
 }
 
 @layer utilities {
