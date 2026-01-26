@@ -99,12 +99,8 @@ const uses: UsesCategory[] = [
     items: [
       {
         name: "OpenCode",
-        description: "With Claude Opus",
+        description: "With Claude Opus or GPT Codex",
         url: "https://opencode.ai",
-      },
-      {
-        name: "Codex",
-        description: "OpenAI coding assistant",
       },
     ],
   },
@@ -132,6 +128,11 @@ const uses: UsesCategory[] = [
         name: "Elgato Wave 3",
         description: "USB condenser microphone",
         url: "https://www.elgato.com/us/en/p/wave-3-black",
+      },
+      {
+        name: "Beyerdynamic T1 Gen 3",
+        description: "Tesla open-back headphones",
+        url: "https://www.beyerdynamic.com/t-1.html",
       },
     ],
   },
