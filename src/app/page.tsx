@@ -62,8 +62,8 @@ export default function Home() {
               </span>
             </h1>
             <h2 className="section-subheading max-w-2xl">
-              Senior Software Engineer exploring the edges of infrastructure,
-              payments, and systems design
+              Software Engineer exploring the edges of infrastructure, payments,
+              and systems design
             </h2>
             <div className="h-0.5 w-1/4 bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-12 opacity-50" />
 
