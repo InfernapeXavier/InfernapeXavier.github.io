@@ -4,20 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- **Start development server**: `yarn dev` (Next.js dev server on localhost:3000)
-- **Build for production**: `yarn build`
-- **Start production server**: `yarn start`
-- **Lint code**: `yarn lint` (ESLint with Next.js config)
-- **Format code**: `yarn format` (Prettier formatting)
-- **Prepare git hooks**: `yarn prepare` (Husky setup)
+- **Start development server**: `bun dev` (Next.js dev server on localhost:3000)
+- **Build for production**: `bun run build`
+- **Start production server**: `bun start`
+- **Lint code**: `bun lint` (ESLint with Next.js config)
+- **Format code**: `bun format` (Prettier formatting)
+- **Prepare git hooks**: `bun prepare` (Husky setup)
 
 ## Architecture Overview
 
-This is a personal portfolio website built with Next.js 14+ using the App Router architecture. The codebase follows a modern React/Next.js structure:
+This is a personal portfolio website built with Next.js 16 using the App Router architecture. The codebase follows a modern React/Next.js structure:
 
 ### Core Architecture
 
-- **Framework**: Next.js 14+ with App Router (`src/app/`)
+- **Framework**: Next.js 16 with App Router (`src/app/`)
 - **Styling**: Tailwind CSS with custom theme support
 - **Fonts**: Google Fonts (Outfit + JetBrains Mono) with optimized loading
 - **Theme**: Custom dark/light theme system with localStorage persistence and reduced motion support
