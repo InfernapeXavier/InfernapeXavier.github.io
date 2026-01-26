@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
 
 interface Skill {
@@ -74,7 +73,8 @@ export default function Skills() {
                   key={skill.name}
                   className="text-theme-text/80 text-sm flex items-center gap-2"
                 >
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={skill.icon}
                     alt={skill.name}
                     width={16}
