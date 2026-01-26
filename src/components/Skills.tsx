@@ -28,7 +28,7 @@ const skillCategories: SkillCategory[] = [
     name: "Infrastructure",
     skills: [
       { name: "Kubernetes", icon: "/skills/kubernetes.svg" },
-      { name: "AWS", icon: "/skills/amazonaws.svg" },
+      { name: "AWS", icon: "/skills/aws.svg" },
       { name: "Terraform", icon: "/skills/terraform.svg" },
       { name: "Docker", icon: "/skills/docker.svg" },
       { name: "Cloudflare", icon: "/skills/cloudflare.svg" },
