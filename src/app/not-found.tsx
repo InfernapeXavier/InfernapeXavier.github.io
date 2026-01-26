@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaHome, FaQuestion } from "react-icons/fa";
+import { FaHome, FaEnvelope } from "react-icons/fa";
 
 export default function NotFound() {
   return (
@@ -9,32 +9,28 @@ export default function NotFound() {
 
       <div className="relative text-center px-6 animate-fade-in">
         <h1 className="text-9xl font-bold mb-4 text-gradient">404</h1>
-        <h2 className="text-4xl font-semibold mb-6 text-rose-pine-foam">
-          Oops! Page Not Found
+        <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-rose-pine-dawn-pine dark:text-rose-pine-foam">
+          Page not found
         </h2>
-        <p className="text-xl text-rose-pine-subtle mb-12 max-w-lg mx-auto">
-          Looks like you&apos;ve ventured into uncharted territory! Don&apos;t
-          worry, even the best explorers get lost sometimes.
+        <p className="text-xl text-theme-subtle mb-12 max-w-md mx-auto">
+          Looks like you&apos;ve wandered off the map. Let&apos;s get you back
+          on track.
         </p>
 
-        {/* ASCII Art Cat */}
-        <pre className="font-mono text-rose-pine-foam mb-12 hidden md:block">
-          {`
-     /\\___/\\
-    (  o o  )
-    (  =^=  ) 
-     (______)
-          `}
-        </pre>
-
-        <div className="flex justify-center gap-6">
-          <Link href="/" className="button flex items-center gap-2">
-            <FaHome className="text-xl" />
+        <div className="flex justify-center gap-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-rose-pine-dawn-pine/90 dark:bg-rose-pine-pine/90 text-white hover:bg-rose-pine-dawn-foam/90 dark:hover:bg-rose-pine-foam/90 transition-all duration-200"
+          >
+            <FaHome className="text-lg" />
             <span>Go Home</span>
           </Link>
-          <Link href="/contact" className="button flex items-center gap-2">
-            <FaQuestion className="text-xl" />
-            <span>Get Help</span>
+          <Link
+            href="/#contact"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-theme-surface border border-theme-highlight text-theme-text hover:bg-theme-highlight hover:border-theme-subtle transition-all duration-200"
+          >
+            <FaEnvelope className="text-lg" />
+            <span>Contact</span>
           </Link>
         </div>
       </div>
