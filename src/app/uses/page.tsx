@@ -72,7 +72,7 @@ const uses: UsesCategory[] = [
       },
       {
         name: "Zed",
-        description: "Fast, collaborative editor",
+        description: "Blazing fast because Rust",
         url: "https://zed.dev",
       },
     ],
