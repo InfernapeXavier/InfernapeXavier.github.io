@@ -31,7 +31,7 @@ export default function Experience() {
                 <div
                   className={`absolute -left-[41px] w-4 h-4 rounded-full border-2 ${
                     role.isCurrent
-                      ? "bg-rose-pine-foam dark:bg-rose-pine-foam border-rose-pine-foam dark:border-rose-pine-foam"
+                      ? "bg-rose-pine-dawn-pine dark:bg-rose-pine-foam border-rose-pine-dawn-pine dark:border-rose-pine-foam"
                       : "bg-theme-surface border-theme-highlight"
                   }`}
                 />
@@ -43,7 +43,7 @@ export default function Experience() {
                       {role.title}
                     </h4>
                     {role.isCurrent && (
-                      <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-rose-pine-foam/20 text-rose-pine-foam border border-rose-pine-foam/30">
+                      <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-rose-pine-dawn-pine/20 dark:bg-rose-pine-foam/20 text-rose-pine-dawn-pine dark:text-rose-pine-foam border border-rose-pine-dawn-pine/30 dark:border-rose-pine-foam/30">
                         Current
                       </span>
                     )}

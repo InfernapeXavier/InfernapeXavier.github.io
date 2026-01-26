@@ -65,7 +65,7 @@ export default function Skills() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {skillCategories.map((category) => (
           <div key={category.name}>
-            <h4 className="text-sm font-medium text-rose-pine-foam dark:text-rose-pine-foam mb-3">
+            <h4 className="text-sm font-medium text-rose-pine-dawn-pine dark:text-rose-pine-foam mb-3">
               {category.name}
             </h4>
             <ul className="space-y-2">
