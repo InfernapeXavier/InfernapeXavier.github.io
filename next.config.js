@@ -20,8 +20,6 @@ const nextConfig = {
   },
   // Enable React strict mode for better development
   reactStrictMode: true,
-  // Improve production performance
-  swcMinify: true,
   // Optimize page loading
   poweredByHeader: false,
   // Security headers
