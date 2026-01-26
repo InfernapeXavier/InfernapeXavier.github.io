@@ -1,30 +1,62 @@
 "use client";
 
+import Image from "next/image";
+import { useTheme } from "@/contexts/ThemeContext";
+
+interface Skill {
+  name: string;
+  icon: string;
+}
+
 interface SkillCategory {
   name: string;
-  skills: string[];
+  skills: Skill[];
 }
 
 const skillCategories: SkillCategory[] = [
   {
     name: "Languages",
-    skills: ["Ruby", "Python", "Rust", "TypeScript", "SQL"],
+    skills: [
+      { name: "Ruby", icon: "/skills/ruby.svg" },
+      { name: "Python", icon: "/skills/python.svg" },
+      { name: "Rust", icon: "/skills/rust.svg" },
+      { name: "TypeScript", icon: "/skills/typescript.svg" },
+      { name: "SQL", icon: "/skills/postgresql.svg" },
+    ],
   },
   {
     name: "Infrastructure",
-    skills: ["Kubernetes", "AWS", "Terraform", "Docker", "Cloudflare"],
+    skills: [
+      { name: "Kubernetes", icon: "/skills/kubernetes.svg" },
+      { name: "AWS", icon: "/skills/amazonaws.svg" },
+      { name: "Terraform", icon: "/skills/terraform.svg" },
+      { name: "Docker", icon: "/skills/docker.svg" },
+      { name: "Cloudflare", icon: "/skills/cloudflare.svg" },
+    ],
   },
   {
     name: "Data",
-    skills: ["PostgreSQL", "Redis", "GraphQL", "Datadog"],
+    skills: [
+      { name: "PostgreSQL", icon: "/skills/postgresql.svg" },
+      { name: "Redis", icon: "/skills/redis.svg" },
+      { name: "GraphQL", icon: "/skills/graphql.svg" },
+      { name: "Datadog", icon: "/skills/datadog.svg" },
+    ],
   },
   {
     name: "Frameworks",
-    skills: ["Rails", "Flask", "React", "Next.js"],
+    skills: [
+      { name: "Rails", icon: "/skills/rails.svg" },
+      { name: "Flask", icon: "/skills/flask.svg" },
+      { name: "React", icon: "/skills/react.svg" },
+      { name: "Next.js", icon: "/skills/nextdotjs.svg" },
+    ],
   },
 ];
 
 export default function Skills() {
+  const { isDark } = useTheme();
+
   return (
     <div className="animate-fade-in">
       <h3 className="text-lg font-medium text-theme-subtle mb-6 uppercase tracking-wider">
@@ -36,10 +68,22 @@ export default function Skills() {
             <h4 className="text-sm font-medium text-rose-pine-foam dark:text-rose-pine-foam mb-3">
               {category.name}
             </h4>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {category.skills.map((skill) => (
-                <li key={skill} className="text-theme-text/80 text-sm">
-                  {skill}
+                <li
+                  key={skill.name}
+                  className="text-theme-text/80 text-sm flex items-center gap-2"
+                >
+                  <Image
+                    src={skill.icon}
+                    alt={skill.name}
+                    width={16}
+                    height={16}
+                    className={`${
+                      isDark ? "brightness-0 invert opacity-70" : "opacity-80"
+                    }`}
+                  />
+                  <span>{skill.name}</span>
                 </li>
               ))}
             </ul>
