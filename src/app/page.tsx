@@ -61,7 +61,7 @@ export default function Home() {
                 Rohit
               </span>
             </h1>
-            <h2 className="section-subheading max-w-2xl">
+            <h2 className="section-subheading">
               Software Engineer · Exploring the edges of infrastructure and
               systems
             </h2>
