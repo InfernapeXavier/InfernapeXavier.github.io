@@ -42,6 +42,7 @@ const Skills = dynamic(() => import("@/components/Skills"), {
 });
 
 const featuredProject = projects.find((p) => p.isFeatured);
+const secondaryProjects = projects.filter((p) => p.isSecondary);
 
 export default function Home() {
   return (
@@ -182,6 +183,48 @@ export default function Home() {
             >
               <FeaturedProject project={featuredProject} />
             </Suspense>
+          )}
+
+          {/* Other Projects */}
+          {secondaryProjects.length > 0 && (
+            <div className="mt-20">
+              <h3 className="text-lg font-medium text-theme-subtle mb-6 uppercase tracking-wider">
+                Other Projects
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {secondaryProjects.map((project) => (
+                  <a
+                    key={project.title}
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block p-6 rounded-xl bg-theme-surface/50 border border-theme-highlight hover:border-theme-subtle hover:bg-theme-surface transition-all duration-200"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h4 className="text-xl font-semibold text-theme-text group-hover:text-rose-pine-dawn-pine dark:group-hover:text-rose-pine-foam transition-colors">
+                          {project.title}
+                        </h4>
+                        <p className="mt-2 text-theme-text/70 text-sm leading-relaxed">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {project.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-2 py-1 text-xs font-medium rounded-md bg-theme-highlight/50 text-theme-subtle"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <FaGithub className="text-xl text-theme-muted group-hover:text-theme-text transition-colors flex-shrink-0" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </section>

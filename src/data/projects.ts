@@ -8,6 +8,7 @@ export interface Project {
   liveUrl?: string;
   isInProgress?: boolean;
   isFeatured?: boolean;
+  isSecondary?: boolean;
   highlights?: string[];
 }
 
@@ -36,10 +37,11 @@ export const projects: Project[] = [
   {
     title: "RustyBase",
     description:
-      'A database built in Rust without using any "unsafe" blocks or external crates. Features a fully functioning Lexer, Parser, and uses TPC-H data for benchmarks.',
+      'A database built from scratch in Rust without any "unsafe" blocks or external crates—just to see how far safe Rust can go.',
     image: "/projects/rustybase.webp",
     technologies: ["Rust"],
     githubUrl: "https://gitlab.com/InfernapeXavier/RustyBase",
+    isSecondary: true,
   },
   {
     title: "Bean-Stock",
