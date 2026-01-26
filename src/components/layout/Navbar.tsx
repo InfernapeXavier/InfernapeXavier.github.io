@@ -8,10 +8,12 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+  { href: "/uses", label: "Uses" },
+  { href: "/#contact", label: "Contact" },
   {
     href: "https://bit.ly/rohitcresume",
     label: "Resume",
