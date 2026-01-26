@@ -22,7 +22,7 @@ export const projects: Project[] = [
     technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "OAuth"],
     githubUrl: "https://github.com/annie-mei",
     liveUrl:
-      "https://discord.com/api/oauth2/authorize?client_id=931012939816767498&permissions=534723950656&scope=bot%20applications.commands",
+      "https://discord.com/oauth2/authorize?client_id=962106280430932079&permissions=2147483648&integration_type=0&scope=bot",
     isInProgress: true,
     isFeatured: true,
     highlights: [
