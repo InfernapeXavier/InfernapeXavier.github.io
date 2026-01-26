@@ -9,7 +9,8 @@ import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 
 const navLinks = [
   { href: "#about", label: "About" },
-  { href: "#projects", label: "Work" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
   {
     href: "https://bit.ly/rohitcresume",
