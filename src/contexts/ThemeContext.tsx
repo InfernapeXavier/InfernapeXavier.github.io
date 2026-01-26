@@ -4,7 +4,8 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
+  useSyncExternalStore,
+  useCallback,
   type ReactNode,
 } from "react";
 
@@ -18,45 +19,62 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const THEME_KEY = "theme-preference";
 
+// External store for theme - syncs with localStorage
+function getThemeSnapshot(): boolean {
+  const stored = localStorage.getItem(THEME_KEY);
+  return stored !== "light"; // Default to dark
+}
+
+function getThemeServerSnapshot(): boolean {
+  return true; // Default to dark on server
+}
+
+function subscribeToTheme(callback: () => void): () => void {
+  // Listen for storage events from other tabs
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+// External store for reduced motion preference
+function getMotionSnapshot(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function getMotionServerSnapshot(): boolean {
+  return false; // Default to no reduced motion on server
+}
+
+function subscribeToMotion(callback: () => void): () => void {
+  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+  media.addEventListener("change", callback);
+  return () => media.removeEventListener("change", callback);
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [isDark, setIsDark] = useState(true); // Default to dark theme
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const isDark = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getThemeServerSnapshot
+  );
 
+  const isReducedMotion = useSyncExternalStore(
+    subscribeToMotion,
+    getMotionSnapshot,
+    getMotionServerSnapshot
+  );
+
+  const toggleTheme = useCallback(() => {
+    const newTheme = isDark ? "light" : "dark";
+    localStorage.setItem(THEME_KEY, newTheme);
+    // Dispatch storage event for our own tab (storage events don't fire for same tab)
+    window.dispatchEvent(new StorageEvent("storage", { key: THEME_KEY }));
+  }, [isDark]);
+
+  // Sync theme class with document
   useEffect(() => {
-    // Get stored theme preference
-    const storedTheme = localStorage.getItem(THEME_KEY);
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    // Set initial theme - always default to dark unless explicitly set to light
-    setIsDark(storedTheme !== "light");
-    setIsReducedMotion(prefersReducedMotion);
-    setIsInitialized(true);
-
-    // Listen for system preference changes
-    const motionListener = (e: MediaQueryListEvent) =>
-      setIsReducedMotion(e.matches);
-
-    const motionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
-    motionMedia.addEventListener("change", motionListener);
-
-    return () => {
-      motionMedia.removeEventListener("change", motionListener);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isInitialized) return;
-
-    // Update CSS classes and store preference
     document.documentElement.classList.toggle("dark", isDark);
     document.documentElement.classList.toggle("light", !isDark);
-    localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-  }, [isDark, isInitialized]);
-
-  const toggleTheme = () => setIsDark(!isDark);
+  }, [isDark]);
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme, isReducedMotion }}>
