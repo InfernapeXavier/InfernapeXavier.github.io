@@ -65,7 +65,7 @@ export default function Home() {
               Software Engineer · Exploring the edges of infrastructure and
               systems
             </h2>
-            <div className="h-0.5 w-1/4 bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-12 opacity-50" />
+            <div className="h-0.5 w-1/2 bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-12 opacity-50" />
 
             <div className="prose space-y-6 animate-fade-in max-w-2xl">
               <p className="text-xl md:text-2xl text-theme-text/85 leading-relaxed">
