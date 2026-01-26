@@ -1,29 +1,42 @@
 export interface Project {
   title: string;
   description: string;
+  longDescription?: string;
   image: string;
   technologies: string[];
   githubUrl: string;
   liveUrl?: string;
   isInProgress?: boolean;
+  isFeatured?: boolean;
+  highlights?: string[];
 }
 
 export const projects: Project[] = [
   {
     title: "Annie Mei",
     description:
-      "A Discord bot that helps you track your anime and manga progress. Built with Rust, it uses GraphQL to interact with AniList's API, and PostgreSQL + Redis for caching and data persistence. The bot features a robust permission system and supports multiple guilds.",
+      "A Discord bot for tracking anime and manga progress, built in idiomatic Rust with a focus on correctness and performance.",
+    longDescription:
+      "What started as a way to learn Rust turned into a full-featured Discord bot that I actually use daily. Annie Mei connects to AniList's GraphQL API to let users track their anime and manga progress directly in Discord. The interesting challenges have been around implementing OAuth flows, building efficient caching layers, and designing fuzzy matching for search. It's hosted on a mix of Upstash (Redis), Neon (Postgres), and Oracle Cloud Infrastructure.",
     image: "/projects/annie-mei.webp",
-    technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "Discord API"],
-    githubUrl: "https://github.com/InfernapeXavier/annie-mei",
+    technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "OAuth"],
+    githubUrl: "https://github.com/annie-mei",
     liveUrl:
       "https://discord.com/api/oauth2/authorize?client_id=931012939816767498&permissions=534723950656&scope=bot%20applications.commands",
     isInProgress: true,
+    isFeatured: true,
+    highlights: [
+      "Written in idiomatic Rust, emphasizing correctness and maintainability",
+      "OAuth integration with AniList for user authentication",
+      "Multi-layer caching with Redis (Upstash) and PostgreSQL (Neon)",
+      "Fuzzy matching for flexible anime/manga search",
+      "Deployed on Oracle Cloud Infrastructure",
+    ],
   },
   {
     title: "RustyBase",
     description:
-      'A database built in Rust without using any "unsafe" blocks of code or external crates! RustyBase is an ongoing project but in its current form has the basic layout of a database, along with a fully functioning Lexer and Parser and uses TPCH data for benchmarks.',
+      'A database built in Rust without using any "unsafe" blocks or external crates. Features a fully functioning Lexer, Parser, and uses TPC-H data for benchmarks.',
     image: "/projects/rustybase.webp",
     technologies: ["Rust"],
     githubUrl: "https://gitlab.com/InfernapeXavier/RustyBase",
@@ -31,35 +44,18 @@ export const projects: Project[] = [
   {
     title: "Bean-Stock",
     description:
-      "Using a 3-pronged approach to the problem of Stock-Market Forecasting, Bean-Stock gives the user all the information they need to make an informed decision on where to invest next by using ML, NLP and our secret-sauce Health Analysis.",
+      "Stock market forecasting using a 3-pronged approach: ML models, NLP sentiment analysis, and custom health metrics to help users make informed investment decisions.",
     image: "/projects/beanstock.webp",
-    technologies: ["Python", "Flask", "Bootstrap", "PANDAS", "Sci-Kit"],
+    technologies: ["Python", "Flask", "PANDAS", "Scikit-learn"],
     githubUrl: "https://github.com/InfernapeXavier/Bean-Stock",
-    liveUrl: "https://bean-stock.herokuapp.com",
   },
   {
     title: "Club N.O.W.",
     description:
-      "Network for the Open Web was founded to bring like-minded tech enthusiasts together. Our goal is to build Open Source projects, help other passionate developers and create a better and fun environment for everyone - together.",
+      "Founded Network for the Open Web—a community bringing together tech enthusiasts to build open source projects and create a better environment for developers.",
     image: "/projects/now.webp",
-    technologies: ["Founder", "Club Captain", "Workshop Speaker"],
+    technologies: ["Community", "Open Source", "Workshops"],
     githubUrl: "https://github.com/nowmozillaclub",
     liveUrl: "https://nowmozilla.club",
-  },
-  {
-    title: "Song Match",
-    description:
-      "An game built as an Alexa skill. Song match asks the users for their favourite artist and some questions and then matches you to a popular song by the artist. Song match uses the Alexa Skills Kit along with MongoDB as the datastore.",
-    image: "/projects/songmatch.webp",
-    technologies: ["Python", "ASK", "MongoDB"],
-    githubUrl: "https://github.com/InfernapeXavier/song-match",
-  },
-  {
-    title: "ACM Connect",
-    description:
-      "An Android application aimed at decluttering the workspace, ACM Connect was aimed at providing the members of ACM MPSTME with all the tools they will ever need in one package with features like Messaging, User profiles and schedules.",
-    image: "/projects/android.webp",
-    technologies: ["Java", "Android Studio", "Firebase"],
-    githubUrl: "https://github.com/InfernapeXavier/ACM-Connect",
   },
 ];
