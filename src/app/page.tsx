@@ -78,12 +78,11 @@ export default function Home() {
                 Currently at{" "}
                 <a
                   href="https://www.academia.edu"
-                  className="link inline-flex items-center group"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="link"
                 >
                   Academia.edu
-                  <span className="inline-block transition-transform group-hover:translate-x-1 ml-1">
-                    →
-                  </span>
                 </a>
                 , where I&apos;ve spent the last 4+ years working across the
                 stack—from payment flows to infrastructure migrations.
