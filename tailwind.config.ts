@@ -24,6 +24,8 @@ const config: Config = {
           text: "rgb(var(--color-text) / <alpha-value>)",
           highlight: "rgb(var(--color-highlight) / <alpha-value>)",
         },
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        signal: "rgb(var(--signal) / <alpha-value>)",
         // Rose Pine colors for accents (dark mode)
         "rose-pine": {
           love: "#eb6f92",

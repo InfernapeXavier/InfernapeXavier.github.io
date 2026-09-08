@@ -30,26 +30,24 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohitc.tech"),
   title: {
-    default: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
+    default: "Rohit Choudhari — Senior Software Engineer",
     template: "%s | Rohit Choudhari",
   },
   description:
-    "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+    "Infrastructure-leaning Senior Software Engineer building AI developer platforms and production systems, with experience leading cloud migrations and delivering revenue-critical products.",
   keywords: [
+    "senior software engineer",
+    "backend engineer",
     "infrastructure engineer",
-    "software engineer",
-    "ruby developer",
-    "python developer",
-    "terraform",
-    "infrastructure as code",
-    "rust developer",
-    "academia.edu",
-    "university of florida",
-    "annie-mei",
-    "discord bot",
-    "InfernapeXavier",
-    "SekkenSenzai",
-    "rohit choudhari",
+    "platform engineering",
+    "AI developer platforms",
+    "Kubernetes",
+    "AWS",
+    "Cloudflare",
+    "Ruby on Rails",
+    "Rust",
+    "Annie-Mei",
+    "Rohit Choudhari",
   ],
   authors: [
     { name: "Rohit Choudhari", url: "https://github.com/InfernapeXavier" },
@@ -97,31 +95,19 @@ export const metadata: Metadata = {
     type: "profile",
     firstName: "Rohit",
     lastName: "Choudhari",
-    title: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
+    title: "Rohit Choudhari — Senior Software Engineer",
     description:
-      "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+      "Backend and infrastructure engineer building AI developer platforms, cloud systems, and revenue-critical products.",
     url: "https://rohitc.tech",
-    siteName: "Rohit Choudhari's Portfolio",
+    siteName: "Rohit Choudhari",
     locale: "en_US",
-    images: [
-      {
-        url: "https://rohitc.tech/assets/logo/cover.png",
-        width: 1200,
-        height: 630,
-        alt: "Rohit Choudhari - Infrastructure Engineer",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
+    card: "summary",
+    title: "Rohit Choudhari — Senior Software Engineer",
     description:
-      "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+      "Backend and infrastructure engineer building AI developer platforms, cloud systems, and revenue-critical products.",
     creator: "@InfernapeXavier",
-    images: ["https://rohitc.tech/assets/logo/cover.png"],
-  },
-  verification: {
-    google: "your-google-site-verification", // You'll need to add this
   },
 };
 
@@ -152,15 +138,14 @@ export default function RootLayout({
                   name: "Rohit Choudhari",
                   alternateName: ["InfernapeXavier", "SekkenSenzai"],
                   description:
-                    "Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform.",
-                  image: "https://rohitc.tech/assets/logo/cover.png",
+                    "Infrastructure-leaning Senior Software Engineer building AI developer platforms and production systems.",
                   url: "https://rohitc.tech",
                   sameAs: [
                     "https://github.com/InfernapeXavier",
                     "https://linkedin.com/in/infernapexavier/",
                     "https://twitter.com/InfernapeXavier",
                   ],
-                  jobTitle: "Infrastructure Engineer",
+                  jobTitle: "Senior Software Engineer",
                   worksFor: {
                     "@type": "Organization",
                     name: "Academia.edu",
@@ -175,12 +160,7 @@ export default function RootLayout({
               }}
             />
             <Navbar />
-            <main
-              id="main"
-              className="transition-opacity duration-300 animate-fade-in"
-            >
-              {children}
-            </main>
+            <div id="main">{children}</div>
           </div>
         </ThemeProvider>
         <SpeedInsights />

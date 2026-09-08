@@ -1,76 +1,66 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/data/posts";
 
 export const metadata: Metadata = {
-  title: "Blog | Rohit Choudhari",
-  description: "Thoughts on technology, engineering, and more.",
+  title: "Writing",
+  description: "Notes from Rohit Choudhari on technology and engineering.",
 };
 
 export default function BlogPage() {
   const posts = getAllPosts();
-
   return (
-    <main className="pt-16 font-sans">
-      <section className="min-h-screen bg-rose-pine-base relative overflow-hidden">
-        <div className="floating-shapes" />
-        <div className="grid-pattern" />
-        <div className="section-container">
-          <div className="max-w-3xl">
-            <h1 className="section-heading mb-4">Blog</h1>
-            <p className="text-xl text-theme-subtle mb-12">
-              Thoughts on technology, engineering, and more.
-            </p>
-
-            <p className="text-sm text-theme-muted mb-8 p-4 rounded-lg bg-theme-surface/50 border border-theme-highlight">
-              These posts are from my early days in tech (2017). Keeping them
-              here for nostalgia.
-            </p>
-
-            <div className="space-y-6">
-              {posts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="block p-6 rounded-xl bg-theme-surface/50 border border-theme-highlight hover:border-theme-subtle hover:bg-theme-surface transition-all duration-200 group"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h2 className="text-xl font-semibold text-theme-text group-hover:text-rose-pine-dawn-pine dark:group-hover:text-rose-pine-foam transition-colors">
-                        {post.title}
-                      </h2>
-                      <p className="mt-2 text-theme-text/70 text-sm leading-relaxed">
-                        {post.description}
-                      </p>
-                      <div className="flex items-center gap-4 mt-4 text-sm text-theme-muted">
-                        <span>
-                          {new Date(post.date).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </span>
-                        <span>·</span>
-                        <span>{post.readTime} read</span>
-                      </div>
-                      <div className="flex flex-wrap gap-2 mt-3">
-                        {post.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 text-xs font-medium rounded-md bg-theme-highlight/50 text-theme-subtle"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+    <main className="page-shell">
+      <div className="section-container">
+        <p className="eyebrow">Archive / Writing</p>
+        <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_0.55fr] lg:items-end">
+          <h1 className="page-heading">
+            Old notes,
+            <br />
+            <span className="text-accent">kept intact.</span>
+          </h1>
+          <p className="section-deck">
+            Early writing from 2017—a snapshot of how I was thinking when I
+            first started building for the web.
+          </p>
         </div>
-      </section>
+
+        <div className="mt-20 border-t border-theme-highlight">
+          {posts.map((post, index) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group grid gap-5 border-b border-theme-highlight py-9 md:grid-cols-[5rem_1fr_auto] md:items-start"
+            >
+              <span className="font-mono text-sm text-theme-muted">
+                0{index + 1}
+              </span>
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight group-hover:text-accent md:text-3xl">
+                  {post.title}
+                </h2>
+                <p className="mt-3 max-w-2xl text-theme-subtle">
+                  {post.description}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-wider text-theme-muted">
+                <span>{new Date(post.date).getFullYear()}</span>
+                <span>{post.readTime}</span>
+                <span className="text-xl text-theme-text transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </main>
   );
 }

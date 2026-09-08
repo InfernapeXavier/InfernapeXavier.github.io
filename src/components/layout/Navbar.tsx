@@ -1,25 +1,18 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBars, FaFilePdf, FaSun, FaMoon } from "react-icons/fa";
+import { FaBars, FaFilePdf, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 
 const navLinks = [
-  { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  { href: "/#projects", label: "Work" },
+  { href: "/blog", label: "Writing" },
   { href: "/uses", label: "Uses" },
   { href: "/#contact", label: "Contact" },
-  {
-    href: "https://bit.ly/rohitcresume",
-    label: "Resume",
-    icon: <FaFilePdf className="inline-block" />,
-    external: true,
-  },
 ];
 
 export default function Navbar() {
@@ -28,163 +21,137 @@ export default function Navbar() {
   const pathname = usePathname();
   const { isDark, toggleTheme, isReducedMotion } = useTheme();
 
-  // Handle keyboard navigation
   useKeyboardNav({
     onEscape: () => setIsMenuOpen(false),
     onTab: (event) => {
-      if (isMenuOpen && menuRef.current) {
-        const focusableElements = menuRef.current.querySelectorAll(
-          'a[href], button[type="button"]'
-        );
-        const firstElement = focusableElements[0] as HTMLElement;
-        const lastElement = focusableElements[
-          focusableElements.length - 1
-        ] as HTMLElement;
-
-        if (event.shiftKey && document.activeElement === firstElement) {
-          event.preventDefault();
-          lastElement.focus();
-        } else if (!event.shiftKey && document.activeElement === lastElement) {
-          event.preventDefault();
-          firstElement.focus();
-        }
+      if (!isMenuOpen || !menuRef.current) return;
+      const elements = menuRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button[type="button"]'
+      );
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
       }
     },
   });
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-theme-surface/80 backdrop-blur-md border-b border-theme-highlight/50"
-      role="navigation"
+      className="fixed inset-x-0 top-0 z-50 border-b border-theme-highlight bg-theme-base/90 backdrop-blur-xl"
       aria-label="Main navigation"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between h-16">
-          {/* Brand/Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link
-              href="/"
-              className="text-xl font-bold tracking-tight text-theme-text hover:text-rose-pine-foam transition-all duration-300"
-              aria-label="Home"
-            >
-              <span className="text-gradient font-mono">RC</span>
-            </Link>
-          </div>
+      <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-6 md:px-10 lg:px-16">
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+          aria-label="Rohit Choudhari, home"
+        >
+          <span className="grid h-9 w-9 place-items-center bg-theme-text font-mono text-xs font-bold text-theme-base">
+            RC
+          </span>
+          <span className="hidden font-mono text-xs font-semibold uppercase tracking-[0.16em] text-theme-text sm:block">
+            Rohit Choudhari
+          </span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`nav-link group ${
-                  pathname === link.href ? "nav-link-active" : ""
-                }`}
-                {...(link.external && {
-                  target: "_blank",
-                  rel: "noreferrer",
-                  "aria-label": `${link.label} (opens in new tab)`,
-                })}
-              >
-                {link.icon && (
-                  <span
-                    className="mr-2 group-hover:scale-110 transition-transform inline-block"
-                    aria-hidden="true"
-                  >
-                    {link.icon}
-                  </span>
-                )}
-                {link.label}
-              </Link>
-            ))}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="nav-link"
-              aria-label={
-                isDark ? "Switch to light theme" : "Switch to dark theme"
-              }
-            >
-              {isDark ? (
-                <FaSun className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors" />
-              ) : (
-                <FaMoon className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors" />
-              )}
-            </button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex md:hidden items-center space-x-2">
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="nav-link"
-              aria-label={
-                isDark ? "Switch to light theme" : "Switch to dark theme"
-              }
-            >
-              {isDark ? (
-                <FaSun className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-gold transition-colors" />
-              ) : (
-                <FaMoon className="text-xl text-theme-text dark:text-theme-subtle hover:text-rose-pine-foam transition-colors" />
-              )}
-            </button>
-            <button
-              type="button"
-              className="nav-link"
-              aria-controls="mobile-menu"
-              aria-expanded={isMenuOpen}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <span className="sr-only">Open main menu</span>
-              <FaBars className="h-6 w-6 text-theme-text dark:text-theme-subtle hover:text-theme-text transition-colors" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <div
-        ref={menuRef}
-        className={`${
-          isMenuOpen
-            ? isReducedMotion
-              ? "block"
-              : "animate-slide-down"
-            : "hidden"
-        } md:hidden bg-theme-surface/90 backdrop-blur-md border-b border-theme-highlight/50`}
-        id="mobile-menu"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="mobile-menu-button"
-      >
-        <div className="px-4 pt-2 pb-4 space-y-2">
+        <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`nav-link block group ${
-                pathname === link.href ? "nav-link-active" : ""
-              }`}
-              {...(link.external && {
-                target: "_blank",
-                rel: "noreferrer",
-                "aria-label": `${link.label} (opens in new tab)`,
-              })}
-              onClick={() => setIsMenuOpen(false)}
-              role="menuitem"
+              className={`nav-link ${pathname === link.href ? "nav-link-active" : ""}`}
             >
-              {link.icon && (
-                <span
-                  className="mr-2 group-hover:scale-110 transition-transform inline-block"
-                  aria-hidden="true"
-                >
-                  {link.icon}
-                </span>
-              )}
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://bit.ly/rohitcresume"
+            target="_blank"
+            rel="noreferrer"
+            className="nav-link"
+            aria-label="Resume (opens in a new tab)"
+          >
+            <FaFilePdf aria-hidden="true" /> Resume
+          </a>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="ml-2 grid h-10 w-10 place-items-center border border-theme-highlight hover:border-theme-text"
+            aria-label={
+              isDark ? "Switch to light theme" : "Switch to dark theme"
+            }
+          >
+            {isDark ? (
+              <FaSun aria-hidden="true" />
+            ) : (
+              <FaMoon aria-hidden="true" />
+            )}
+          </button>
+        </div>
+
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="grid h-10 w-10 place-items-center border border-theme-highlight"
+            aria-label={
+              isDark ? "Switch to light theme" : "Switch to dark theme"
+            }
+          >
+            {isDark ? (
+              <FaSun aria-hidden="true" />
+            ) : (
+              <FaMoon aria-hidden="true" />
+            )}
+          </button>
+          <button
+            id="mobile-menu-button"
+            type="button"
+            className="grid h-10 w-10 place-items-center border border-theme-highlight"
+            aria-controls="mobile-menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span className="sr-only">Toggle main menu</span>
+            {isMenuOpen ? (
+              <FaTimes aria-hidden="true" />
+            ) : (
+              <FaBars aria-hidden="true" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={menuRef}
+        id="mobile-menu"
+        aria-labelledby="mobile-menu-button"
+        className={`${isMenuOpen ? (isReducedMotion ? "block" : "animate-slide-down") : "hidden"} border-t border-theme-highlight bg-theme-base px-6 py-5 md:hidden`}
+      >
+        <div className="flex flex-col gap-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="nav-link py-3"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href="https://bit.ly/rohitcresume"
+            target="_blank"
+            rel="noreferrer"
+            className="nav-link py-3"
+          >
+            <FaFilePdf aria-hidden="true" /> Resume
+          </a>
         </div>
       </div>
     </nav>

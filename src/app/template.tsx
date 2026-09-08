@@ -1,9 +1,5 @@
-"use client";
-
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export default function Template({ children }: { children: ReactNode }) {
-  return (
-    <div className="min-h-screen bg-rose-pine-base antialiased">{children}</div>
-  );
+  return <div className="min-h-screen bg-theme-base">{children}</div>;
 }

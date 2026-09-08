@@ -1,149 +1,106 @@
-import { Metadata } from "next";
-import {
-  FaKeyboard,
-  FaMouse,
-  FaCode,
-  FaTerminal,
-  FaRobot,
-  FaStickyNote,
-  FaEnvelope,
-  FaMicrophone,
-} from "react-icons/fa";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Uses | Rohit Choudhari",
+  title: "Uses",
   description:
-    "The tools, hardware, and software I use for development and daily work.",
+    "Tools, hardware, and software Rohit Choudhari uses for development and daily work.",
 };
 
-interface UsesItem {
-  name: string;
-  description?: string;
-  url?: string;
-}
-
-interface UsesCategory {
-  title: string;
-  icon: React.ReactNode;
-  items: UsesItem[];
-}
-
-const uses: UsesCategory[] = [
+const uses = [
   {
     title: "Keyboards",
-    icon: <FaKeyboard />,
     items: [
       {
         name: "Glorious GMMK Pro",
-        description: "With Glorious Pandas (lubed)",
+        detail: "Glorious Pandas, lubed",
         url: "https://www.gloriousgaming.com/products/glorious-gmmk-pro-75-barebone",
       },
       {
         name: "Nuphy Air75 v3",
-        description: "Blush Nano switches",
+        detail: "Blush Nano switches",
         url: "https://nuphy.com/collections/air75",
       },
     ],
   },
   {
-    title: "Mice",
-    icon: <FaMouse />,
+    title: "Pointers",
     items: [
       {
         name: "Logitech G502 X Lightspeed",
-        description: "For gaming and general use",
+        detail: "Gaming and general use",
         url: "https://www.logitechg.com/products/gaming-mice/g502-x-lightspeed-wireless-mouse.html",
       },
       {
         name: "Logitech MX Master 4",
-        description: "For productivity",
+        detail: "Productivity",
         url: "https://www.logitech.com/products/mice/mx-master-3s.html",
       },
     ],
   },
   {
-    title: "Editor",
-    icon: <FaCode />,
+    title: "Code",
     items: [
-      {
-        name: "Cursor",
-        description: "AI-powered VS Code fork",
-        url: "https://cursor.sh",
-      },
+      { name: "Cursor", detail: "AI-powered editor", url: "https://cursor.sh" },
       {
         name: "Zed",
-        description: "Blazing fast because Rust",
+        detail: "Fast, collaborative editor",
         url: "https://zed.dev",
       },
-    ],
-  },
-  {
-    title: "Terminal",
-    icon: <FaTerminal />,
-    items: [
-      {
-        name: "Warp",
-        description: "Modern terminal with AI",
-        url: "https://warp.dev",
-      },
+      { name: "Warp", detail: "Modern terminal", url: "https://warp.dev" },
       {
         name: "Zsh + Oh My Zsh",
-        description: "Shell and framework",
+        detail: "Shell and framework",
         url: "https://ohmyz.sh",
       },
     ],
   },
   {
-    title: "AI Tools",
-    icon: <FaRobot />,
+    title: "AI",
     items: [
       {
+        name: "AmpCode",
+        detail: "Primary agentic coding environment",
+        url: "https://ampcode.com",
+      },
+      {
+        name: "Pi",
+        detail: "Extensible coding agent harness",
+        url: "https://pi.dev/",
+      },
+      {
         name: "OpenCode",
-        description: "With Claude Opus or GPT Codex",
+        detail: "Open source coding agent",
         url: "https://opencode.ai",
       },
     ],
   },
   {
-    title: "Notes",
-    icon: <FaStickyNote />,
+    title: "Thinking",
     items: [
       {
         name: "Bear",
-        description: "Quick notes and writing",
+        detail: "Quick notes and writing",
         url: "https://bear.app",
       },
       {
         name: "Notion",
-        description: "Documentation and planning",
+        detail: "Documentation and planning",
         url: "https://notion.so",
       },
     ],
   },
   {
     title: "Audio",
-    icon: <FaMicrophone />,
     items: [
       {
         name: "Elgato Wave 3",
-        description: "USB condenser microphone",
+        detail: "USB condenser microphone",
         url: "https://www.elgato.com/us/en/p/wave-3-black",
       },
       {
         name: "Beyerdynamic T1 Gen 3",
-        description: "Tesla open-back headphones",
+        detail: "Open-back headphones",
         url: "https://www.beyerdynamic.com/t-1.html",
-      },
-    ],
-  },
-  {
-    title: "Email",
-    icon: <FaEnvelope />,
-    items: [
-      {
-        name: "Spark",
-        description: "Smart email client",
-        url: "https://sparkmailapp.com",
       },
     ],
   },
@@ -151,58 +108,53 @@ const uses: UsesCategory[] = [
 
 export default function UsesPage() {
   return (
-    <main className="pt-16 font-sans">
-      <section className="min-h-screen bg-rose-pine-base relative overflow-hidden">
-        <div className="floating-shapes" />
-        <div className="grid-pattern" />
-        <div className="section-container">
-          <div className="max-w-3xl">
-            <h1 className="section-heading mb-4">/uses</h1>
-            <p className="text-xl text-theme-subtle mb-12">
-              The tools and gear I use for development and daily work.
-            </p>
-
-            <div className="space-y-12">
-              {uses.map((category) => (
-                <div key={category.title}>
-                  <h2 className="flex items-center gap-3 text-xl font-semibold text-rose-pine-dawn-pine dark:text-rose-pine-foam mb-6">
-                    <span className="text-lg">{category.icon}</span>
-                    {category.title}
-                  </h2>
-                  <div className="space-y-4">
-                    {category.items.map((item) => (
-                      <div
-                        key={item.name}
-                        className="p-4 rounded-xl bg-theme-surface/50 border border-theme-highlight hover:border-theme-subtle transition-colors"
-                      >
-                        {item.url ? (
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-theme-text font-medium hover:text-rose-pine-dawn-pine dark:hover:text-rose-pine-foam transition-colors"
-                          >
-                            {item.name}
-                          </a>
-                        ) : (
-                          <span className="text-theme-text font-medium">
-                            {item.name}
-                          </span>
-                        )}
-                        {item.description && (
-                          <p className="text-theme-subtle text-sm mt-1">
-                            {item.description}
-                          </p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+    <main className="page-shell">
+      <div className="section-container">
+        <p className="eyebrow">Inventory / Uses</p>
+        <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_0.55fr] lg:items-end">
+          <h1 className="page-heading">
+            Tools should
+            <br />
+            <span className="text-accent">get out of the way.</span>
+          </h1>
+          <p className="section-deck">
+            A living inventory of the hardware and software that currently earns
+            a place in my workflow.
+          </p>
         </div>
-      </section>
+        <div className="mt-20 grid border-l border-t border-theme-highlight md:grid-cols-2 lg:grid-cols-3">
+          {uses.map((category, index) => (
+            <section
+              key={category.title}
+              className="min-h-80 border-b border-r border-theme-highlight p-7"
+            >
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-semibold">{category.title}</h2>
+                <span className="font-mono text-xs text-theme-muted">
+                  0{index + 1}
+                </span>
+              </div>
+              <ul className="mt-10 space-y-7">
+                {category.items.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-semibold hover:text-accent"
+                    >
+                      {item.name} ↗
+                    </a>
+                    <p className="mt-1 text-sm text-theme-muted">
+                      {item.detail}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
     </main>
   );
 }

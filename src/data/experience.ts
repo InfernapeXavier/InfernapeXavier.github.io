@@ -2,14 +2,13 @@ export interface Role {
   title: string;
   period?: string;
   isCurrent?: boolean;
-  highlights: string[];
+  narrative: string[];
   technologies: string[];
 }
 
 export interface Experience {
   company: string;
   companyUrl: string;
-  location: string;
   duration: string;
   roles: Role[];
 }
@@ -18,17 +17,15 @@ export const experience: Experience[] = [
   {
     company: "Academia.edu",
     companyUrl: "https://www.academia.edu",
-    location: "San Francisco, CA",
-    duration: "4+ years",
+    duration: "August 2021—Present",
     roles: [
       {
         title: "Senior Software Engineer",
+        period: "July 2025—Present",
         isCurrent: true,
-        highlights: [
-          "Led production migration to Kubernetes—writing migration tooling, supporting phased rollouts, and cutting deploy times by 50%",
-          "Prototyped Cloudflare Edge stack (DNS, WAF, CDN) as a CloudFront replacement, shaping long-term infrastructure direction",
-          "Built a custom Slack MCP integration to streamline platform workflows and boost engineering productivity",
-          "Partnered with infrastructure vendors on cost-reduction initiatives, balancing performance, reliability, and spend",
+        narrative: [
+          "My current work sits at the intersection of developer experience and production infrastructure. I built sandboxed AI development environments that cut startup times in half and made the platform useful beyond engineering, then developed reusable tooling to help teams adopt AI-assisted development without every workflow becoming a one-off experiment.",
+          "On the infrastructure side, I helped move production workloads to Kubernetes by building migration tooling and supporting phased rollouts, reducing deploy times by 50%. I also led our move from CloudFront to Cloudflare's DNS, WAF, and CDN for systems handling 2,000 requests per second, while remaining closely involved in on-call response across the application, database, networking, and infrastructure layers.",
         ],
         technologies: [
           "Kubernetes",
@@ -40,12 +37,10 @@ export const experience: Experience[] = [
       },
       {
         title: "Software Engineer",
-        highlights: [
-          "Built and maintained revenue-critical payment flows and monetization features contributing directly to core business revenue",
-          "Drove deployment of Tailscale, standardizing secure internal service access to AWS-hosted systems",
-          "Developed an agentic workflow to translate research pseudocode into production-grade Python, accelerating experimentation",
-          "Optimized database queries and backend performance to reduce system load and lower operational costs",
-          "Designed a reusable library for large-scale data imports, reducing effort for future corpus expansion",
+        period: "August 2021—July 2025",
+        narrative: [
+          "I joined Academia.edu working close to the product, building payment flows and monetization features tied directly to revenue. Automating the rough edges around those systems reduced customer support work by 25%, and deploying Tailscale gave teams a consistent, secure way to reach services running in AWS.",
+          "Over time, the role pulled me deeper into platform and data problems. I built an agentic workflow that turned research pseudocode into production-grade Python, tuned database and backend performance to lower system load, and created reusable ingestion tooling for more than 200 million metadata records—making later corpus imports three times faster.",
         ],
         technologies: ["Ruby on Rails", "Python", "PostgreSQL", "Redis", "AWS"],
       },

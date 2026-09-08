@@ -14,11 +14,11 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Annie Mei",
+    title: "Annie-Mei",
     description:
-      "A Discord bot for tracking anime and manga progress, built in idiomatic Rust with a focus on correctness and performance.",
+      "A Rust Discord bot that combines AniList tracking with Gemini-powered natural-language search and privacy-aware preferences.",
     longDescription:
-      "What started as a way to learn Rust turned into a full-featured Discord bot that I actually use daily. Annie Mei connects to AniList's GraphQL API to let users track their anime and manga progress directly in Discord. The interesting challenges have been around implementing OAuth flows, building efficient caching layers, and designing fuzzy matching for search. It's hosted on a mix of Upstash (Redis), Neon (Postgres), and Oracle Cloud Infrastructure.",
+      "Annie-Mei began as a reason to learn Rust and grew into a production Discord bot. It connects slash commands to AniList, adds Gemini-powered natural-language search, and gives users and servers configurable preferences with privacy controls. A separate Rocket OAuth service handles PostgreSQL persistence and signed request context.",
     image: "/projects/annie-mei.webp",
     technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "OAuth"],
     githubUrl: "https://github.com/annie-mei",
@@ -27,11 +27,10 @@ export const projects: Project[] = [
     isInProgress: true,
     isFeatured: true,
     highlights: [
-      "Written in idiomatic Rust, emphasizing correctness and maintainability",
-      "OAuth integration with AniList for user authentication",
-      "Multi-layer caching with Redis (Upstash) and PostgreSQL (Neon)",
-      "Fuzzy matching for flexible anime/manga search",
-      "Deployed on Oracle Cloud Infrastructure",
+      "Connected Discord slash commands with the AniList GraphQL API.",
+      "Added Gemini-powered search plus user and server preferences with privacy controls.",
+      "Improved response quality and latency with fuzzy matching, external APIs, and Redis caching.",
+      "Built a Rocket OAuth service with PostgreSQL, signed request context, and CI validation.",
     ],
   },
   {

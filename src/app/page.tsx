@@ -1,300 +1,258 @@
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
-import { Suspense } from "react";
-import dynamic from "next/dynamic";
-import { projects } from "@/data/projects";
+import {
+  FaArrowRight,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+} from "react-icons/fa";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import Experience from "@/components/Experience";
+import FeaturedProject from "@/components/FeaturedProject";
+import Skills from "@/components/Skills";
+import { projects } from "@/data/projects";
 
-// Lazy load components
-const Experience = dynamic(() => import("@/components/Experience"), {
-  loading: () => (
-    <div className="animate-pulse space-y-8">
-      <div className="h-8 bg-rose-pine-highlight rounded w-1/3" />
-      <div className="h-64 bg-rose-pine-highlight rounded" />
-    </div>
-  ),
-});
+const featuredProject = projects.find((project) => project.isFeatured);
+const secondaryProjects = projects.filter((project) => project.isSecondary);
 
-const FeaturedProject = dynamic(() => import("@/components/FeaturedProject"), {
-  loading: () => (
-    <div className="animate-pulse grid lg:grid-cols-2 gap-12">
-      <div className="aspect-video bg-rose-pine-highlight rounded-2xl" />
-      <div className="space-y-4">
-        <div className="h-10 bg-rose-pine-highlight rounded w-1/2" />
-        <div className="h-32 bg-rose-pine-highlight rounded" />
-      </div>
-    </div>
-  ),
-});
-
-const Skills = dynamic(() => import("@/components/Skills"), {
-  loading: () => (
-    <div className="animate-pulse">
-      <div className="h-8 bg-rose-pine-highlight rounded w-1/4 mb-6" />
-      <div className="flex flex-wrap gap-4">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="w-12 h-12 bg-rose-pine-highlight rounded-lg"
-          />
-        ))}
-      </div>
-    </div>
-  ),
-});
-
-const featuredProject = projects.find((p) => p.isFeatured);
-const secondaryProjects = projects.filter((p) => p.isSecondary);
+const education = [
+  {
+    school: "University of Florida",
+    degree: "M.S. Computer Science",
+    period: "2019—2021",
+  },
+  {
+    school: "NMIMS",
+    degree: "B.Tech. Computer Engineering",
+    period: "2015—2019",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="pt-16 font-sans">
-      {/* Hero Section */}
-      <section
-        id="about"
-        className="min-h-screen bg-rose-pine-base flex items-center relative overflow-hidden"
-      >
-        <div className="floating-shapes" />
-        <div className="grid-pattern" />
-        <div className="section-container">
-          <div className="max-w-4xl relative">
-            <h1 className="section-heading">
-              Hi, I&apos;m{" "}
-              <span className="text-gradient inline-block hover:scale-105 transition-transform cursor-default">
-                Rohit
-              </span>
-            </h1>
-            <h2 className="section-subheading">
-              Software Engineer · Exploring the edges of infrastructure and
-              systems
+    <main className="font-sans">
+      <section id="about" className="hero-section">
+        <div className="editorial-grid" aria-hidden="true" />
+        <div className="section-container relative z-10 flex min-h-[calc(100vh-4.5rem)] flex-col justify-center pt-32 md:pt-40">
+          <div className="grid items-end gap-12 lg:grid-cols-[1.35fr_0.65fr]">
+            <div>
+              <p className="eyebrow mb-6">
+                Backend · Infrastructure · AI platforms
+              </p>
+              <h1 className="hero-title">
+                I follow problems
+                <span className="block text-accent">all the way down.</span>
+              </h1>
+              <p className="mt-8 max-w-2xl text-xl leading-relaxed text-theme-subtle md:text-2xl">
+                I&apos;m Rohit Choudhari, a senior software engineer building AI
+                developer platforms and production systems—from revenue-critical
+                products to cloud infrastructure.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <a href="#experience" className="button-primary">
+                  Explore my work <FaArrowRight aria-hidden="true" />
+                </a>
+                <a
+                  href="https://bit.ly/rohitcresume"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="button-secondary"
+                >
+                  Read the résumé
+                </a>
+              </div>
+            </div>
+
+            <aside className="status-card">
+              <div className="flex items-center gap-2">
+                <span className="status-dot" aria-hidden="true" />
+                <span className="eyebrow">Currently</span>
+              </div>
+              <p className="mt-5 text-2xl font-semibold text-theme-text">
+                Senior Software Engineer
+              </p>
+              <a
+                href="https://www.academia.edu"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 inline-block text-lg text-theme-subtle hover:text-theme-text"
+              >
+                Academia.edu ↗
+              </a>
+              <div className="rule my-6" />
+              <p className="font-mono text-sm uppercase tracking-widest text-theme-muted">
+                Production systems · AI developer platforms
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-band">
+        <div className="section-container grid gap-12 lg:grid-cols-[0.55fr_1fr]">
+          <AnimateOnScroll>
+            <p className="eyebrow">01 / Approach</p>
+            <h2 className="section-heading mt-5">
+              I like the
+              <br />
+              messy middle.
             </h2>
-            <div className="h-0.5 w-1/2 bg-gradient-to-r from-rose-pine-rose to-rose-pine-pine mb-12 opacity-50" />
-
-            <div className="prose space-y-6 animate-fade-in max-w-2xl">
-              <p className="text-xl md:text-2xl text-theme-text/85 leading-relaxed">
-                I&apos;m fascinated by how things work under the hood—whether
-                that&apos;s migrating production systems to Kubernetes, figuring
-                out why a database query is slow, or building a Discord bot in
-                Rust just to see if I can.
-              </p>
-              <p className="text-xl md:text-2xl text-theme-text/85 leading-relaxed">
-                Currently at{" "}
-                <a
-                  href="https://www.academia.edu"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="link"
-                >
-                  Academia.edu
-                </a>
-                , where I&apos;ve spent the last 4+ years working across the
-                stack—from payment flows to infrastructure migrations.
-              </p>
-            </div>
-
-            {/* Quick links */}
-            <div className="flex flex-wrap gap-4 mt-10 animate-fade-in">
-              <a
-                href="#experience"
-                className="px-5 py-2.5 rounded-xl font-medium bg-theme-surface border border-theme-highlight text-theme-text hover:bg-theme-highlight hover:border-theme-subtle transition-all duration-200"
-              >
-                See my work
-              </a>
-              <a
-                href="#contact"
-                className="px-5 py-2.5 rounded-xl font-medium bg-rose-pine-pine/90 dark:bg-rose-pine-pine/90 text-white hover:bg-rose-pine-foam/90 dark:hover:bg-rose-pine-foam/90 transition-all duration-200"
-              >
-                Get in touch
-              </a>
-            </div>
-          </div>
-
-          {/* Skills moved below intro */}
-          <div className="mt-20 max-w-4xl">
-            <Suspense
-              fallback={
-                <div className="animate-pulse">
-                  <div className="h-8 bg-rose-pine-highlight rounded w-1/4 mb-6" />
-                  <div className="flex flex-wrap gap-4">
-                    {[...Array(8)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="w-12 h-12 bg-rose-pine-highlight rounded-lg"
-                      />
-                    ))}
-                  </div>
-                </div>
-              }
-            >
+          </AnimateOnScroll>
+          <AnimateOnScroll delay={100} className="self-end">
+            <p className="max-w-3xl text-2xl leading-relaxed text-theme-text/90 md:text-3xl">
+              I&apos;m happiest with problems that cross boundaries—the ones
+              that start as a slow request or an awkward deploy and end up
+              somewhere in the database, network, or build pipeline. I like
+              tracing them to the root, making the smallest useful change, and
+              leaving behind something the next person can understand.
+            </p>
+            <div className="mt-12">
               <Skills />
-            </Suspense>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section
-        id="experience"
-        className="min-h-screen bg-rose-pine-surface relative overflow-hidden py-20"
-      >
-        <div className="floating-shapes" />
-        <div className="grid-pattern" />
-        <div className="section-container">
-          <AnimateOnScroll>
-            <h2 className="section-heading mb-4">Experience</h2>
-            <p className="text-xl text-theme-subtle mb-12 max-w-2xl">
-              Building products and infrastructure at scale
-            </p>
-          </AnimateOnScroll>
-          <AnimateOnScroll delay={100}>
-            <div className="max-w-3xl">
-              <Suspense
-                fallback={
-                  <div className="animate-pulse space-y-8">
-                    <div className="h-8 bg-rose-pine-highlight rounded w-1/3" />
-                    <div className="h-64 bg-rose-pine-highlight rounded" />
-                  </div>
-                }
-              >
-                <Experience />
-              </Suspense>
             </div>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* Featured Project Section */}
-      <section
-        id="projects"
-        className="min-h-screen bg-rose-pine-base relative overflow-hidden py-20"
-      >
-        <div className="floating-shapes" />
-        <div className="grid-pattern" />
+      <section id="experience" className="section-base scroll-mt-24">
         <div className="section-container">
           <AnimateOnScroll>
-            <h2 className="section-heading mb-4">Side Project</h2>
-            <p className="text-xl text-theme-subtle mb-12 max-w-2xl">
-              What I&apos;m building when I&apos;m not at work
-            </p>
+            <div className="section-intro">
+              <div>
+                <p className="eyebrow">02 / Experience</p>
+                <h2 className="section-heading mt-5">Systems in production.</h2>
+              </div>
+              <p className="section-deck">
+                Building developer platforms, leading infrastructure migrations,
+                and shipping features tied directly to the business.
+              </p>
+            </div>
           </AnimateOnScroll>
+          <AnimateOnScroll delay={100} className="mt-16">
+            <Experience />
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      <section id="projects" className="section-band scroll-mt-24">
+        <div className="section-container">
+          <AnimateOnScroll>
+            <div className="section-intro">
+              <div>
+                <p className="eyebrow">03 / Selected work</p>
+                <h2 className="section-heading mt-5">
+                  Built out of curiosity.
+                </h2>
+              </div>
+              <p className="section-deck">
+                These are things I built because I wanted them to exist, or
+                because I couldn&apos;t leave a technical question alone.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
           {featuredProject && (
-            <AnimateOnScroll delay={100}>
-              <Suspense
-                fallback={
-                  <div className="animate-pulse grid lg:grid-cols-2 gap-12">
-                    <div className="aspect-video bg-rose-pine-highlight rounded-2xl" />
-                    <div className="space-y-4">
-                      <div className="h-10 bg-rose-pine-highlight rounded w-1/2" />
-                      <div className="h-32 bg-rose-pine-highlight rounded" />
-                    </div>
-                  </div>
-                }
-              >
-                <FeaturedProject project={featuredProject} />
-              </Suspense>
+            <AnimateOnScroll delay={100} className="mt-16">
+              <FeaturedProject project={featuredProject} />
             </AnimateOnScroll>
           )}
 
-          {/* Other Projects */}
           {secondaryProjects.length > 0 && (
-            <AnimateOnScroll delay={200}>
-              <div className="mt-20">
-                <h3 className="text-lg font-medium text-theme-subtle mb-6 uppercase tracking-wider">
-                  Other Projects
-                </h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {secondaryProjects.map((project) => (
-                    <a
-                      key={project.title}
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group block p-6 rounded-xl bg-theme-surface/50 border border-theme-highlight hover:border-theme-subtle hover:bg-theme-surface transition-all duration-200"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <h4 className="text-xl font-semibold text-theme-text group-hover:text-rose-pine-dawn-pine dark:group-hover:text-rose-pine-foam transition-colors">
-                            {project.title}
-                          </h4>
-                          <p className="mt-2 text-theme-text/70 text-sm leading-relaxed">
-                            {project.description}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mt-4">
-                            {project.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-2 py-1 text-xs font-medium rounded-md bg-theme-highlight/50 text-theme-subtle"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <FaGithub className="text-xl text-theme-muted group-hover:text-theme-text transition-colors flex-shrink-0" />
-                      </div>
-                    </a>
-                  ))}
-                </div>
+            <AnimateOnScroll delay={180} className="mt-12">
+              <div className="project-list">
+                {secondaryProjects.map((project, index) => (
+                  <a
+                    key={project.title}
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-row group"
+                  >
+                    <span className="font-mono text-sm text-theme-muted">
+                      0{index + 2}
+                    </span>
+                    <div>
+                      <h3 className="text-2xl font-semibold">
+                        {project.title}
+                      </h3>
+                      <p className="mt-2 max-w-2xl text-theme-subtle">
+                        {project.description}
+                      </p>
+                    </div>
+                    <span className="ml-auto text-2xl transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
+                      ↗
+                    </span>
+                  </a>
+                ))}
               </div>
             </AnimateOnScroll>
           )}
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section
-        id="contact"
-        className="bg-rose-pine-surface relative overflow-hidden"
-      >
-        <div className="floating-shapes" />
-        <div className="grid-pattern" />
-        <div className="section-container py-24">
+      <section className="section-base">
+        <div className="section-container">
           <AnimateOnScroll>
-            <h2 className="section-heading mb-4">Let&apos;s Talk</h2>
+            <p className="eyebrow">04 / Education</p>
+            <h2 className="section-heading mt-5">The foundation.</h2>
           </AnimateOnScroll>
-          <AnimateOnScroll delay={100}>
-            <div className="flex flex-col space-y-8 max-w-2xl">
-              <p className="text-xl text-theme-subtle leading-relaxed">
-                I&apos;m always curious about interesting problems, new
-                technologies, or opportunities to collaborate. Whether you want
-                to chat about infrastructure, Rust, or anything in between—feel
-                free to reach out.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="mailto:website@rohitc.tech"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-theme-surface border border-theme-highlight text-theme-text hover:bg-theme-highlight hover:border-theme-subtle transition-all duration-200"
-                >
-                  <FaEnvelope className="text-lg" />
-                  <span>Email</span>
-                </a>
-                <a
-                  href="https://github.com/InfernapeXavier"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-theme-surface border border-theme-highlight text-theme-text hover:bg-theme-highlight hover:border-theme-subtle transition-all duration-200"
-                >
-                  <FaGithub className="text-lg" />
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href="https://linkedin.com/in/InfernapeXavier"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-theme-surface border border-theme-highlight text-theme-text hover:bg-theme-highlight hover:border-theme-subtle transition-all duration-200"
-                >
-                  <FaLinkedin className="text-lg" />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href="https://twitter.com/InfernapeXavier"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-theme-surface border border-theme-highlight text-theme-text hover:bg-theme-highlight hover:border-theme-subtle transition-all duration-200"
-                >
-                  <FaTwitter className="text-lg" />
-                  <span>Twitter</span>
-                </a>
+          <div className="mt-14 grid border-t border-theme-highlight md:grid-cols-2">
+            {education.map((item, index) => (
+              <AnimateOnScroll key={item.school} delay={index * 80}>
+                <article className="education-card">
+                  <p className="font-mono text-sm text-theme-muted">
+                    {item.period}
+                  </p>
+                  <h3 className="mt-8 text-2xl font-semibold">{item.school}</h3>
+                  <p className="mt-2 text-lg text-theme-subtle">
+                    {item.degree}
+                  </p>
+                </article>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="contact-section scroll-mt-24">
+        <div className="section-container">
+          <AnimateOnScroll>
+            <p className="eyebrow text-current">05 / Contact</p>
+            <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div>
+                <h2 className="contact-title">Drop me a line.</h2>
+                <p className="mt-8 max-w-2xl text-xl opacity-75">
+                  Email is the easiest way to reach me. Infrastructure and Rust
+                  are safe bets, but it doesn&apos;t have to be about work.
+                </p>
               </div>
+              <a href="mailto:website@rohitc.tech" className="contact-button">
+                <FaEnvelope aria-hidden="true" /> Email me
+              </a>
+            </div>
+            <div className="mt-20 flex flex-wrap gap-x-8 gap-y-4 border-t border-current/20 pt-8 font-mono text-sm uppercase tracking-wider">
+              <a
+                href="https://github.com/InfernapeXavier"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub /> GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/InfernapeXavier"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin /> LinkedIn
+              </a>
+              <a
+                href="https://twitter.com/InfernapeXavier"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaTwitter /> Twitter
+              </a>
+              <span className="ml-auto opacity-60">
+                © {new Date().getFullYear()} Rohit Choudhari
+              </span>
             </div>
           </AnimateOnScroll>
         </div>
