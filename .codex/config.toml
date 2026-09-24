@@ -1,0 +1,9 @@
+[mcp_servers.paper]
+url = "http://127.0.0.1:29979/mcp"
+enabled = true
+
+[mcp_servers.paper.http_headers]
+Accept = "application/json, text/event-stream"
+
+[sandbox_workspace_write]
+network_access = true
