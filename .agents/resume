@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
+
+# Dependencies are restored with the orb; waking must not reinstall them.
+node --version
+bun --version
+if [[ ! -x node_modules/.bin/next ]]; then
+  echo "Dependencies are missing; run .agents/setup to restore them." >&2
+  exit 1
+fi
