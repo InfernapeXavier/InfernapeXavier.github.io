@@ -165,10 +165,6 @@ export default function RootLayout({
                     "https://twitter.com/InfernapeXavier",
                   ],
                   jobTitle: "Senior Software Engineer",
-                  homeLocation: {
-                    "@type": "Place",
-                    name: "Fremont, CA",
-                  },
                   worksFor: {
                     "@type": "Organization",
                     name: "Academia.edu",

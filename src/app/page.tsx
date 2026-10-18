@@ -33,7 +33,7 @@ export default function Home() {
           Senior Software Engineer · Backend &amp; Infrastructure
         </p>
         <p className={styles.current}>
-          Based in Fremont, CA. At{" "}
+          At{" "}
           <a href="https://www.academia.edu" target="_blank" rel="noreferrer">
             Academia.edu
           </a>
