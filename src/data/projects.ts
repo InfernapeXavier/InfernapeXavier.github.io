@@ -16,9 +16,9 @@ export const projects: Project[] = [
   {
     title: "Annie-Mei",
     description:
-      "A Rust Discord bot for anime and manga, with Gemini-powered natural-language search and AniList integration.",
+      "An anime side quest that became a real project. A Rust-powered Discord bot that brings anime and manga search to your server.",
     longDescription:
-      "I've been building Annie-Mei as a hobby project since 2022. It brings AniList's GraphQL API into Discord through slash commands, with Gemini-powered natural-language search to help people find anime and manga. The work spans external API integrations, fuzzy matching, Redis caching, and a separate Rocket OAuth service with PostgreSQL persistence. User- and server-level preferences include privacy controls.",
+      "Annie-Mei is where my interest in anime meets my habit of building things in Rust. I've been working on it since 2022, connecting AniList to Discord so people can find anime and manga without leaving the conversation. Gemini-powered search lets you describe what you're looking for instead of guessing the right title. Behind the slash commands is a whole other project: making search forgiving, keeping responses quick, and getting account connections right. Plenty of small problems to get delightfully stuck into.",
     image: "/projects/annie-mei.webp",
     technologies: [
       "Rust",
@@ -33,16 +33,14 @@ export const projects: Project[] = [
     isInProgress: true,
     isFeatured: true,
     highlights: [
-      "Discord slash commands integrated with the AniList GraphQL API.",
-      "Gemini-powered natural-language search and configurable user- and server-level preferences with privacy controls.",
-      "External API integrations, fuzzy matching, and Redis caching to improve response quality and latency.",
-      "A separate Rocket OAuth service with PostgreSQL persistence, signed request context, and CI validation.",
+      "Under the hood: AniList's GraphQL API, fuzzy matching, and Redis caching.",
+      "The less visible bits matter too: a Rocket OAuth service, PostgreSQL, and privacy controls for users and servers.",
     ],
   },
   {
     title: "RustyBase",
     description:
-      'A database built from scratch in Rust without any "unsafe" blocks or external crates—just to see how far safe Rust can go.',
+      'What happens when "I wonder how databases work" gets out of hand? A database from scratch in Rust. No unsafe blocks. No external crates. Just the pieces, built by hand.',
     image: "/projects/rustybase.webp",
     technologies: ["Rust"],
     githubUrl: "https://gitlab.com/InfernapeXavier/RustyBase",

@@ -1,57 +1,23 @@
-export interface Role {
-  title: string;
-  period?: string;
-  isCurrent?: boolean;
-  highlights: string[];
-  technologies: string[];
-}
-
-export interface Experience {
-  company: string;
-  companyUrl: string;
-  location: string;
-  duration: string;
-  roles: Role[];
-}
-
-export const experience: Experience[] = [
-  {
-    company: "Academia.edu",
-    companyUrl: "https://www.academia.edu",
-    location: "San Francisco, CA",
-    duration: "August 2021 – Present",
-    roles: [
-      {
-        title: "Senior Software Engineer",
-        period: "July 2025 – Present",
-        isCurrent: true,
-        highlights: [
-          "Built sandboxed AI development environments, cutting startup times by 50% and extending access beyond engineering.",
-          "Developed reusable tooling for a sustainable software factory, standardizing AI-assisted development across teams.",
-          "Developed migration tooling and supported phased rollouts for a production migration to Kubernetes, reducing deploy times by 50%.",
-          "Led the migration from CloudFront to Cloudflare Edge services (DNS, WAF, CDN) for systems serving 2,000 requests per second.",
-          "Led production on-call incident response across application, database, networking, and infrastructure layers.",
-        ],
-        technologies: [
-          "Kubernetes",
-          "AWS",
-          "Cloudflare",
-          "Docker",
-          "Terraform",
-        ],
-      },
-      {
-        title: "Software Engineer",
-        period: "August 2021 – July 2025",
-        highlights: [
-          "Built and automated revenue-critical payment flows and monetization features, reducing customer support workload by 25%.",
-          "Drove the deployment of Tailscale and standardized internal service access, enabling secure connectivity to AWS-hosted systems.",
-          "Developed an agentic workflow to translate research pseudocode into production-grade Python implementations, accelerating experimentation.",
-          "Optimized database queries and backend performance to reduce system load and lower operational costs.",
-          "Built reusable ingestion tooling for 200M+ metadata records, accelerating future corpus imports by 3×.",
-        ],
-        technologies: ["Ruby on Rails", "Python", "PostgreSQL", "Redis", "AWS"],
-      },
-    ],
-  },
-];
+export const experience = {
+  company: "Academia.edu",
+  companyUrl: "https://www.academia.edu",
+  role: "Senior Software Engineer",
+  tenure: "Here since 2021 · Senior since 2025",
+  stories: [
+    {
+      title: "A quicker path from idea to code",
+      description:
+        "Getting a development environment ready shouldn't be the hard part. I build sandboxed AI development environments and reusable tooling that more teams can use—not just engineering. Along the way, I cut environment startup times in half.",
+    },
+    {
+      title: "Moving the foundations",
+      description:
+        "Production migrations are a mix of tooling, careful rollouts, and knowing what to watch. I helped move services to Kubernetes, cutting deploy times by 50%, and led the CloudFront-to-Cloudflare migration for systems serving 2,000 requests a second. I also take my turn on call when production has other plans.",
+    },
+    {
+      title: "Solve it once. Make it reusable.",
+      description:
+        "A big data import is useful. Making the next one easier is better. I built ingestion tooling for 200M+ records that made future imports three times faster. That same thread runs through my earlier work on payments and backend performance: fix the immediate problem, then leave less work for the next person.",
+    },
+  ],
+};

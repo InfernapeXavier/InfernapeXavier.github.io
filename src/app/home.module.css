@@ -550,6 +550,15 @@
   .aboutFlower {
     display: none;
   }
+  .contactHeading h2 {
+    font-size: clamp(38px, 11vw, 54px);
+  }
+  .contactHeading > span {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 32px;
+  }
   .socials a {
     padding: 10px 14px;
     gap: 9px;
