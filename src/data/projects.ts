@@ -14,24 +14,29 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Annie Mei",
+    title: "Annie-Mei",
     description:
-      "A Discord bot for tracking anime and manga progress, built in idiomatic Rust with a focus on correctness and performance.",
+      "A Rust Discord bot for anime and manga, with Gemini-powered natural-language search and AniList integration.",
     longDescription:
-      "What started as a way to learn Rust turned into a full-featured Discord bot that I actually use daily. Annie Mei connects to AniList's GraphQL API to let users track their anime and manga progress directly in Discord. The interesting challenges have been around implementing OAuth flows, building efficient caching layers, and designing fuzzy matching for search. It's hosted on a mix of Upstash (Redis), Neon (Postgres), and Oracle Cloud Infrastructure.",
+      "I've been building Annie-Mei as a hobby project since 2022. It brings AniList's GraphQL API into Discord through slash commands, with Gemini-powered natural-language search to help people find anime and manga. The work spans external API integrations, fuzzy matching, Redis caching, and a separate Rocket OAuth service with PostgreSQL persistence. User- and server-level preferences include privacy controls.",
     image: "/projects/annie-mei.webp",
-    technologies: ["Rust", "GraphQL", "PostgreSQL", "Redis", "OAuth"],
+    technologies: [
+      "Rust",
+      "Gemini",
+      "GraphQL",
+      "PostgreSQL",
+      "Redis",
+      "Rocket",
+    ],
     githubUrl: "https://github.com/annie-mei",
-    liveUrl:
-      "https://discord.com/oauth2/authorize?client_id=962106280430932079&permissions=2147483648&integration_type=0&scope=bot",
+    liveUrl: "https://anniemei.app",
     isInProgress: true,
     isFeatured: true,
     highlights: [
-      "Written in idiomatic Rust, emphasizing correctness and maintainability",
-      "OAuth integration with AniList for user authentication",
-      "Multi-layer caching with Redis (Upstash) and PostgreSQL (Neon)",
-      "Fuzzy matching for flexible anime/manga search",
-      "Deployed on Oracle Cloud Infrastructure",
+      "Discord slash commands integrated with the AniList GraphQL API.",
+      "Gemini-powered natural-language search and configurable user- and server-level preferences with privacy controls.",
+      "External API integrations, fuzzy matching, and Redis caching to improve response quality and latency.",
+      "A separate Rocket OAuth service with PostgreSQL persistence, signed request context, and CI validation.",
     ],
   },
   {

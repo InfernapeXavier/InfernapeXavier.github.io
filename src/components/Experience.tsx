@@ -44,6 +44,11 @@ export default function Experience() {
                     <h4 className="w-full text-xl font-medium text-theme-text">
                       {role.title}
                     </h4>
+                    {role.period && (
+                      <p className="w-full text-xs font-mono leading-relaxed text-theme-subtle">
+                        {role.period}
+                      </p>
+                    )}
                     {role.isCurrent && (
                       <span className="px-3 py-1 text-xs font-medium rounded-full bg-theme-highlight text-theme-text">
                         Current

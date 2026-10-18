@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { education } from "@/data/education";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -27,15 +28,21 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
+const profileTitle =
+  "Rohit Choudhari - Senior Software Engineer at Academia.edu";
+const profileDescription =
+  "Rohit Choudhari is a Senior Software Engineer at Academia.edu building AI developer platforms, backend services, and production infrastructure. Creator of Annie-Mei, a Rust Discord bot with Gemini-powered search.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohitc.tech"),
   title: {
-    default: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
+    default: profileTitle,
     template: "%s | Rohit Choudhari",
   },
-  description:
-    "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+  description: profileDescription,
   keywords: [
+    "senior software engineer",
+    "AI developer platforms",
     "infrastructure engineer",
     "software engineer",
     "ruby developer",
@@ -97,9 +104,8 @@ export const metadata: Metadata = {
     type: "profile",
     firstName: "Rohit",
     lastName: "Choudhari",
-    title: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
-    description:
-      "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+    title: profileTitle,
+    description: profileDescription,
     url: "https://rohitc.tech",
     siteName: "Rohit Choudhari's Portfolio",
     locale: "en_US",
@@ -108,15 +114,14 @@ export const metadata: Metadata = {
         url: "https://rohitc.tech/assets/logo/cover.png",
         width: 1200,
         height: 630,
-        alt: "Rohit Choudhari - Infrastructure Engineer",
+        alt: "Rohit Choudhari - Senior Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rohit Choudhari - Infrastructure Engineer at Academia.edu",
-    description:
-      "Rohit Choudhari is an Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform. Creator of Annie-Mei, a Discord bot for anime/manga tracking.",
+    title: profileTitle,
+    description: profileDescription,
     creator: "@InfernapeXavier",
     images: ["https://rohitc.tech/assets/logo/cover.png"],
   },
@@ -151,8 +156,7 @@ export default function RootLayout({
                   "@type": "Person",
                   name: "Rohit Choudhari",
                   alternateName: ["InfernapeXavier", "SekkenSenzai"],
-                  description:
-                    "Infrastructure Engineer at Academia.edu, specializing in building scalable systems with Ruby, Python, and Terraform.",
+                  description: profileDescription,
                   image: "https://rohitc.tech/assets/logo/cover.png",
                   url: "https://rohitc.tech",
                   sameAs: [
@@ -160,17 +164,20 @@ export default function RootLayout({
                     "https://linkedin.com/in/infernapexavier/",
                     "https://twitter.com/InfernapeXavier",
                   ],
-                  jobTitle: "Infrastructure Engineer",
+                  jobTitle: "Senior Software Engineer",
+                  homeLocation: {
+                    "@type": "Place",
+                    name: "Fremont, CA",
+                  },
                   worksFor: {
                     "@type": "Organization",
                     name: "Academia.edu",
                     url: "https://www.academia.edu",
                   },
-                  alumniOf: {
+                  alumniOf: education.map((qualification) => ({
                     "@type": "CollegeOrUniversity",
-                    name: "University of Florida",
-                    url: "https://www.ufl.edu",
-                  },
+                    name: qualification.institution,
+                  })),
                 }),
               }}
             />

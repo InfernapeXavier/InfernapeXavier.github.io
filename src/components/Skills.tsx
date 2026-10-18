@@ -31,6 +31,7 @@ const skillCategories: SkillCategory[] = [
       { name: "Terraform", icon: "/skills/terraform.svg" },
       { name: "Docker", icon: "/skills/docker.svg" },
       { name: "Cloudflare", icon: "/skills/cloudflare.svg" },
+      { name: "Datadog", icon: "/skills/datadog.svg" },
     ],
   },
   {
@@ -39,7 +40,6 @@ const skillCategories: SkillCategory[] = [
       { name: "PostgreSQL", icon: "/skills/postgresql.svg" },
       { name: "Redis", icon: "/skills/redis.svg" },
       { name: "GraphQL", icon: "/skills/graphql.svg" },
-      { name: "Datadog", icon: "/skills/datadog.svg" },
     ],
   },
   {
@@ -48,7 +48,6 @@ const skillCategories: SkillCategory[] = [
       { name: "Rails", icon: "/skills/rails.svg" },
       { name: "Flask", icon: "/skills/flask.svg" },
       { name: "React", icon: "/skills/react.svg" },
-      { name: "Next.js", icon: "/skills/nextdotjs.svg" },
     ],
   },
 ];

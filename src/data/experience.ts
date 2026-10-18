@@ -19,16 +19,18 @@ export const experience: Experience[] = [
     company: "Academia.edu",
     companyUrl: "https://www.academia.edu",
     location: "San Francisco, CA",
-    duration: "4+ years",
+    duration: "August 2021 – Present",
     roles: [
       {
         title: "Senior Software Engineer",
+        period: "July 2025 – Present",
         isCurrent: true,
         highlights: [
-          "Led production migration to Kubernetes—writing migration tooling, supporting phased rollouts, and cutting deploy times by 50%",
-          "Prototyped Cloudflare Edge stack (DNS, WAF, CDN) as a CloudFront replacement, shaping long-term infrastructure direction",
-          "Built a custom Slack MCP integration to streamline platform workflows and boost engineering productivity",
-          "Partnered with infrastructure vendors on cost-reduction initiatives, balancing performance, reliability, and spend",
+          "Built sandboxed AI development environments, cutting startup times by 50% and extending access beyond engineering.",
+          "Developed reusable tooling for a sustainable software factory, standardizing AI-assisted development across teams.",
+          "Developed migration tooling and supported phased rollouts for a production migration to Kubernetes, reducing deploy times by 50%.",
+          "Led the migration from CloudFront to Cloudflare Edge services (DNS, WAF, CDN) for systems serving 2,000 requests per second.",
+          "Led production on-call incident response across application, database, networking, and infrastructure layers.",
         ],
         technologies: [
           "Kubernetes",
@@ -40,12 +42,13 @@ export const experience: Experience[] = [
       },
       {
         title: "Software Engineer",
+        period: "August 2021 – July 2025",
         highlights: [
-          "Built and maintained revenue-critical payment flows and monetization features contributing directly to core business revenue",
-          "Drove deployment of Tailscale, standardizing secure internal service access to AWS-hosted systems",
-          "Developed an agentic workflow to translate research pseudocode into production-grade Python, accelerating experimentation",
-          "Optimized database queries and backend performance to reduce system load and lower operational costs",
-          "Designed a reusable library for large-scale data imports, reducing effort for future corpus expansion",
+          "Built and automated revenue-critical payment flows and monetization features, reducing customer support workload by 25%.",
+          "Drove the deployment of Tailscale and standardized internal service access, enabling secure connectivity to AWS-hosted systems.",
+          "Developed an agentic workflow to translate research pseudocode into production-grade Python implementations, accelerating experimentation.",
+          "Optimized database queries and backend performance to reduce system load and lower operational costs.",
+          "Built reusable ingestion tooling for 200M+ metadata records, accelerating future corpus imports by 3×.",
         ],
         technologies: ["Ruby on Rails", "Python", "PostgreSQL", "Redis", "AWS"],
       },

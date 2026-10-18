@@ -4,6 +4,7 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Experience from "@/components/Experience";
 import FeaturedProject from "@/components/FeaturedProject";
 import Skills from "@/components/Skills";
+import { education } from "@/data/education";
 import { projects } from "@/data/projects";
 import styles from "./home.module.css";
 
@@ -29,15 +30,15 @@ export default function Home() {
           </span>
         </h1>
         <p className={styles.subtitle}>
-          Software Engineer · Exploring the edges of infrastructure and systems
+          Senior Software Engineer · Backend &amp; Infrastructure
         </p>
         <p className={styles.current}>
-          Currently at{" "}
+          Based in Fremont, CA. At{" "}
           <a href="https://www.academia.edu" target="_blank" rel="noreferrer">
             Academia.edu
           </a>
-          , where I&apos;ve spent the last 4+ years working across the
-          stack—from payment flows to infrastructure migrations.
+          , I build AI developer platforms and production systems—from sandboxed
+          development environments to cloud infrastructure.
         </p>
         <div className={styles.actions}>
           <a href="#experience" className={styles.primaryLink}>
@@ -126,10 +127,10 @@ export default function Home() {
             </span>
           </h2>
           <p>
-            I&apos;m fascinated by how things work under the hood—whether
-            that&apos;s migrating production systems to Kubernetes, figuring out
-            why a database query is slow, or building a Discord bot in Rust just
-            to see if I can.
+            I like understanding what&apos;s under the hood—and making it easier
+            for others to build. My work spans sandboxed AI development
+            environments, production cloud migrations, and revenue-critical
+            product features. Outside work, I explore Rust through Annie-Mei.
           </p>
           <span className={styles.aboutFlower} aria-hidden="true">
             ✳
@@ -159,6 +160,32 @@ export default function Home() {
             <p>Building products and infrastructure at scale</p>
           </div>
           <Experience />
+          <div className="mt-12">
+            <h3 className="mb-6 text-2xl font-medium tracking-tight">
+              Education
+            </h3>
+            <div className="grid gap-6 md:grid-cols-2">
+              {education.map((qualification) => (
+                <article
+                  key={qualification.institution}
+                  className="rounded-[28px] bg-theme-surface p-6 md:p-8"
+                >
+                  <h4 className="text-xl font-medium leading-snug">
+                    {qualification.institution}
+                  </h4>
+                  <p className="mt-3 text-theme-subtle">
+                    {qualification.degree}
+                  </p>
+                  <p className="mt-5 text-xs font-mono leading-relaxed text-theme-subtle">
+                    {qualification.period}
+                  </p>
+                  <p className="mt-2 text-sm text-theme-subtle">
+                    {qualification.location}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
         </AnimateOnScroll>
       </section>
 

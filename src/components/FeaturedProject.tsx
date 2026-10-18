@@ -16,7 +16,7 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
         {project.isInProgress && (
           <span>
             <i aria-hidden="true" />
-            In Progress
+            Active project
           </span>
         )}
       </div>
@@ -56,7 +56,7 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
         </a>
         {project.liveUrl && (
           <a href={project.liveUrl} target="_blank" rel="noreferrer">
-            Add to Discord
+            Visit Website
             <FiArrowUpRight aria-hidden="true" />
           </a>
         )}
