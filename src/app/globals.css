@@ -3,31 +3,35 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Light theme colors (Rose Pine Dawn) */
-    --color-base: 250 244 237; /* #faf4ed */
-    --color-surface: 255 250 243; /* #fffaf3 */
-    --color-overlay: 242 233 222; /* #f2e9de */
-    --color-muted: 152 147 165; /* #9893a5 */
-    --color-subtle: 110 106 134; /* #6e6a86 */
-    --color-text: 87 82 121; /* #575279 */
-    --color-highlight: 235 227 217; /* #ebe3d9 */
+  :root,
+  :root.dark {
+    color-scheme: dark;
+    --color-base: 17 19 26;
+    --color-surface: 26 29 40;
+    --color-overlay: 35 39 54;
+    --color-muted: 151 157 180;
+    --color-subtle: 177 181 201;
+    --color-text: 246 243 255;
+    --color-highlight: 49 54 73;
+    --color-accent: 143 159 255;
   }
 
-  :root.dark {
-    /* Dark theme (Rose Pine) colors */
-    --color-base: 25 23 36; /* #191724 */
-    --color-surface: 31 29 46; /* #1f1d2e */
-    --color-overlay: 38 35 58; /* #26233a */
-    --color-muted: 110 106 134; /* #6e6a86 */
-    --color-subtle: 144 140 170; /* #908caa */
-    --color-text: 224 222 244; /* #e0def4 */
-    --color-highlight: 42 40 55; /* #2a2837 */
+  :root.light {
+    color-scheme: light;
+    --color-base: 237 242 248;
+    --color-surface: 250 251 255;
+    --color-overlay: 225 231 243;
+    --color-muted: 94 103 127;
+    --color-subtle: 75 84 107;
+    --color-text: 27 32 48;
+    --color-highlight: 206 214 232;
+    --color-accent: 64 86 237;
   }
 
   /* Improved focus styles for better accessibility */
   :focus-visible {
-    @apply outline-none ring-2 ring-rose-pine-foam ring-offset-2 ring-offset-theme-base;
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 4px;
   }
 
   /* Skip to main content link */
@@ -43,35 +47,17 @@
 
   body {
     @apply antialiased bg-theme-base text-theme-text transition-colors duration-300;
+    font-family: var(--font-sans), sans-serif;
     letter-spacing: -0.01em;
   }
 }
 
 @layer components {
-  .nav-link {
-    @apply px-3 py-2 rounded-lg text-lg font-medium
-           text-theme-subtle hover:text-theme-text
-           hover:bg-theme-highlight transition-colors
-           focus:outline-none focus:ring-2 focus:ring-rose-pine-foam
-           focus:ring-offset-2 focus:ring-offset-theme-base;
-    letter-spacing: 0;
-  }
-
-  .nav-link-active {
-    @apply bg-theme-highlight text-theme-text;
-  }
-
   .section-heading {
     @apply text-5xl md:text-7xl font-bold mb-6
            text-theme-text leading-tight
            animate-fade-in;
     letter-spacing: -0.03em;
-  }
-
-  .section-subheading {
-    @apply text-xl md:text-2xl text-theme-subtle mb-8
-           font-light animate-fade-in;
-    letter-spacing: -0.01em;
   }
 
   .section-container {

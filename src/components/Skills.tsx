@@ -57,26 +57,26 @@ export default function Skills() {
   const { isDark } = useTheme();
 
   return (
-    <div className="animate-fade-in">
-      <h3 className="text-lg font-medium text-theme-subtle mb-6 uppercase tracking-wider">
+    <div className="rounded-[28px] bg-theme-surface p-6 md:p-8">
+      <h3 className="text-lg font-medium text-theme-text mb-7">
         Tech I work with
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 gap-x-5 gap-y-8">
         {skillCategories.map((category) => (
           <div key={category.name}>
-            <h4 className="text-sm font-medium text-rose-pine-dawn-pine dark:text-rose-pine-foam mb-3">
+            <h4 className="text-xs font-mono text-theme-subtle mb-4">
               {category.name}
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {category.skills.map((skill) => (
                 <li
                   key={skill.name}
-                  className="text-theme-text/80 text-sm flex items-center gap-2"
+                  className="text-theme-text text-sm flex items-center gap-2.5"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={skill.icon}
-                    alt={skill.name}
+                    alt=""
                     width={16}
                     height={16}
                     className={`${

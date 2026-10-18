@@ -1,8 +1,8 @@
-"use client";
-
 import Image from "next/image";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaDiscord, FaGithub } from "react-icons/fa";
+import { FiArrowUpRight, FiPlus } from "react-icons/fi";
 import type { Project } from "@/data/projects";
+import styles from "./FeaturedProject.module.css";
 
 interface FeaturedProjectProps {
   project: Project;
@@ -10,87 +10,72 @@ interface FeaturedProjectProps {
 
 export default function FeaturedProject({ project }: FeaturedProjectProps) {
   return (
-    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-      {/* Image */}
-      <div className="relative group">
-        <div className="relative aspect-video rounded-2xl overflow-hidden bg-theme-surface border border-theme-highlight">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-theme-base/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
+    <article className={styles.card}>
+      <div className={styles.status}>
+        <span>01 / Featured project</span>
         {project.isInProgress && (
-          <div className="absolute top-4 right-4 px-3 py-1 bg-rose-pine-gold/90 dark:bg-rose-pine-gold/90 text-rose-pine-base rounded-full text-sm font-medium">
+          <span>
+            <i aria-hidden="true" />
             In Progress
-          </div>
+          </span>
         )}
       </div>
-
-      {/* Content */}
-      <div className="space-y-6">
+      <div className={styles.intro}>
         <div>
-          <h3 className="text-3xl md:text-4xl font-bold text-theme-text mb-4">
-            {project.title}
-          </h3>
-          <p className="text-lg text-theme-text/80 leading-relaxed">
-            {project.longDescription || project.description}
-          </p>
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
         </div>
-
-        {/* Highlights */}
-        {project.highlights && (
-          <ul className="space-y-2">
-            {project.highlights.map((highlight, i) => (
-              <li key={i} className="flex items-start gap-3 text-theme-text/70">
-                <span className="text-rose-pine-foam dark:text-rose-pine-foam mt-1.5">
-                  ▹
-                </span>
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {/* Tech stack */}
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1.5 text-sm font-medium rounded-lg bg-theme-highlight/50 text-theme-subtle border border-theme-highlight"
-            >
-              {tech}
-            </span>
-          ))}
+        <div className={styles.art}>
+          <span className={styles.spark} aria-hidden="true">
+            ✳
+          </span>
+          <div className={styles.image}>
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(min-width: 1100px) 330px, (min-width: 768px) 45vw, 85vw"
+              className="object-cover"
+            />
+          </div>
+          <span className={styles.discord} aria-hidden="true">
+            <FaDiscord />
+          </span>
         </div>
-
-        {/* Links */}
-        <div className="flex gap-4 pt-2">
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-theme-surface border border-theme-highlight text-theme-text hover:bg-theme-highlight hover:border-theme-subtle transition-all duration-200"
-          >
-            <FaGithub className="text-lg" />
-            <span>View Source</span>
+      </div>
+      <div className={styles.tags}>
+        {project.technologies.map((tech) => (
+          <span key={tech}>{tech}</span>
+        ))}
+      </div>
+      <div className={styles.links}>
+        <a href={project.githubUrl} target="_blank" rel="noreferrer">
+          <FaGithub aria-hidden="true" />
+          View Source
+          <FiArrowUpRight aria-hidden="true" />
+        </a>
+        {project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noreferrer">
+            Add to Discord
+            <FiArrowUpRight aria-hidden="true" />
           </a>
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-rose-pine-pine/90 dark:bg-rose-pine-pine/90 text-white hover:bg-rose-pine-foam/90 dark:hover:bg-rose-pine-foam/90 transition-all duration-200"
-            >
-              <FaExternalLinkAlt className="text-sm" />
-              <span>Add to Discord</span>
-            </a>
+        )}
+      </div>
+      <details className={styles.story}>
+        <summary>
+          Read the story <FiPlus aria-hidden="true" />
+        </summary>
+        <div>
+          <p>{project.longDescription || project.description}</p>
+          {project.highlights && (
+            <ul>
+              {project.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
           )}
         </div>
-      </div>
-    </div>
+      </details>
+    </article>
   );
 }

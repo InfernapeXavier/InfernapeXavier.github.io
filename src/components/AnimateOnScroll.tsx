@@ -1,7 +1,8 @@
 "use client";
 
+import { type CSSProperties, type ReactNode } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { ReactNode } from "react";
+import styles from "./AnimateOnScroll.module.css";
 
 interface AnimateOnScrollProps {
   children: ReactNode;
@@ -22,10 +23,8 @@ export default function AnimateOnScroll({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${className} ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={`${className} ${isVisible ? styles.reveal : ""}`}
+      style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}
     >
       {children}
     </div>
