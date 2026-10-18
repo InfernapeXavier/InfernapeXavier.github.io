@@ -29,9 +29,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const profileTitle =
-  "Rohit Choudhari - Senior Software Engineer at Academia.edu";
+  "Rohit Choudhari - AI Platforms, Developer Tools & Infrastructure";
 const profileDescription =
-  "Rohit Choudhari is a Senior Software Engineer at Academia.edu building AI developer platforms, backend services, and production infrastructure. Creator of Annie-Mei, a Rust Discord bot with Gemini-powered search.";
+  "Rohit Choudhari builds AI platforms, developer tools, and production infrastructure. Senior Software Engineer at Academia.edu working on sandboxed AI development environments, reusable tooling, and agentic workflows.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohitc.tech"),
@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   keywords: [
     "senior software engineer",
     "AI developer platforms",
+    "AI platform engineer",
+    "developer tools",
+    "agentic workflows",
     "infrastructure engineer",
     "software engineer",
     "ruby developer",

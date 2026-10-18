@@ -5,19 +5,19 @@ export const experience = {
   tenure: "Here since 2021 · Senior since 2025",
   stories: [
     {
-      title: "A quicker path from idea to code",
+      title: "A place to build with AI",
       description:
-        "Getting a development environment ready shouldn't be the hard part. I build sandboxed AI development environments and reusable tooling that more teams can use—not just engineering. Along the way, I cut environment startup times in half.",
+        "Getting an environment ready shouldn't be the hard part. I build sandboxed AI development environments that teams beyond engineering can use too. Cutting startup times in half means less waiting around before the actual building starts.",
     },
     {
-      title: "Moving the foundations",
+      title: "Tools, not one-off tricks",
       description:
-        "Production migrations are a mix of tooling, careful rollouts, and knowing what to watch. I helped move services to Kubernetes, cutting deploy times by 50%, and led the CloudFront-to-Cloudflare migration for systems serving 2,000 requests a second. I also take my turn on call when production has other plans.",
+        "An AI workflow is more useful when the next team can use it too. I build reusable tooling for AI-assisted development across teams. I've also built an agentic workflow that turns research pseudocode into production-grade Python—connecting experimentation to software people can actually use.",
     },
     {
-      title: "Solve it once. Make it reusable.",
+      title: "Infrastructure that holds up",
       description:
-        "A big data import is useful. Making the next one easier is better. I built ingestion tooling for 200M+ records that made future imports three times faster. That same thread runs through my earlier work on payments and backend performance: fix the immediate problem, then leave less work for the next person.",
+        "Useful platforms need solid foundations. I helped move production services to Kubernetes, cutting deploy times by 50%, and led the CloudFront-to-Cloudflare migration for systems serving 2,000 requests a second. I also take my turn on call when production has other plans.",
     },
   ],
 };

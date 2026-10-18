@@ -1,18 +1,18 @@
 const skillCategories = [
   {
-    name: "For getting things done",
+    name: "For building with AI",
     description:
-      "Ruby, Python, and SQL. Rails and PostgreSQL are familiar territory.",
+      "Sandboxed development environments, agentic workflows, and reusable tooling. Less setup, more building.",
   },
   {
-    name: "For going a little deeper",
+    name: "For making the tools",
     description:
-      "Rust. From a Discord bot to a database, it's where I go to dig into how things work.",
+      "Python and Ruby for backend services and workflows. Rust when I want to dig deeper—including Annie-Mei's Gemini integration.",
   },
   {
     name: "For keeping it running",
     description:
-      "AWS, Kubernetes, Terraform, and Cloudflare. The foundations underneath the fun stuff.",
+      "AWS, Kubernetes, Terraform, and Cloudflare. Production infrastructure is part of the platform, not an afterthought.",
   },
 ];
 

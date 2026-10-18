@@ -30,11 +30,12 @@ export default function Home() {
           </span>
         </h1>
         <p className={styles.subtitle}>
-          I build things—and figure out why they break.
+          I build the tools that help people build with AI.
         </p>
         <p className={styles.current}>
-          Mostly backend systems, infrastructure, and tools that make building
-          software less of a chore. Occasionally a Rust rabbit hole.
+          AI platforms, developer tools, and the infrastructure underneath. I
+          work on making AI-assisted development easier to use—and less of a
+          setup project.
         </p>
         <p className={styles.current}>
           Senior Software Engineer at{" "}
@@ -44,7 +45,7 @@ export default function Home() {
           .
         </p>
         <div className={styles.actions}>
-          <a href="#projects" className={styles.primaryLink}>
+          <a href="#experience" className={styles.primaryLink}>
             See my work <FiArrowDown aria-hidden="true" />
           </a>
           <a href="#contact" className={styles.textLink}>
@@ -130,15 +131,17 @@ export default function Home() {
             </span>
           </h2>
           <p>
-            I like the part where &ldquo;why does it do that?&rdquo; turns into
-            &ldquo;oh, that&apos;s how it works.&rdquo; Sometimes that means
-            untangling a slow database query. Sometimes it means building a
-            database from scratch in Rust, just to understand the pieces.
+            I&apos;m interested in what makes AI useful beyond a demo: a place
+            to run, tools people can pick up, and infrastructure that behaves in
+            production. At Academia.edu, that means sandboxed AI development
+            environments and shared tooling that teams beyond engineering can
+            use too.
           </p>
           <p>
-            At work, I put that curiosity into tools and systems that help other
-            people build. Outside work, it tends to turn into side projects.
-            Annie-Mei is where anime, Rust, and that habit meet.
+            My backend and infrastructure background connects those pieces. I
+            like making the complicated bits easier for the next person. After
+            hours, that same curiosity turns into Rust experiments and
+            Annie-Mei—an anime side quest with Gemini-powered search.
           </p>
           <span className={styles.aboutFlower} aria-hidden="true">
             ✳
@@ -165,7 +168,9 @@ export default function Home() {
                 </span>
               </h2>
             </div>
-            <p>Less friction for people. Fewer surprises in production.</p>
+            <p>
+              AI development, from the first prompt to the platform underneath.
+            </p>
           </div>
           <Experience />
           <div className="mt-8 text-sm leading-relaxed text-theme-subtle">
@@ -202,9 +207,9 @@ export default function Home() {
             <span aria-hidden="true">↗</span>
           </div>
           <p>
-            Tell me about it. I&apos;m up for talking shop, comparing notes on
-            Rust, or hearing about a good side project. A simple hello works
-            too.
+            Tell me about it. I&apos;m up for comparing notes on AI developer
+            tools, untangling platform problems, or hearing about a good Rust
+            side project. A simple hello works too.
           </p>
           <div className={styles.socials}>
             <a href="mailto:website@rohitc.tech">
