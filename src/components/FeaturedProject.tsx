@@ -63,7 +63,7 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
       </div>
       <details className={styles.story}>
         <summary>
-          Read the story <FiPlus aria-hidden="true" />
+          More about the bot <FiPlus aria-hidden="true" />
         </summary>
         <div>
           <p>{project.longDescription || project.description}</p>

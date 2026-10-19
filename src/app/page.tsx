@@ -30,12 +30,12 @@ export default function Home() {
           </span>
         </h1>
         <p className={styles.subtitle}>
-          I build the tools that help people build with AI.
+          I work on AI platforms and developer tools.
         </p>
         <p className={styles.current}>
-          AI platforms, developer tools, and the infrastructure underneath. I
-          work on making AI-assisted development easier to use—and less of a
-          setup project.
+          Lately, that&apos;s meant building environments for AI-assisted
+          coding, writing internal tools, and looking after the infrastructure
+          they run on.
         </p>
         <p className={styles.current}>
           Senior Software Engineer at{" "}
@@ -70,7 +70,7 @@ export default function Home() {
                 </span>
               </h2>
             </div>
-            <p>Small projects. Plenty to figure out.</p>
+            <p>A couple of things I work on outside my job.</p>
           </div>
         </AnimateOnScroll>
         <div className={styles.projectGrid}>
@@ -131,17 +131,15 @@ export default function Home() {
             </span>
           </h2>
           <p>
-            I&apos;m interested in what makes AI useful beyond a demo: a place
-            to run, tools people can pick up, and infrastructure that behaves in
-            production. At Academia.edu, that means sandboxed AI development
-            environments and shared tooling that teams beyond engineering can
-            use too.
+            I started out working on payments and backend services at
+            Academia.edu. Over time, I moved into infrastructure and internal
+            tooling. Now most of my work is on AI development environments and
+            how people use them.
           </p>
           <p>
-            My backend and infrastructure background connects those pieces. I
-            like making the complicated bits easier for the next person. After
-            hours, that same curiosity turns into Rust experiments and
-            Annie-Mei—an anime side quest with Gemini-powered search.
+            Outside work, I write Rust and work on Annie-Mei, a Discord bot for
+            anime and manga. I also built a database from scratch because I
+            wanted to understand how one works.
           </p>
           <span className={styles.aboutFlower} aria-hidden="true">
             ✳
@@ -168,9 +166,7 @@ export default function Home() {
                 </span>
               </h2>
             </div>
-            <p>
-              AI development, from the first prompt to the platform underneath.
-            </p>
+            <p>A few things I&apos;ve worked on at Academia.edu.</p>
           </div>
           <Experience />
           <div className="mt-8 text-sm leading-relaxed text-theme-subtle">
@@ -189,7 +185,7 @@ export default function Home() {
               rel="noreferrer"
               className="mt-3 inline-flex min-h-11 items-center gap-2 text-theme-text underline underline-offset-4"
             >
-              The résumé version <FiArrowUpRight aria-hidden="true" />
+              Full résumé <FiArrowUpRight aria-hidden="true" />
             </a>
           </div>
         </AnimateOnScroll>
@@ -203,13 +199,13 @@ export default function Home() {
         <AnimateOnScroll>
           <span className={styles.eyebrow}>04 / Say hello</span>
           <div className={styles.contactHeading}>
-            <h2 id="contact-title">Building something interesting?</h2>
+            <h2 id="contact-title">Say hi</h2>
             <span aria-hidden="true">↗</span>
           </div>
           <p>
-            Tell me about it. I&apos;m up for comparing notes on AI developer
-            tools, untangling platform problems, or hearing about a good Rust
-            side project. A simple hello works too.
+            If you work on AI tooling or platforms, I&apos;d be happy to compare
+            notes. You can also reach out about Rust, anime, or something
+            you&apos;re building.
           </p>
           <div className={styles.socials}>
             <a href="mailto:website@rohitc.tech">

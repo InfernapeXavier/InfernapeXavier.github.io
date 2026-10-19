@@ -16,9 +16,9 @@ export const projects: Project[] = [
   {
     title: "Annie-Mei",
     description:
-      "An anime side quest that became a real project. A Rust-powered Discord bot that brings anime and manga search to your server.",
+      "A Discord bot for finding anime and manga. Written in Rust, with AniList data and Gemini-powered search.",
     longDescription:
-      "Annie-Mei is where my interest in anime meets my habit of building things in Rust. I've been working on it since 2022, connecting AniList to Discord so people can find anime and manga without leaving the conversation. Gemini-powered search lets you describe what you're looking for instead of guessing the right title. Behind the slash commands is a whole other project: making search forgiving, keeping responses quick, and getting account connections right. Plenty of small problems to get delightfully stuck into.",
+      "I've been working on Annie-Mei since 2022. It lets you search AniList from Discord using slash commands. I added Gemini so you can describe what you're looking for without knowing the title. I've spent a lot of time on the search, caching, and account-linking parts, along with preferences and privacy controls for users and servers.",
     image: "/projects/annie-mei.webp",
     technologies: [
       "Rust",
@@ -33,14 +33,14 @@ export const projects: Project[] = [
     isInProgress: true,
     isFeatured: true,
     highlights: [
-      "Under the hood: AniList's GraphQL API, fuzzy matching, and Redis caching.",
-      "The less visible bits matter too: a Rocket OAuth service, PostgreSQL, and privacy controls for users and servers.",
+      "Search uses AniList's GraphQL API, fuzzy matching, and Redis caching.",
+      "Account linking runs through a separate Rocket OAuth service with PostgreSQL.",
     ],
   },
   {
     title: "RustyBase",
     description:
-      'What happens when "I wonder how databases work" gets out of hand? A database from scratch in Rust. No unsafe blocks. No external crates. Just the pieces, built by hand.',
+      "I wanted to understand how a database works, so I wrote one in Rust. No external crates or unsafe blocks.",
     image: "/projects/rustybase.webp",
     technologies: ["Rust"],
     githubUrl: "https://gitlab.com/InfernapeXavier/RustyBase",

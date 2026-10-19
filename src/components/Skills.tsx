@@ -1,27 +1,25 @@
 const skillCategories = [
   {
-    name: "For building with AI",
+    name: "Languages",
     description:
-      "Sandboxed development environments, agentic workflows, and reusable tooling. Less setup, more building.",
+      "Mostly Python and Ruby at work. Rust for Annie-Mei and other side projects.",
   },
   {
-    name: "For making the tools",
+    name: "Infrastructure",
     description:
-      "Python and Ruby for backend services and workflows. Rust when I want to dig deeper—including Annie-Mei's Gemini integration.",
+      "AWS, Kubernetes, Terraform, and Cloudflare. Datadog for monitoring and debugging.",
   },
   {
-    name: "For keeping it running",
+    name: "Data and APIs",
     description:
-      "AWS, Kubernetes, Terraform, and Cloudflare. Production infrastructure is part of the platform, not an afterthought.",
+      "PostgreSQL and Redis. AniList's GraphQL API and Gemini for the bot.",
   },
 ];
 
 export default function Skills() {
   return (
     <div className="rounded-[28px] bg-theme-surface p-6 md:p-8">
-      <h3 className="text-lg font-medium text-theme-text mb-7">
-        Things I reach for
-      </h3>
+      <h3 className="text-lg font-medium text-theme-text mb-7">What I use</h3>
       <dl className="space-y-6">
         {skillCategories.map((category) => (
           <div key={category.name}>

@@ -5,19 +5,19 @@ export const experience = {
   tenure: "Here since 2021 · Senior since 2025",
   stories: [
     {
-      title: "A place to build with AI",
+      title: "AI development environments",
       description:
-        "Getting an environment ready shouldn't be the hard part. I build sandboxed AI development environments that teams beyond engineering can use too. Cutting startup times in half means less waiting around before the actual building starts.",
+        "I build sandboxed environments for AI-assisted development. I've cut startup times by 50% and helped make these environments available to people outside engineering as well.",
     },
     {
-      title: "Tools, not one-off tricks",
+      title: "Internal tools",
       description:
-        "An AI workflow is more useful when the next team can use it too. I build reusable tooling for AI-assisted development across teams. I've also built an agentic workflow that turns research pseudocode into production-grade Python—connecting experimentation to software people can actually use.",
+        "I work on shared tooling for teams using AI to develop software. I've also built an agentic workflow for turning research pseudocode into Python implementations, so researchers could move on to testing their ideas.",
     },
     {
-      title: "Infrastructure that holds up",
+      title: "Production infrastructure",
       description:
-        "Useful platforms need solid foundations. I helped move production services to Kubernetes, cutting deploy times by 50%, and led the CloudFront-to-Cloudflare migration for systems serving 2,000 requests a second. I also take my turn on call when production has other plans.",
+        "I helped migrate services to Kubernetes and cut deploy times by 50%. I also led our move from CloudFront to Cloudflare for systems handling 2,000 requests a second. On call, I handle incidents across the application, database, and infrastructure.",
     },
   ],
 };
