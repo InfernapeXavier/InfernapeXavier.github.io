@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 import {
   FiArrowDown,
@@ -57,6 +58,9 @@ export default function Home() {
             Get in touch <FiArrowUpRight aria-hidden="true" />
           </a>
         </div>
+        <p className={styles.current}>
+          Off the clock? <Link href="/anime">Explore my anime atlas ↗</Link>
+        </p>
       </section>
 
       <section

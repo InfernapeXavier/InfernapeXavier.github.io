@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/#projects", label: "Projects" },
   { href: "/blog", label: "Blog" },
   { href: "/uses", label: "Uses" },
+  { href: "/anime", label: "Anime" },
   { href: "/#contact", label: "Contact" },
   { href: "https://bit.ly/rohitcresume", label: "Resume", external: true },
 ];
