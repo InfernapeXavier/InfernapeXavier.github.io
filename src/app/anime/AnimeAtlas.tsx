@@ -242,6 +242,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
               </div>
               <div
                 className={styles.colorKey}
+                role="group"
                 aria-label="Genre color families"
               >
                 {neighborhoods.map((region) => (
