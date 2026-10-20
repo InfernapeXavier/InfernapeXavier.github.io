@@ -14,6 +14,7 @@ import {
 import {
   animeStatuses,
   buildAnimeAtlas,
+  buildAnimeMetro,
   neighborhoods,
   type AnimeEntry,
 } from "@/data/anime";
@@ -36,14 +37,9 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
   const [status, setStatus] = useState("STARTED");
   const [genre, setGenre] = useState("");
   const [chosenView, setView] = useState<"map" | "list" | null>(null);
-  const view = chosenView ?? (smallScreen ? "list" : "map");
-  const mapWidth = smallScreen ? 600 : 1000;
-  const mapHeight = smallScreen ? 1000 : 650;
-  const regions = neighborhoods.map((region, index) => ({
-    ...region,
-    x: smallScreen ? 150 + (index % 2) * 300 : region.x,
-    y: smallScreen ? 170 + Math.floor(index / 2) * 330 : region.y,
-  }));
+  const view = chosenView ?? "map";
+  const mapWidth = smallScreen ? 600 : 1200;
+  const mapHeight = 840;
   const [selectedId, setSelectedId] = useState(
     () =>
       series.find((item) =>
@@ -89,11 +85,16 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
   const selected = visible.find((item) => item.id === selectedId) ?? visible[0];
   const representative = selected?.entries[0];
   const count = visible.reduce((sum, item) => sum + item.entries.length, 0);
+  const metro = useMemo(
+    () => buildAnimeMetro(visible, selected?.id),
+    [visible, selected?.id]
+  );
+  const pointX = (x: number) => x - (smallScreen ? 300 : 0);
 
   function selectSeries(id: number, fromList = false) {
     setSelectedId(id);
-    if (fromList || smallScreen)
-      requestAnimationFrame(() => detail.current?.focus());
+    setCamera({ x: 0, y: 0, zoom: 1 });
+    if (fromList) requestAnimationFrame(() => detail.current?.focus());
   }
 
   function resetFilters() {
@@ -106,19 +107,16 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
     <div className={styles.page}>
       <header className={styles.intro}>
         <div>
-          <span className={styles.eyebrow}>
-            Off the clock / AniList × InfernapeXavier
-          </span>
+          <span className={styles.eyebrow}>Preview B / Anime metro</span>
           <h1 className={styles.title}>
-            Anime <span>Atlas</span>
+            Anime <span>Metro</span>
             <b aria-hidden="true">✳</b>
           </h1>
-          <p className={styles.subtitle}>A little map of what I watch.</p>
+          <p className={styles.subtitle}>Different lines. Shared stories.</p>
           <p className={styles.description}>
-            The comfort shows, the rabbit holes, and the ever-growing plan to
-            watch.
-            <br className={styles.desktopBreak} /> Pick a dot. Find a familiar
-            series. Wander a little.
+            Genres become routes. Shows that share them become interchanges.
+            <br className={styles.desktopBreak} /> Choose a station to explore a
+            new neighborhood.
           </p>
         </div>
         <a
@@ -200,7 +198,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
       <div className={styles.explorer}>
         <section
           className={styles.canvas}
-          aria-label={view === "map" ? "Anime genre map" : "Anime list"}
+          aria-label={view === "map" ? "Anime metro map" : "Anime list"}
         >
           {visible.length === 0 ? (
             <div className={styles.empty}>
@@ -214,13 +212,36 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
           ) : view === "map" ? (
             <>
               <div className={styles.mapHeading}>
-                <span className={styles.eyebrow}>My anime, charted</span>
-                <span>Drag to explore · select a dot</span>
+                <span className={styles.eyebrow}>
+                  Next stop / {selected?.title}
+                </span>
+                <span>Drag to explore · select a station</span>
               </div>
+              <div
+                className={styles.routeKey}
+                role="group"
+                aria-label="Metro lines"
+              >
+                {metro.lines.map((line, index) => (
+                  <span
+                    key={line}
+                    className={
+                      styles[neighborhoods[index % neighborhoods.length].color]
+                    }
+                  >
+                    <b>{index + 1}</b> {line}
+                  </span>
+                ))}
+              </div>
+              <p className={styles.mapCaption}>
+                {metro.stations.length} of {visible.length} series shown · A
+                focused network, not the whole collection. Find any title in
+                List or search.
+              </p>
               <svg
                 className={styles.map}
                 viewBox={`0 0 ${mapWidth} ${mapHeight}`}
-                aria-label="Series arranged in six genre neighborhoods. Use the List view for a text alternative."
+                aria-label="A focused transit map of shared genres. Each colored route is a genre of the selected series. Select a station to recenter. Use List view for the full collection."
                 onPointerDown={(event) => {
                   if (
                     event.button !== 0 ||
@@ -262,101 +283,100 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                 <g
                   transform={`translate(${camera.x} ${camera.y}) translate(${mapWidth / 2} ${mapHeight / 2}) scale(${camera.zoom}) translate(${-mapWidth / 2} ${-mapHeight / 2})`}
                 >
-                  {regions.map((region, index) => (
-                    <g
-                      key={region.name}
-                      className={styles[region.color]}
-                      opacity={
-                        visible.some((item) => item.neighborhood === index)
-                          ? 1
-                          : 0.25
+                  {metro.branches.flatMap((branch, branchIndex) =>
+                    branch.lines.map((line, lane) => {
+                      const offset = (lane - (branch.lines.length - 1) / 2) * 7;
+                      let x = pointX(600) - branch.dy * offset;
+                      let y = 420 + branch.dx * offset;
+                      let path = `M ${x} ${y}`;
+                      for (const station of branch.stations) {
+                        const endX = pointX(station.x) - branch.dy * offset;
+                        const endY = station.y + branch.dx * offset;
+                        const bend = Math.min(
+                          Math.abs(endX - x),
+                          Math.abs(endY - y)
+                        );
+                        path += ` L ${x + branch.dx * bend} ${y + branch.dy * bend} L ${endX} ${endY}`;
+                        x = endX;
+                        y = endY;
                       }
-                    >
-                      <ellipse
-                        className={styles.island}
-                        cx={region.x}
-                        cy={region.y}
-                        rx="146"
-                        ry="112"
-                        transform={`rotate(-16 ${region.x} ${region.y})`}
-                      />
-                      <text
-                        className={styles.regionLabel}
-                        x={region.x - 125}
-                        y={region.y - 125}
-                      >
-                        {region.name}
-                      </text>
-                    </g>
-                  ))}
-                  {[...visible]
-                    .sort(
-                      (a, b) =>
-                        Number(a.id === selected?.id) -
-                        Number(b.id === selected?.id)
-                    )
-                    .map((item) => {
-                      const active = selected?.id === item.id;
-                      const x =
-                        item.x -
-                        neighborhoods[item.neighborhood].x +
-                        regions[item.neighborhood].x;
-                      const y =
-                        item.y -
-                        neighborhoods[item.neighborhood].y +
-                        regions[item.neighborhood].y;
-                      const planned = item.entries.every(
-                        (entry) => entry.status === "PLANNING"
-                      );
-                      const label = item.entries[0].title;
                       return (
-                        <g
-                          key={item.id}
-                          role="button"
-                          tabIndex={0}
-                          aria-label={`Open ${item.title}, ${item.entries.length} ${item.entries.length === 1 ? "entry" : "entries"}`}
-                          aria-pressed={active}
-                          className={`${styles.node} ${styles[neighborhoods[item.neighborhood].color]} ${active ? styles.activeNode : ""}`}
-                          onClick={() => selectSeries(item.id)}
-                          onKeyDown={(event) => {
-                            if (event.key === "Enter" || event.key === " ") {
-                              event.preventDefault();
-                              selectSeries(item.id);
-                            }
-                          }}
-                        >
-                          <title>
-                            {`${label} · ${item.entries.length} ${item.entries.length === 1 ? "entry" : "linked entries"}`}
-                          </title>
-                          <circle cx={x} cy={y} r="16" fill="transparent" />
-                          {active && (
-                            <circle
-                              className={styles.halo}
-                              cx={x}
-                              cy={y}
-                              r="17"
-                            />
-                          )}
+                        <path
+                          key={`${branchIndex}-${line}`}
+                          className={`${styles.route} ${styles[neighborhoods[line % neighborhoods.length].color]}`}
+                          d={path}
+                        />
+                      );
+                    })
+                  )}
+                  {metro.stations.map((item) => {
+                    const active = selected?.id === item.id;
+                    const x = pointX(item.x);
+                    const y = item.y;
+                    const planned = item.entries.every(
+                      (entry) => entry.status === "PLANNING"
+                    );
+                    const label = item.entries[0].title;
+                    return (
+                      <g
+                        key={item.id}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Explore ${item.title}, ${item.lines.map((line) => metro.lines[line]).join(" / ")} lines`}
+                        aria-pressed={active}
+                        className={`${styles.node} ${styles[neighborhoods[item.lines[0] % neighborhoods.length]?.color ?? "lavender"]} ${active ? styles.activeNode : ""}`}
+                        onClick={() => selectSeries(item.id)}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            selectSeries(item.id);
+                          }
+                        }}
+                      >
+                        <title>
+                          {`${label} · ${item.lines.map((line) => metro.lines[line]).join(" / ")}`}
+                        </title>
+                        <circle cx={x} cy={y} r="16" fill="transparent" />
+                        {active && (
                           <circle
-                            className={`${styles.dot} ${planned ? styles.planned : ""}`}
+                            className={styles.halo}
                             cx={x}
                             cy={y}
-                            r={
-                              active ? 8 : 4 + Math.min(item.entries.length, 6)
-                            }
+                            r="17"
                           />
-                          <text
-                            className={styles.nodeLabel}
-                            x={x + 14}
-                            y={y + 4}
-                          >
-                            {label.length > 25
-                              ? `${label.slice(0, 24)}…`
-                              : label}
-                          </text>
-                        </g>
-                      );
-                    })}
+                        )}
+                        <circle
+                          className={`${styles.dot} ${planned ? styles.planned : ""}`}
+                          cx={x}
+                          cy={y}
+                          r={
+                            active
+                              ? Math.max(18, item.lines.length * 4)
+                              : item.lines.length > 1
+                                ? 4 + item.lines.length * 3
+                                : 6
+                          }
+                        />
+                        <text
+                          className={styles.nodeLabel}
+                          x={x + (item.dx < 0 ? -18 : 18)}
+                          y={
+                            y +
+                            (active
+                              ? -32
+                              : item.dy === 0
+                                ? item.position % 2
+                                  ? 34
+                                  : -22
+                                : 5)
+                          }
+                          textAnchor={item.dx < 0 ? "end" : "start"}
+                        >
+                          {label.length > 24 ? `${label.slice(0, 23)}…` : label}
+                        </text>
+                      </g>
+                    );
+                  })}
                 </g>
               </svg>
               <div className={styles.mapBottom}>
@@ -367,17 +387,17 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                   <span>
                     <i className={styles.hollow} /> Planned
                   </span>
-                  <span>One dot = one series</span>
+                  <span>Large station = shared lines</span>
                 </div>
                 <div className={styles.zoom}>
                   <button
                     type="button"
                     aria-label="Zoom out"
-                    disabled={camera.zoom <= 1}
+                    disabled={camera.zoom <= 0.5}
                     onClick={() =>
                       setCamera((current) => ({
                         ...current,
-                        zoom: Math.max(1, current.zoom - 0.5),
+                        zoom: Math.max(0.5, current.zoom - 0.5),
                       }))
                     }
                   >
@@ -562,13 +582,15 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
 
       <footer className={styles.notes}>
         <div>
-          <span className={styles.eyebrow}>
-            A map, not a recommendation engine
-          </span>
+          <span className={styles.eyebrow}>How to ride this metro</span>
           <p>
-            Neighborhoods use broad genres; distance between dots isn’t a
-            similarity score. Larger dots contain more linked entries, including
-            seasons and films. No spoilers, no inferred ratings.
+            Lines are the selected series’ actual AniList genres. Parallel
+            routes share stations; each station appears only once. The overview
+            shows up to eight shared-genre branches, with three of my
+            highest-scored matches on each. Select a station to redraw the
+            network around it. List view includes every matching series. Route
+            order is schematic, not a watch order or similarity scale. Prequels
+            and sequels remain grouped.
           </p>
         </div>
         <p>

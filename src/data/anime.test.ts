@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildAnimeAtlas, type AnimeEntry } from "./anime";
+import { buildAnimeAtlas, buildAnimeMetro, type AnimeEntry } from "./anime";
 
 test("the atlas groups explicit continuation chains, not shared genres or missing links", () => {
   const base: AnimeEntry = {
@@ -59,4 +59,70 @@ test("the atlas groups explicit continuation chains, not shared genres or missin
   );
   assert.deepEqual(buildAnimeAtlas([...data].reverse()), atlas);
   assert.deepEqual(buildAnimeAtlas([]), []);
+});
+
+test("metro stations carry only real shared routes, are unique, and recenter on selection", () => {
+  const base: AnimeEntry = {
+    id: 1,
+    title: "Anchor",
+    romaji: "Anchor",
+    cover: null,
+    genres: ["Drama", "Romance"],
+    year: 2016,
+    format: "MOVIE",
+    episodes: 1,
+    status: "COMPLETED",
+    score: 100,
+    continuations: [],
+  };
+  const atlas = buildAnimeAtlas([
+    base,
+    { ...base, id: 2, title: "Shared interchange" },
+    { ...base, id: 3, title: "Drama only", genres: ["Drama", "Action"] },
+    { ...base, id: 4, title: "Not on this network", genres: ["Sports"] },
+    ...[5, 6, 7, 8].map((id) => ({
+      ...base,
+      id,
+      title: `Romance ${id}`,
+      genres: ["Romance"],
+      score: id * 10,
+    })),
+  ]);
+  const metro = buildAnimeMetro(atlas, 1);
+  assert.deepEqual(metro.lines, ["Drama", "Romance"]);
+  assert.equal(
+    new Set(metro.stations.map((item) => item.id)).size,
+    metro.stations.length
+  );
+  assert.equal(
+    metro.stations.some((item) => item.id === 4),
+    false
+  );
+  assert.deepEqual(metro.stations.find((item) => item.id === 2)!.lines, [0, 1]);
+  assert.deepEqual(metro.stations.find((item) => item.id === 3)!.lines, [0]);
+  assert.deepEqual(
+    metro.branches
+      .find((branch) => branch.lines.join() === "1")!
+      .stations.map((item) => item.id),
+    [8, 7, 6]
+  );
+  for (const station of metro.stations)
+    for (const line of station.lines)
+      assert.ok(
+        station.entries.some((entry) =>
+          entry.genres.includes(metro.lines[line])
+        )
+      );
+  const recentered = buildAnimeMetro(atlas, 3);
+  assert.deepEqual(recentered.lines, ["Action", "Drama"]);
+  assert.equal(
+    recentered.stations.some((item) => item.id === 8),
+    false
+  );
+  assert.equal(recentered.stations.find((item) => item.id === 3)!.x, 600);
+  assert.deepEqual(buildAnimeMetro([], undefined), {
+    lines: [],
+    branches: [],
+    stations: [],
+  });
 });

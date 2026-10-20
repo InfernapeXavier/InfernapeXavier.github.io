@@ -188,7 +188,7 @@
 .map {
   display: block;
   width: 100%;
-  aspect-ratio: 1000 / 650;
+  aspect-ratio: 1200 / 840;
   touch-action: none;
   cursor: grab;
   background-image: radial-gradient(
@@ -236,30 +236,57 @@
 :global(.light) .gold {
   --region: 120 100 20;
 }
-.island {
-  fill: rgb(var(--region) / 0.045);
-  stroke: rgb(var(--region) / 0.2);
-  stroke-dasharray: 3 6;
+.route {
+  fill: none;
+  stroke: rgb(var(--region));
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
 }
-.regionLabel {
-  fill: rgb(var(--region));
+.routeKey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 20px 24px 0;
+}
+.routeKey span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgb(var(--region));
+}
+.routeKey b {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgb(var(--region));
+  color: rgb(var(--color-base));
   font:
-    15px var(--font-mono),
+    11px var(--font-mono),
     monospace;
-  letter-spacing: -0.04em;
+}
+.mapCaption {
+  padding: 16px 24px 0;
+  color: rgb(var(--color-subtle));
+  font-size: 11px;
+  line-height: 1.6;
 }
 .node {
   cursor: pointer;
   outline: none;
 }
 .dot {
-  fill: rgb(var(--region) / 0.7);
+  fill: rgb(var(--color-base));
   stroke: rgb(var(--region));
-  stroke-width: 1.3px;
+  stroke-width: 3px;
 }
 .dot.planned {
   fill: rgb(var(--color-base));
-  stroke-opacity: 0.65;
+  stroke-dasharray: 3 3;
 }
 .halo {
   fill: rgb(var(--region) / 0.1);
@@ -280,10 +307,10 @@
   stroke-width: 2px;
 }
 .nodeLabel {
-  display: none;
+  display: block;
   pointer-events: none;
   fill: rgb(var(--color-text));
-  font-size: 14px;
+  font-size: 16px;
   paint-order: stroke;
   stroke: rgb(var(--color-base));
   stroke-width: 5px;
@@ -321,10 +348,10 @@
   height: 7px;
   border: 1px solid rgb(var(--color-accent));
   border-radius: 50%;
-  background: rgb(var(--color-accent));
+  background: transparent;
 }
 .legend i.hollow {
-  background: transparent;
+  border-style: dashed;
 }
 .zoom {
   display: flex;
@@ -642,10 +669,7 @@
     padding: 18px 16px 0;
   }
   .map {
-    aspect-ratio: 600 / 1000;
-  }
-  .regionLabel {
-    font-size: 21px;
+    aspect-ratio: 600 / 840;
   }
   .nodeLabel {
     font-size: 20px;

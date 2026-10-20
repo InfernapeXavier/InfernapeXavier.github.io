@@ -25,43 +25,31 @@ export const neighborhoods = [
   {
     name: "Everyday & romance",
     genres: ["Slice of Life", "Romance", "Comedy"],
-    x: 225,
-    y: 185,
     color: "lavender",
   },
   {
     name: "Action & adventure",
     genres: ["Action", "Adventure"],
-    x: 220,
-    y: 465,
     color: "coral",
   },
   {
     name: "Fantasy & beyond",
     genres: ["Fantasy", "Supernatural"],
-    x: 515,
-    y: 195,
     color: "peach",
   },
   {
     name: "Mystery & tension",
     genres: ["Mystery", "Thriller", "Psychological", "Horror"],
-    x: 795,
-    y: 195,
     color: "pink",
   },
   {
     name: "Science & futures",
     genres: ["Sci-Fi", "Mecha"],
-    x: 510,
-    y: 475,
     color: "mint",
   },
   {
     name: "Sports & stage",
     genres: ["Sports", "Music"],
-    x: 800,
-    y: 465,
     color: "gold",
   },
 ] as const;
@@ -71,8 +59,6 @@ export interface AnimeSeries {
   title: string;
   entries: AnimeEntry[];
   neighborhood: number;
-  x: number;
-  y: number;
 }
 
 // Only explicit prequel/sequel links join entries. Shared genres never merge them.
@@ -116,21 +102,92 @@ export function buildAnimeAtlas(entries: AnimeEntry[]): AnimeSeries[] {
       title: members[0].title,
       entries: members,
       neighborhood,
-      x: 0,
-      y: 0,
     };
   });
   series.sort((a, b) => a.title.localeCompare(b.title, "en"));
-  for (let index = 0; index < neighborhoods.length; index++) {
-    const region = neighborhoods[index];
-    const members = series.filter((item) => item.neighborhood === index);
-    members.forEach((item, position) => {
-      const angle = position * Math.PI * (3 - Math.sqrt(5));
-      const radius = Math.sqrt((position + 0.5) / members.length);
-      // Trigonometric rounding differs slightly across JS runtimes during SSR.
-      item.x = Number((region.x + Math.cos(angle) * radius * 125).toFixed(2));
-      item.y = Number((region.y + Math.sin(angle) * radius * 92).toFixed(2));
-    });
-  }
   return series;
+}
+
+// A focus metro: genre routes branch at real shared-genre interchanges.
+export function buildAnimeMetro(
+  series: AnimeSeries[],
+  selectedId: number | undefined
+) {
+  const selected = series.find((item) => item.id === selectedId);
+  const lines = [
+    ...new Set(selected?.entries.flatMap((entry) => entry.genres) ?? []),
+  ].sort();
+  const groups = new Map<string, { lines: number[]; members: AnimeSeries[] }>();
+  for (const item of series) {
+    if (item.id === selectedId) continue;
+    const shared = lines.flatMap((genre, index) =>
+      item.entries.some((entry) => entry.genres.includes(genre)) ? [index] : []
+    );
+    if (!shared.length) continue;
+    const key = shared.join(",");
+    const group = groups.get(key) ?? { lines: shared, members: [] };
+    group.members.push(item);
+    groups.set(key, group);
+  }
+  const directions = [
+    [1, -1],
+    [-1, 1],
+    [-1, -1],
+    [1, 1],
+    [1, 0],
+    [-1, 0],
+    [0, -1],
+    [0, 1],
+  ];
+  const branches = [...groups.values()]
+    .sort(
+      (a, b) =>
+        b.members.length - a.members.length ||
+        a.lines.join(",").localeCompare(b.lines.join(","), "en")
+    )
+    .slice(0, 8)
+    .map((group, index) => {
+      const [dx, dy] = directions[index];
+      const members = [...group.members]
+        .sort(
+          (a, b) =>
+            Math.max(...b.entries.map((entry) => entry.score)) -
+              Math.max(...a.entries.map((entry) => entry.score)) || a.id - b.id
+        )
+        .slice(0, 3);
+      return {
+        lines: group.lines,
+        dx,
+        dy,
+        stations: members.map((item, position) => ({
+          ...item,
+          x: 600 + dx * (160 + position * 105),
+          y: 420 + dy * ((dx === 0 ? 70 : 125) + position * 100),
+          lines: group.lines,
+          dx,
+          dy,
+          position,
+        })),
+      };
+    });
+  return {
+    lines,
+    branches,
+    stations: [
+      ...branches.flatMap((branch) => branch.stations),
+      ...(selected
+        ? [
+            {
+              ...selected,
+              x: 600,
+              y: 420,
+              lines: lines.map((_, index) => index),
+              dx: 0,
+              dy: 0,
+              position: 0,
+            },
+          ]
+        : []),
+    ],
+  };
 }

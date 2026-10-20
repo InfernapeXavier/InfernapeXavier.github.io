@@ -4,9 +4,9 @@ import AnimeAtlas from "./AnimeAtlas";
 import styles from "./anime.module.css";
 
 export const metadata: Metadata = {
-  title: "Anime Atlas",
+  title: "Anime Metro",
   description:
-    "Explore Rohit's anime list: a personal atlas of seasons, scores, and genre neighborhoods, powered by AniList.",
+    "Ride through Rohit's anime collection on a transit map of shared genres, powered by AniList.",
 };
 
 export const revalidate = 3600;
