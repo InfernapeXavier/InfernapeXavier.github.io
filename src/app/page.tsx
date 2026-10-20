@@ -131,10 +131,9 @@ export default function Home() {
             </span>
           </h2>
           <p>
-            I started out working on payments and backend services at
-            Academia.edu. Over time, I moved into infrastructure and internal
-            tooling. Now most of my work is on AI development environments and
-            how people use them.
+            I started out working on payments and growth at Academia.edu. Over
+            time, I moved into infrastructure and internal tooling. Now most of
+            my work is on AI development environments and how people use them.
           </p>
           <p>
             Outside work, I write Rust and work on Annie-Mei, a Discord bot for
