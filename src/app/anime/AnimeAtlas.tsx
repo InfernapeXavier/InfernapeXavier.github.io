@@ -36,14 +36,13 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
   const [status, setStatus] = useState("STARTED");
   const [genre, setGenre] = useState("");
   const [chosenView, setView] = useState<"map" | "list" | null>(null);
-  const view = chosenView ?? (smallScreen ? "list" : "map");
+  const view = chosenView ?? "map";
   const mapWidth = smallScreen ? 600 : 1000;
-  const mapHeight = smallScreen ? 1000 : 650;
-  const regions = neighborhoods.map((region, index) => ({
-    ...region,
-    x: smallScreen ? 150 + (index % 2) * 300 : region.x,
-    y: smallScreen ? 170 + Math.floor(index / 2) * 330 : region.y,
-  }));
+  const mapHeight = smallScreen ? 800 : 650;
+  const point = (item: { x: number; y: number }) => ({
+    x: smallScreen ? item.x * 0.6 : item.x,
+    y: smallScreen ? 70 + item.y : item.y,
+  });
   const [selectedId, setSelectedId] = useState(
     () =>
       series.find((item) =>
@@ -89,6 +88,28 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
   const selected = visible.find((item) => item.id === selectedId) ?? visible[0];
   const representative = selected?.entries[0];
   const count = visible.reduce((sum, item) => sum + item.entries.length, 0);
+  const nearby =
+    selected?.neighbors
+      .map((neighbor) => ({
+        ...neighbor,
+        series: visible.find((item) => item.id === neighbor.id),
+      }))
+      .filter((neighbor) => neighbor.series !== undefined)
+      .slice(0, 5) ?? [];
+  const landmarks = selected ? [selected] : [];
+  for (const item of [...visible].sort(
+    (a, b) =>
+      Math.max(...b.entries.map((entry) => entry.score)) -
+      Math.max(...a.entries.map((entry) => entry.score))
+  )) {
+    if (landmarks.length >= (smallScreen ? 1 : 8)) break;
+    if (
+      landmarks.every(
+        (other) => Math.hypot(item.x - other.x, item.y - other.y) > 145
+      )
+    )
+      landmarks.push(item);
+  }
 
   function selectSeries(id: number, fromList = false) {
     setSelectedId(id);
@@ -107,18 +128,20 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
       <header className={styles.intro}>
         <div>
           <span className={styles.eyebrow}>
-            Off the clock / AniList × InfernapeXavier
+            Preview A / Continuous taste atlas
           </span>
           <h1 className={styles.title}>
             Anime <span>Atlas</span>
             <b aria-hidden="true">✳</b>
           </h1>
-          <p className={styles.subtitle}>A little map of what I watch.</p>
+          <p className={styles.subtitle}>
+            One landscape. A hundred rabbit holes.
+          </p>
           <p className={styles.description}>
-            The comfort shows, the rabbit holes, and the ever-growing plan to
-            watch.
-            <br className={styles.desktopBreak} /> Pick a dot. Find a familiar
-            series. Wander a little.
+            Shared themes pull stories together. Genres overlap, rather than
+            live in boxes.
+            <br className={styles.desktopBreak} /> Pick a series to follow its
+            closest connections.
           </p>
         </div>
         <a
@@ -200,7 +223,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
       <div className={styles.explorer}>
         <section
           className={styles.canvas}
-          aria-label={view === "map" ? "Anime genre map" : "Anime list"}
+          aria-label={view === "map" ? "Anime taste map" : "Anime list"}
         >
           {visible.length === 0 ? (
             <div className={styles.empty}>
@@ -214,13 +237,23 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
           ) : view === "map" ? (
             <>
               <div className={styles.mapHeading}>
-                <span className={styles.eyebrow}>My anime, charted</span>
+                <span className={styles.eyebrow}>A connected landscape</span>
                 <span>Drag to explore · select a dot</span>
+              </div>
+              <div
+                className={styles.colorKey}
+                aria-label="Genre color families"
+              >
+                {neighborhoods.map((region) => (
+                  <span key={region.name} className={styles[region.color]}>
+                    ● {region.name}
+                  </span>
+                ))}
               </div>
               <svg
                 className={styles.map}
                 viewBox={`0 0 ${mapWidth} ${mapHeight}`}
-                aria-label="Series arranged in six genre neighborhoods. Use the List view for a text alternative."
+                aria-label="Series positioned by shared genres and spoiler-free tags. Select a series to reveal related titles. Use List view for a text alternative."
                 onPointerDown={(event) => {
                   if (
                     event.button !== 0 ||
@@ -262,33 +295,21 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                 <g
                   transform={`translate(${camera.x} ${camera.y}) translate(${mapWidth / 2} ${mapHeight / 2}) scale(${camera.zoom}) translate(${-mapWidth / 2} ${-mapHeight / 2})`}
                 >
-                  {regions.map((region, index) => (
-                    <g
-                      key={region.name}
-                      className={styles[region.color]}
-                      opacity={
-                        visible.some((item) => item.neighborhood === index)
-                          ? 1
-                          : 0.25
-                      }
-                    >
-                      <ellipse
-                        className={styles.island}
-                        cx={region.x}
-                        cy={region.y}
-                        rx="146"
-                        ry="112"
-                        transform={`rotate(-16 ${region.x} ${region.y})`}
-                      />
-                      <text
-                        className={styles.regionLabel}
-                        x={region.x - 125}
-                        y={region.y - 125}
-                      >
-                        {region.name}
-                      </text>
-                    </g>
-                  ))}
+                  {selected &&
+                    nearby.map((neighbor) => {
+                      const start = point(selected);
+                      const end = point(neighbor.series!);
+                      return (
+                        <line
+                          key={neighbor.id}
+                          className={styles.connection}
+                          x1={start.x}
+                          y1={start.y}
+                          x2={end.x}
+                          y2={end.y}
+                        />
+                      );
+                    })}
                   {[...visible]
                     .sort(
                       (a, b) =>
@@ -297,14 +318,10 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                     )
                     .map((item) => {
                       const active = selected?.id === item.id;
-                      const x =
-                        item.x -
-                        neighborhoods[item.neighborhood].x +
-                        regions[item.neighborhood].x;
-                      const y =
-                        item.y -
-                        neighborhoods[item.neighborhood].y +
-                        regions[item.neighborhood].y;
+                      const { x, y } = point(item);
+                      const landmark = landmarks.some(
+                        (other) => other.id === item.id
+                      );
                       const planned = item.entries.every(
                         (entry) => entry.status === "PLANNING"
                       );
@@ -316,7 +333,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                           tabIndex={0}
                           aria-label={`Open ${item.title}, ${item.entries.length} ${item.entries.length === 1 ? "entry" : "entries"}`}
                           aria-pressed={active}
-                          className={`${styles.node} ${styles[neighborhoods[item.neighborhood].color]} ${active ? styles.activeNode : ""}`}
+                          className={`${styles.node} ${styles[neighborhoods[item.neighborhood].color]} ${active ? styles.activeNode : ""} ${landmark ? styles.landmarkNode : ""}`}
                           onClick={() => selectSeries(item.id)}
                           onKeyDown={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
@@ -347,8 +364,9 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                           />
                           <text
                             className={styles.nodeLabel}
-                            x={x + 14}
+                            x={x + (x > mapWidth * 0.75 ? -14 : 14)}
                             y={y + 4}
+                            textAnchor={x > mapWidth * 0.75 ? "end" : "start"}
                           >
                             {label.length > 25
                               ? `${label.slice(0, 24)}…`
@@ -525,6 +543,22 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
               >
                 View on AniList <FiArrowUpRight aria-hidden="true" />
               </a>
+              {nearby.length > 0 && (
+                <div className={styles.nearby}>
+                  <h3>Nearby in taste</h3>
+                  <p>Shared metadata, not a prediction of my rating.</p>
+                  {nearby.map((neighbor) => (
+                    <button
+                      key={neighbor.id}
+                      type="button"
+                      onClick={() => selectSeries(neighbor.id)}
+                    >
+                      <strong>{neighbor.series!.title} ↗</strong>
+                      <span>{neighbor.shared.slice(0, 4).join(" · ")}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
               {selected.entries.length > 1 && (
                 <div className={styles.seasons}>
                   <h3>
@@ -562,13 +596,14 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
 
       <footer className={styles.notes}>
         <div>
-          <span className={styles.eyebrow}>
-            A map, not a recommendation engine
-          </span>
+          <span className={styles.eyebrow}>How this landscape works</span>
           <p>
-            Neighborhoods use broad genres; distance between dots isn’t a
-            similarity score. Larger dots contain more linked entries, including
-            seasons and films. No spoilers, no inferred ratings.
+            A settled network of shared genres and spoiler-free AniList tags
+            (60%+ relevance). Rarer themes weigh more. Distance is an
+            approximate layout, not a precise scale; lines reveal the selected
+            series’ five closest visible matches. Colors indicate broad genre
+            families. Larger dots contain more prequel/sequel-linked entries. No
+            inferred ratings.
           </p>
         </div>
         <p>
