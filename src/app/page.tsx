@@ -3,7 +3,6 @@ import { FiArrowDown, FiArrowUpRight, FiDatabase } from "react-icons/fi";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Experience from "@/components/Experience";
 import FeaturedProject from "@/components/FeaturedProject";
-import Skills from "@/components/Skills";
 import { education } from "@/data/education";
 import { projects } from "@/data/projects";
 import styles from "./home.module.css";
@@ -121,34 +120,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.about} aria-labelledby="about-title">
-        <AnimateOnScroll className={styles.aboutCopy}>
-          <span className={styles.eyebrow}>02 / Under the hood</span>
-          <h2 id="about-title">
-            A little about me
-            <span className={styles.accent} aria-hidden="true">
-              .
-            </span>
-          </h2>
-          <p>
-            I started out working on payments and growth at Academia.edu. Over
-            time, I moved into infrastructure and internal tooling. Now most of
-            my work is on AI development environments and how people use them.
-          </p>
-          <p>
-            Outside work, I write Rust and work on Annie-Mei, a Discord bot for
-            anime and manga. I also built a database from scratch because I
-            wanted to understand how one works.
-          </p>
-          <span className={styles.aboutFlower} aria-hidden="true">
-            ✳
-          </span>
-        </AnimateOnScroll>
-        <AnimateOnScroll delay={100}>
-          <Skills />
-        </AnimateOnScroll>
-      </section>
-
       <section
         id="experience"
         className={styles.experience}
@@ -157,7 +128,7 @@ export default function Home() {
         <AnimateOnScroll>
           <div className={styles.sectionHeader}>
             <div>
-              <span className={styles.eyebrow}>03 / The day job</span>
+              <span className={styles.eyebrow}>02 / The day job</span>
               <h2 id="experience-title">
                 What I work on
                 <span className={styles.accent} aria-hidden="true">
@@ -165,16 +136,14 @@ export default function Home() {
                 </span>
               </h2>
             </div>
-            <p>A few things I&apos;ve worked on at Academia.edu.</p>
           </div>
           <Experience />
-          <div className="mt-8 text-sm leading-relaxed text-theme-subtle">
-            <h3 className="font-medium text-theme-text">A little background</h3>
-            <p className="mt-2 max-w-3xl">
+          <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-sm leading-relaxed text-theme-subtle">
+            <p>
               {education.map((qualification, index) => (
                 <span key={qualification.institution}>
-                  {index > 0 && " Before that, "}
-                  {qualification.degree} at {qualification.institution}.
+                  {index > 0 && " · "}
+                  {qualification.degree} at {qualification.institution}
                 </span>
               ))}
             </p>
@@ -182,7 +151,7 @@ export default function Home() {
               href="https://bit.ly/rohitcresume"
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-flex min-h-11 items-center gap-2 text-theme-text underline underline-offset-4"
+              className="inline-flex min-h-11 items-center gap-2 text-theme-text underline underline-offset-4"
             >
               Full résumé <FiArrowUpRight aria-hidden="true" />
             </a>
@@ -196,16 +165,11 @@ export default function Home() {
         aria-labelledby="contact-title"
       >
         <AnimateOnScroll>
-          <span className={styles.eyebrow}>04 / Say hello</span>
+          <span className={styles.eyebrow}>03 / Say hello</span>
           <div className={styles.contactHeading}>
             <h2 id="contact-title">Say hi</h2>
             <span aria-hidden="true">↗</span>
           </div>
-          <p>
-            If you work on AI tooling or platforms, I&apos;d be happy to compare
-            notes. You can also reach out about Rust, anime, or something
-            you&apos;re building.
-          </p>
           <div className={styles.socials}>
             <a href="mailto:website@rohitc.tech">
               <FaEnvelope aria-hidden="true" /> Email{" "}

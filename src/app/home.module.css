@@ -165,8 +165,7 @@
   color: rgb(var(--color-subtle));
 }
 
-.sectionHeader h2,
-.about h2 {
+.sectionHeader h2 {
   margin-top: 12px;
   font-size: clamp(34px, 4vw, 52px);
   font-weight: 500;
@@ -309,38 +308,6 @@
   border-radius: 100px;
 }
 
-.about {
-  display: grid;
-  gap: 36px;
-  padding: 48px 0 64px;
-  border-top: 1px solid rgb(var(--color-highlight));
-}
-
-.aboutCopy {
-  position: relative;
-}
-
-.aboutCopy p {
-  max-width: 550px;
-  margin-top: 24px;
-  font-size: 20px;
-  line-height: 1.7;
-  color: rgb(var(--color-subtle));
-}
-
-.aboutFlower {
-  display: inline-block;
-  margin-top: 24px;
-  font-size: 60px;
-  line-height: 1;
-  color: #f0af8c;
-  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1.4);
-}
-
-.aboutCopy:hover .aboutFlower {
-  transform: rotate(120deg);
-}
-
 .experience {
   padding: 48px 0 80px;
   border-top: 1px solid rgb(var(--color-highlight));
@@ -382,14 +349,6 @@
 
 .contact:hover .contactHeading > span {
   transform: rotate(10deg);
-}
-
-.contact p {
-  max-width: 650px;
-  margin-top: 28px;
-  font-size: 18px;
-  line-height: 1.7;
-  color: #d0d4e7;
 }
 
 .socials {
@@ -472,11 +431,6 @@
   .projectGrid {
     grid-template-columns: 1.55fr 1fr;
   }
-  .about {
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    padding: 64px 0 80px;
-  }
   .contact {
     padding: 48px;
   }
@@ -546,9 +500,6 @@
   }
   .subtitle {
     max-width: 440px;
-  }
-  .aboutFlower {
-    display: none;
   }
   .contactHeading h2 {
     font-size: clamp(38px, 11vw, 54px);

@@ -18,6 +18,9 @@ export default function Experience() {
         <p className="mt-2 text-xs font-mono text-theme-subtle">
           {experience.tenure}
         </p>
+        <p className="mt-5 max-w-3xl leading-relaxed text-theme-subtle">
+          {experience.introduction}
+        </p>
       </div>
       <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
         {experience.stories.map((story) => (
