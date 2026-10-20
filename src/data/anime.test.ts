@@ -60,3 +60,50 @@ test("the atlas groups explicit continuation chains, not shared genres or missin
   assert.deepEqual(buildAnimeAtlas([...data].reverse()), atlas);
   assert.deepEqual(buildAnimeAtlas([]), []);
 });
+
+test("taste neighbors use all themes, prefer specific overlap, and never invent links", () => {
+  const base: AnimeEntry = {
+    id: 1,
+    title: "Anchor",
+    romaji: "Anchor",
+    cover: null,
+    genres: ["Drama"],
+    tags: ["School", "Disability"],
+    year: 2016,
+    format: "MOVIE",
+    episodes: 1,
+    status: "COMPLETED",
+    score: 100,
+    continuations: [],
+  };
+  const entries: AnimeEntry[] = [
+    base,
+    { ...base, id: 2, title: "Broad overlap", tags: [] },
+    {
+      ...base,
+      id: 3,
+      title: "Specific overlap",
+      genres: ["Romance"],
+      tags: ["School", "Disability"],
+    },
+    { ...base, id: 4, title: "Unconnected", genres: ["Sports"], tags: [] },
+    { ...base, id: 5, title: "Another drama", tags: [] },
+  ];
+  const atlas = buildAnimeAtlas(entries);
+  const anchor = atlas.find((item) => item.id === 1)!;
+  assert.equal(anchor.neighbors[0].id, 3);
+  assert.deepEqual(anchor.neighbors[0].shared, ["Disability", "School"]);
+  assert.ok(
+    anchor.neighbors[0].similarity >
+      anchor.neighbors.find((item) => item.id === 2)!.similarity
+  );
+  assert.equal(
+    anchor.neighbors.some((item) => item.id === 4),
+    false
+  );
+  assert.equal(atlas.length, 5);
+  assert.deepEqual(buildAnimeAtlas([...entries].reverse()), atlas);
+  assert.ok(
+    atlas.every((item) => Number.isFinite(item.x) && Number.isFinite(item.y))
+  );
+});

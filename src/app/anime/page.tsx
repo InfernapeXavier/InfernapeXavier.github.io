@@ -6,7 +6,7 @@ import styles from "./anime.module.css";
 export const metadata: Metadata = {
   title: "Anime Atlas",
   description:
-    "Explore Rohit's anime list: a personal atlas of seasons, scores, and genre neighborhoods, powered by AniList.",
+    "Explore Rohit's anime list: one connected landscape of shared themes, seasons, and scores, powered by AniList.",
 };
 
 export const revalidate = 3600;
@@ -19,6 +19,13 @@ interface ListEntry {
     title: { english: string | null; romaji: string };
     coverImage: { large: string | null };
     genres: string[];
+    tags: {
+      name: string;
+      rank: number | null;
+      isGeneralSpoiler: boolean | null;
+      isMediaSpoiler: boolean | null;
+      isAdult: boolean | null;
+    }[];
     isAdult: boolean;
     startDate: { year: number | null };
     format: string | null;
@@ -49,6 +56,7 @@ async function getAnimeList(): Promise<AnimeEntry[]> {
               media {
                 id title { english romaji } coverImage { large }
                 genres isAdult startDate { year } format episodes
+                tags { name rank isGeneralSpoiler isMediaSpoiler isAdult }
                 relations { edges { relationType node { id type } } }
               }
             } }
@@ -81,6 +89,15 @@ async function getAnimeList(): Promise<AnimeEntry[]> {
           romaji: media.title.romaji,
           cover: media.coverImage.large,
           genres: media.genres,
+          tags: media.tags
+            .filter(
+              (tag) =>
+                !tag.isGeneralSpoiler &&
+                !tag.isMediaSpoiler &&
+                !tag.isAdult &&
+                (tag.rank ?? 0) >= 60
+            )
+            .map((tag) => tag.name),
           year: media.startDate.year,
           format: media.format,
           episodes: media.episodes,

@@ -236,17 +236,20 @@
 :global(.light) .gold {
   --region: 120 100 20;
 }
-.island {
-  fill: rgb(var(--region) / 0.045);
-  stroke: rgb(var(--region) / 0.2);
-  stroke-dasharray: 3 6;
+.connection {
+  stroke: rgb(var(--color-accent) / 0.65);
+  stroke-width: 1.5px;
+  pointer-events: none;
 }
-.regionLabel {
-  fill: rgb(var(--region));
-  font:
-    15px var(--font-mono),
-    monospace;
-  letter-spacing: -0.04em;
+.colorKey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 14px 24px 0;
+  font-size: 10px;
+}
+.colorKey span {
+  color: rgb(var(--region));
 }
 .node {
   cursor: pointer;
@@ -290,6 +293,7 @@
   stroke-linejoin: round;
 }
 .activeNode .nodeLabel,
+.landmarkNode .nodeLabel,
 .node:hover .nodeLabel,
 .node:focus-visible .nodeLabel {
   display: block;
@@ -435,6 +439,37 @@
   min-height: 44px;
   margin-top: 16px;
   font-size: 13px;
+  color: rgb(var(--color-accent));
+}
+.nearby {
+  border-top: 1px solid rgb(var(--color-highlight));
+  padding-top: 18px;
+  margin-top: 12px;
+}
+.nearby h3 {
+  font-size: 14px;
+}
+.nearby p,
+.nearby button span {
+  display: block;
+  font-size: 10px;
+  line-height: 1.6;
+  color: rgb(var(--color-subtle));
+  margin-top: 5px;
+}
+.nearby button {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(var(--color-highlight) / 0.5);
+}
+.nearby button strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.nearby button:hover strong {
   color: rgb(var(--color-accent));
 }
 .seasons {
@@ -642,10 +677,7 @@
     padding: 18px 16px 0;
   }
   .map {
-    aspect-ratio: 600 / 1000;
-  }
-  .regionLabel {
-    font-size: 21px;
+    aspect-ratio: 600 / 800;
   }
   .nodeLabel {
     font-size: 20px;
