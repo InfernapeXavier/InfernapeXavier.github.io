@@ -3,6 +3,7 @@ import { FiArrowDown, FiArrowUpRight, FiDatabase } from "react-icons/fi";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Experience from "@/components/Experience";
 import FeaturedProject from "@/components/FeaturedProject";
+import Skills from "@/components/Skills";
 import { education } from "@/data/education";
 import { projects } from "@/data/projects";
 import styles from "./home.module.css";
@@ -138,6 +139,9 @@ export default function Home() {
             </div>
           </div>
           <Experience />
+          <div className="mt-6">
+            <Skills />
+          </div>
           <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-sm leading-relaxed text-theme-subtle">
             <p>
               {education.map((qualification, index) => (
