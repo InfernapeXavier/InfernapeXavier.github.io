@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
+
+# Amp's base image provides Node.js and Bun; no additional system packages are needed.
+echo "Checking the orb toolchain..."
+node --version
+node -e 'if (Number(process.versions.node.split(".")[0]) < 24) throw new Error("Node.js >=24 is required");'
+bun --version
+
+# Keep dependencies and Bun's cache in the snapshot. Bun cheaply checks warm installs.
+echo "Installing locked dependencies (including development tools)..."
+time NODE_ENV=development bun install --frozen-lockfile
