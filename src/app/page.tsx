@@ -1,5 +1,10 @@
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
-import { FiArrowDown, FiArrowUpRight, FiDatabase } from "react-icons/fi";
+import {
+  FiArrowDown,
+  FiArrowUpRight,
+  FiDatabase,
+  FiGrid,
+} from "react-icons/fi";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Experience from "@/components/Experience";
 import FeaturedProject from "@/components/FeaturedProject";
@@ -177,6 +182,14 @@ export default function Home() {
           <div className={styles.socials}>
             <a href="mailto:website@rohitc.tech">
               <FaEnvelope aria-hidden="true" /> Email{" "}
+              <FiArrowUpRight aria-hidden="true" />
+            </a>
+            <a
+              href="https://links.rohitc.tech"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FiGrid aria-hidden="true" /> Bento{" "}
               <FiArrowUpRight aria-hidden="true" />
             </a>
             <a
