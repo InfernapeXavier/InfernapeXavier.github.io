@@ -7,7 +7,7 @@ export const experience = {
     {
       title: "AI development environments",
       description:
-        "I build sandboxed environments for AI-assisted development. I've cut startup times by 50% and helped make these environments available to people outside engineering as well.",
+        "I build sandboxed environments for AI-assisted development. I've cut startup times by 75% overall and helped make these environments available to people outside engineering as well.",
     },
     {
       title: "Internal tools",
