@@ -26,7 +26,8 @@
     "next": "^16.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "umap-js": "1.4.0"
   },
   "engines": {
     "node": ">=24"

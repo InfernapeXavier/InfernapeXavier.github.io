@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildAnimeAtlas, type AnimeEntry } from "./anime";
+import { getAnimeNeighbors, type AnimeEntry } from "./anime";
+import { buildAnimeAtlas } from "./anime-atlas";
 
 test("the atlas groups explicit continuation chains, not shared genres or missing links", () => {
   const base: AnimeEntry = {
@@ -90,15 +91,15 @@ test("taste neighbors use all themes, prefer specific overlap, and never invent 
     { ...base, id: 5, title: "Another drama", tags: [] },
   ];
   const atlas = buildAnimeAtlas(entries);
-  const anchor = atlas.find((item) => item.id === 1)!;
-  assert.equal(anchor.neighbors[0].id, 3);
-  assert.deepEqual(anchor.neighbors[0].shared, ["Disability", "School"]);
+  const neighbors = getAnimeNeighbors(atlas, 1);
+  assert.equal(neighbors[0].id, 3);
+  assert.deepEqual(neighbors[0].shared, ["Disability", "School"]);
   assert.ok(
-    anchor.neighbors[0].similarity >
-      anchor.neighbors.find((item) => item.id === 2)!.similarity
+    neighbors[0].similarity >
+      neighbors.find((item) => item.id === 2)!.similarity
   );
   assert.equal(
-    anchor.neighbors.some((item) => item.id === 4),
+    neighbors.some((item) => item.id === 4),
     false
   );
   assert.equal(atlas.length, 5);

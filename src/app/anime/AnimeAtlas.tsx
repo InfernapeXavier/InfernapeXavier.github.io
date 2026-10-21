@@ -13,9 +13,9 @@ import {
 } from "react-icons/fi";
 import {
   animeStatuses,
-  buildAnimeAtlas,
+  getAnimeNeighbors,
   neighborhoods,
-  type AnimeEntry,
+  type AnimeSeries,
 } from "@/data/anime";
 import styles from "./anime.module.css";
 
@@ -25,8 +25,11 @@ function subscribeToViewport(callback: () => void) {
   return () => media.removeEventListener("change", callback);
 }
 
-export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
-  const series = useMemo(() => buildAnimeAtlas(entries), [entries]);
+export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
+  const entries = useMemo(
+    () => series.flatMap((item) => item.entries),
+    [series]
+  );
   const smallScreen = useSyncExternalStore(
     subscribeToViewport,
     () => window.matchMedia("(max-width: 767px)").matches,
@@ -88,14 +91,18 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
   const selected = visible.find((item) => item.id === selectedId) ?? visible[0];
   const representative = selected?.entries[0];
   const count = visible.reduce((sum, item) => sum + item.entries.length, 0);
-  const nearby =
-    selected?.neighbors
-      .map((neighbor) => ({
-        ...neighbor,
-        series: visible.find((item) => item.id === neighbor.id),
-      }))
-      .filter((neighbor) => neighbor.series !== undefined)
-      .slice(0, 5) ?? [];
+  const matchId = selected?.id;
+  const matches = useMemo(
+    () => (matchId !== undefined ? getAnimeNeighbors(series, matchId) : []),
+    [series, matchId]
+  );
+  const nearby = matches
+    .map((neighbor) => ({
+      ...neighbor,
+      series: visible.find((item) => item.id === neighbor.id),
+    }))
+    .filter((neighbor) => neighbor.series !== undefined)
+    .slice(0, 5);
   const landmarks = selected ? [selected] : [];
   for (const item of [...visible].sort(
     (a, b) =>

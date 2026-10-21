@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { animeStatuses, type AnimeEntry } from "@/data/anime";
+import { buildAnimeAtlas } from "@/data/anime-atlas";
 import AnimeAtlas from "./AnimeAtlas";
 import styles from "./anime.module.css";
 
@@ -143,5 +144,5 @@ export default async function AnimePage() {
       </div>
     );
   }
-  return <AnimeAtlas entries={entries} />;
+  return <AnimeAtlas series={buildAnimeAtlas(entries)} />;
 }
