@@ -6,7 +6,7 @@ import styles from "./anime.module.css";
 export const metadata: Metadata = {
   title: "Anime Atlas",
   description:
-    "Explore Rohit's anime list: one connected landscape of shared themes, seasons, and scores, powered by AniList.",
+    "What Rohit's been watching, with ratings and similar anime from his AniList list.",
 };
 
 export const revalidate = 3600;
@@ -131,8 +131,8 @@ export default async function AnimePage() {
           Anime Atlas<span>↗</span>
         </h1>
         <p className={styles.unavailable}>
-          The atlas is taking a break. AniList couldn’t be reached—please try
-          again later.
+          Couldn’t load my anime list from AniList. Try again later, or view it
+          there.
         </p>
         <a
           className={styles.sourceLink}

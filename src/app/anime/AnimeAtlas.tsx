@@ -127,21 +127,14 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
     <div className={styles.page}>
       <header className={styles.intro}>
         <div>
-          <span className={styles.eyebrow}>
-            Preview A / Continuous taste atlas
-          </span>
           <h1 className={styles.title}>
             Anime <span>Atlas</span>
             <b aria-hidden="true">✳</b>
           </h1>
-          <p className={styles.subtitle}>
-            One landscape. A hundred rabbit holes.
-          </p>
+          <p className={styles.subtitle}>What I’ve been watching.</p>
           <p className={styles.description}>
-            Shared themes pull stories together. Genres overlap, rather than
-            live in boxes.
-            <br className={styles.desktopBreak} /> Pick a series to follow its
-            closest connections.
+            My anime list, mapped by genre and theme. Pick a show to see my
+            score and similar titles.
           </p>
         </div>
         <a
@@ -171,8 +164,8 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
             value={status}
             onChange={(event) => setStatus(event.target.value)}
           >
-            <option value="ALL">All statuses</option>
-            <option value="STARTED">Started · not planned</option>
+            <option value="ALL">Full list</option>
+            <option value="STARTED">Watch history</option>
             {Object.entries(animeStatuses).map(([value, label]) => (
               <option key={value} value={value}>
                 {label}
@@ -228,17 +221,17 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
           {visible.length === 0 ? (
             <div className={styles.empty}>
               <span aria-hidden="true">✳</span>
-              <h2>No anime in this corner.</h2>
+              <h2>No matches.</h2>
               <p>Try a different title, status, or genre.</p>
               <button type="button" onClick={resetFilters}>
-                Show all entries
+                Show full list
               </button>
             </div>
           ) : view === "map" ? (
             <>
               <div className={styles.mapHeading}>
-                <span className={styles.eyebrow}>A connected landscape</span>
-                <span>Drag to explore · select a dot</span>
+                <span className={styles.eyebrow}>My anime</span>
+                <span>Drag to move · click a show</span>
               </div>
               <div
                 className={styles.colorKey}
@@ -381,7 +374,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
               <div className={styles.mapBottom}>
                 <div className={styles.legend}>
                   <span>
-                    <i /> Started
+                    <i /> Watched / watching
                   </span>
                   <span>
                     <i className={styles.hollow} /> Planned
@@ -429,8 +422,8 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
           ) : (
             <>
               <div className={styles.mapHeading}>
-                <span className={styles.eyebrow}>The collection</span>
-                <span>Scroll for more · select a series</span>
+                <span className={styles.eyebrow}>My anime</span>
+                <span>Pick a show for details</span>
               </div>
               <ul className={styles.list}>
                 {visible.map((item) => (
@@ -447,10 +440,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                         <strong>{item.title}</strong>
                         <small>
                           {item.entries.length}{" "}
-                          {item.entries.length === 1
-                            ? "entry"
-                            : "linked entries"}{" "}
-                          ·{" "}
+                          {item.entries.length === 1 ? "title" : "titles"} ·{" "}
                           {[
                             ...new Set(
                               item.entries.map(
@@ -477,12 +467,6 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
         >
           {selected && representative ? (
             <>
-              <span className={styles.eyebrow}>
-                A closer look /{" "}
-                {String(
-                  series.findIndex((item) => item.id === selected.id) + 1
-                ).padStart(3, "0")}
-              </span>
               {representative.cover && (
                 <div className={styles.cover}>
                   <Image
@@ -546,8 +530,8 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
               </a>
               {nearby.length > 0 && (
                 <div className={styles.nearby}>
-                  <h3>Nearby in taste</h3>
-                  <p>Shared metadata, not a prediction of my rating.</p>
+                  <h3>Similar anime</h3>
+                  <p>From my list, with shared genres and themes.</p>
                   {nearby.map((neighbor) => (
                     <button
                       key={neighbor.id}
@@ -565,10 +549,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                   <h3>
                     In this series <span>{selected.entries.length}</span>
                   </h3>
-                  <p>
-                    Linked by AniList prequel/sequel data. Showing entries that
-                    match your filters.
-                  </p>
+                  <p>Seasons and sequels that match the current filters.</p>
                   <ul>
                     {selected.entries.map((entry) => (
                       <li key={entry.id}>
@@ -590,31 +571,33 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
               )}
             </>
           ) : (
-            <p>Select a series to take a closer look.</p>
+            <p>Pick a show to see the details.</p>
           )}
         </section>
       </div>
 
       <footer className={styles.notes}>
         <div>
-          <span className={styles.eyebrow}>How this landscape works</span>
+          <span className={styles.eyebrow}>About the map</span>
           <p>
-            A settled network of shared genres and spoiler-free AniList tags
-            (60%+ relevance). Rarer themes weigh more. Distance is an
-            approximate layout, not a precise scale; lines reveal the selected
-            series’ five closest visible matches. Colors indicate broad genre
-            families. Larger dots contain more prequel/sequel-linked entries. No
-            inferred ratings.
+            Shows with similar genres and themes sit near each other. Select one
+            to see up to five connections. Colors group genres; bigger dots mean
+            more seasons and sequels, not higher scores.
           </p>
         </div>
         <p>
-          Public list via{" "}
-          <a href="https://anilist.co" target="_blank" rel="noreferrer">
-            AniList ↗
+          From my public{" "}
+          <a
+            href="https://anilist.co/user/InfernapeXavier/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            AniList profile ↗
           </a>
-          . Refreshes hourly.
+          . Updated hourly.
           <br />
-          Adult entries are omitted. Planned titles are a filter away.
+          Watch history excludes my plan-to-watch list. Adult titles aren’t
+          shown.
         </p>
       </footer>
     </div>
