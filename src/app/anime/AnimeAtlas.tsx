@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useMemo, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import {
   FiArrowUpRight,
@@ -20,25 +20,14 @@ import {
 } from "@/data/anime";
 import styles from "./anime.module.css";
 
-function subscribeToViewport(callback: () => void) {
-  const media = window.matchMedia("(max-width: 767px)");
-  media.addEventListener("change", callback);
-  return () => media.removeEventListener("change", callback);
-}
-
 export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
   const series = useMemo(() => buildAnimeAtlas(entries), [entries]);
-  const smallScreen = useSyncExternalStore(
-    subscribeToViewport,
-    () => window.matchMedia("(max-width: 767px)").matches,
-    () => false
-  );
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("STARTED");
   const [genre, setGenre] = useState("");
   const [chosenView, setView] = useState<"map" | "list" | null>(null);
   const view = chosenView ?? "map";
-  const mapWidth = smallScreen ? 600 : 1200;
+  const mapWidth = 1200;
   const mapHeight = 840;
   const [selectedId, setSelectedId] = useState(
     () =>
@@ -89,7 +78,10 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
     () => buildAnimeMetro(visible, selected?.id),
     [visible, selected?.id]
   );
-  const pointX = (x: number) => x - (smallScreen ? 300 : 0);
+  // Use the full collection's genre order, never the current stop's route order.
+  const lineHues = metro.lines.map(
+    (line) => (genres.indexOf(line) * 137.5 + 250) % 360
+  );
 
   function selectSeries(id: number, fromList = false) {
     setSelectedId(id);
@@ -225,11 +217,10 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                 {metro.lines.map((line, index) => (
                   <span
                     key={line}
-                    className={
-                      styles[neighborhoods[index % neighborhoods.length].color]
-                    }
+                    className={styles.lineColor}
+                    style={{ "--hue": lineHues[index] } as CSSProperties}
                   >
-                    <b>{index + 1}</b> {line}
+                    <i aria-hidden="true" /> {line}
                   </span>
                 ))}
               </div>
@@ -286,11 +277,11 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                   {metro.branches.flatMap((branch, branchIndex) =>
                     branch.lines.map((line, lane) => {
                       const offset = (lane - (branch.lines.length - 1) / 2) * 7;
-                      let x = pointX(600) - branch.dy * offset;
+                      let x = 600 - branch.dy * offset;
                       let y = 420 + branch.dx * offset;
                       let path = `M ${x} ${y}`;
                       for (const station of branch.stations) {
-                        const endX = pointX(station.x) - branch.dy * offset;
+                        const endX = station.x - branch.dy * offset;
                         const endY = station.y + branch.dx * offset;
                         const bend = Math.min(
                           Math.abs(endX - x),
@@ -303,20 +294,39 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                       return (
                         <path
                           key={`${branchIndex}-${line}`}
-                          className={`${styles.route} ${styles[neighborhoods[line % neighborhoods.length].color]}`}
+                          className={`${styles.route} ${styles.lineColor}`}
+                          style={{ "--hue": lineHues[line] } as CSSProperties}
                           d={path}
                         />
                       );
                     })
                   )}
-                  {metro.stations.map((item) => {
+                  {metro.stations.map((item, index) => {
                     const active = selected?.id === item.id;
-                    const x = pointX(item.x);
+                    const x = item.x;
                     const y = item.y;
                     const planned = item.entries.every(
                       (entry) => entry.status === "PLANNING"
                     );
                     const label = item.entries[0].title;
+                    const horizontal = item.dy === 0 && !active;
+                    const vertical = item.dx === 0;
+                    const below = horizontal
+                      ? item.position % 2 === 0
+                      : item.dy > 0;
+                    const labelX =
+                      active || vertical || horizontal
+                        ? x - 90
+                        : item.dx < 0
+                          ? x - 198
+                          : x + 18;
+                    const labelY = active
+                      ? y - 70
+                      : horizontal || vertical
+                        ? below
+                          ? y + 26
+                          : y - 64
+                        : y - 20;
                     return (
                       <g
                         key={item.id}
@@ -324,7 +334,12 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                         tabIndex={0}
                         aria-label={`Explore ${item.title}, ${item.lines.map((line) => metro.lines[line]).join(" / ")} lines`}
                         aria-pressed={active}
-                        className={`${styles.node} ${styles[neighborhoods[item.lines[0] % neighborhoods.length]?.color ?? "lavender"]} ${active ? styles.activeNode : ""}`}
+                        className={`${styles.node} ${styles.lineColor} ${active ? styles.activeNode : ""}`}
+                        style={
+                          {
+                            "--hue": lineHues[item.lines[0]] ?? 250,
+                          } as CSSProperties
+                        }
                         onClick={() => selectSeries(item.id)}
                         onKeyDown={(event) => {
                           if (event.key === "Enter" || event.key === " ") {
@@ -357,28 +372,70 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                                 : 6
                           }
                         />
-                        <text
-                          className={styles.nodeLabel}
-                          x={x + (item.dx < 0 ? -18 : 18)}
-                          y={
-                            y +
-                            (active
-                              ? -32
-                              : item.dy === 0
-                                ? item.position % 2
-                                  ? 34
-                                  : -22
-                                : 5)
-                          }
-                          textAnchor={item.dx < 0 ? "end" : "start"}
+                        {!active && (horizontal || vertical) && (
+                          <line
+                            className={styles.labelLeader}
+                            x1={x}
+                            x2={x}
+                            y1={y + (below ? 12 : -12)}
+                            y2={y + (below ? 24 : -18)}
+                          />
+                        )}
+                        <foreignObject
+                          className={styles.stationLabel}
+                          x={labelX}
+                          y={labelY}
+                          width="180"
+                          height="44"
+                          aria-hidden="true"
                         >
-                          {label.length > 24 ? `${label.slice(0, 23)}…` : label}
+                          <div
+                            className={`${styles.stationName} ${active || horizontal || vertical ? styles.centeredName : item.dx < 0 ? styles.leftName : ""}`}
+                          >
+                            {label}
+                          </div>
+                        </foreignObject>
+                        <text
+                          className={styles.stationNumber}
+                          x={x}
+                          y={y}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          aria-hidden="true"
+                        >
+                          {index + 1}
                         </text>
                       </g>
                     );
                   })}
                 </g>
               </svg>
+              <div className={styles.mobileStops}>
+                <p>Whole network above · tap a numbered stop to explore.</p>
+                <ul aria-label="Metro stations">
+                  {metro.stations.map((item, index) => (
+                    <li key={item.id}>
+                      <button
+                        type="button"
+                        aria-pressed={item.id === selected?.id}
+                        onClick={() => selectSeries(item.id)}
+                      >
+                        <span
+                          className={styles.lineColor}
+                          style={
+                            {
+                              "--hue": lineHues[item.lines[0]] ?? 250,
+                            } as CSSProperties
+                          }
+                        >
+                          {index + 1}
+                        </span>
+                        <strong>{item.entries[0].title}</strong>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div className={styles.mapBottom}>
                 <div className={styles.legend}>
                   <span>
@@ -387,7 +444,7 @@ export default function AnimeAtlas({ entries }: { entries: AnimeEntry[] }) {
                   <span>
                     <i className={styles.hollow} /> Planned
                   </span>
-                  <span>Large station = shared lines</span>
+                  <span>Shared routes run in parallel</span>
                 </div>
                 <div className={styles.zoom}>
                   <button

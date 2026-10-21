@@ -162,7 +162,7 @@ export function buildAnimeMetro(
         stations: members.map((item, position) => ({
           ...item,
           x: 600 + dx * (160 + position * 105),
-          y: 420 + dy * ((dx === 0 ? 70 : 125) + position * 100),
+          y: 420 + dy * ((dx === 0 ? 120 : 125) + position * 100),
           lines: group.lines,
           dx,
           dy,
@@ -174,7 +174,6 @@ export function buildAnimeMetro(
     lines,
     branches,
     stations: [
-      ...branches.flatMap((branch) => branch.stations),
       ...(selected
         ? [
             {
@@ -188,6 +187,7 @@ export function buildAnimeMetro(
             },
           ]
         : []),
+      ...branches.flatMap((branch) => branch.stations),
     ],
   };
 }

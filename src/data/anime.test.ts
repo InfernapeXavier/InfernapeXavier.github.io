@@ -90,6 +90,7 @@ test("metro stations carry only real shared routes, are unique, and recenter on 
   ]);
   const metro = buildAnimeMetro(atlas, 1);
   assert.deepEqual(metro.lines, ["Drama", "Romance"]);
+  assert.equal(metro.stations[0].id, 1);
   assert.equal(
     new Set(metro.stations.map((item) => item.id)).size,
     metro.stations.length
@@ -115,6 +116,7 @@ test("metro stations carry only real shared routes, are unique, and recenter on 
       );
   const recentered = buildAnimeMetro(atlas, 3);
   assert.deepEqual(recentered.lines, ["Action", "Drama"]);
+  assert.equal(recentered.stations[0].id, 3);
   assert.equal(
     recentered.stations.some((item) => item.id === 8),
     false
