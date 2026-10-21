@@ -68,10 +68,12 @@ export function getAnimeNeighbors(series: AnimeSeries[], selectedId: number) {
   const features = series.map(
     (item) =>
       new Set(
-        item.entries.flatMap((entry) => [
-          ...entry.genres.map((genre) => `genre:${genre}`),
-          ...(entry.tags ?? []).map((tag) => `tag:${tag}`),
-        ])
+        item.entries
+          .flatMap((entry) => [
+            ...entry.genres.map((genre) => `genre:${genre}`),
+            ...(entry.tags ?? []).map((tag) => `tag:${tag}`),
+          ])
+          .sort()
       )
   );
   const frequency = new Map<string, number>();
@@ -90,7 +92,9 @@ export function getAnimeNeighbors(series: AnimeSeries[], selectedId: number) {
       );
       if (!shared.length) return [];
       const union = new Set([...selected, ...features[index]]);
-      const total = [...union].reduce((sum, value) => sum + weight(value), 0);
+      const total = [...union]
+        .sort()
+        .reduce((sum, value) => sum + weight(value), 0);
       return [
         {
           id: item.id,
