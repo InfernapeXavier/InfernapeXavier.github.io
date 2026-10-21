@@ -69,7 +69,13 @@ test("taste neighbors use all themes, prefer specific overlap, and never invent 
     romaji: "Anchor",
     cover: null,
     genres: ["Drama"],
-    tags: ["School", "Disability"],
+    tags: [
+      "School",
+      "Disability",
+      "Bullying",
+      "Rehabilitation",
+      "Language Barrier",
+    ],
     year: 2016,
     format: "MOVIE",
     episodes: 1,
@@ -104,6 +110,18 @@ test("taste neighbors use all themes, prefer specific overlap, and never invent 
   );
   assert.equal(atlas.length, 5);
   assert.deepEqual(buildAnimeAtlas([...entries].reverse()), atlas);
+  const reordered = buildAnimeAtlas(
+    entries.map((entry) => ({
+      ...entry,
+      genres: [...entry.genres].reverse(),
+      tags: [...(entry.tags ?? [])].reverse(),
+    }))
+  );
+  assert.deepEqual(getAnimeNeighbors(reordered, 1), neighbors);
+  assert.deepEqual(
+    reordered.map(({ id, x, y }) => ({ id, x, y })),
+    atlas.map(({ id, x, y }) => ({ id, x, y }))
+  );
   assert.ok(
     atlas.every((item) => Number.isFinite(item.x) && Number.isFinite(item.y))
   );
