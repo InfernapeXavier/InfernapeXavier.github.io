@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getAnimeNeighbors, type AnimeEntry } from "./anime";
-import { buildAnimeAtlas } from "./anime-atlas";
+import { getMediaNeighbors, type MediaEntry } from "./media";
+import { buildMediaAtlas } from "./media-atlas";
 
 test("the atlas groups explicit continuation chains, not shared genres or missing links", () => {
-  const base: AnimeEntry = {
+  const base: MediaEntry = {
     id: 40,
     title: "Original season",
     romaji: "Original season",
@@ -17,7 +17,7 @@ test("the atlas groups explicit continuation chains, not shared genres or missin
     score: 91,
     continuations: [70],
   };
-  const sequel: AnimeEntry = {
+  const sequel: MediaEntry = {
     ...base,
     id: 70,
     title: "Second season",
@@ -26,21 +26,21 @@ test("the atlas groups explicit continuation chains, not shared genres or missin
     score: 0,
     continuations: [40, 20],
   };
-  const finale: AnimeEntry = {
+  const finale: MediaEntry = {
     ...base,
     id: 20,
     title: "Final film",
     year: 2019,
     continuations: [70],
   };
-  const unrelated: AnimeEntry = {
+  const unrelated: MediaEntry = {
     ...base,
     id: 90,
     title: "Unrelated romance",
     continuations: [999],
   };
   const data = [finale, unrelated, sequel, base, sequel];
-  const atlas = buildAnimeAtlas(data);
+  const atlas = buildMediaAtlas(data);
 
   assert.equal(atlas.length, 2);
   const series = atlas.find((item) => item.title === "Original season")!;
@@ -58,12 +58,12 @@ test("the atlas groups explicit continuation chains, not shared genres or missin
       ?.entries.map((entry) => entry.id),
     [90]
   );
-  assert.deepEqual(buildAnimeAtlas([...data].reverse()), atlas);
-  assert.deepEqual(buildAnimeAtlas([]), []);
+  assert.deepEqual(buildMediaAtlas([...data].reverse()), atlas);
+  assert.deepEqual(buildMediaAtlas([]), []);
 });
 
 test("taste neighbors use all themes, prefer specific overlap, and never invent links", () => {
-  const base: AnimeEntry = {
+  const base: MediaEntry = {
     id: 1,
     title: "Anchor",
     romaji: "Anchor",
@@ -83,7 +83,7 @@ test("taste neighbors use all themes, prefer specific overlap, and never invent 
     score: 100,
     continuations: [],
   };
-  const entries: AnimeEntry[] = [
+  const entries: MediaEntry[] = [
     base,
     { ...base, id: 2, title: "Broad overlap", tags: [] },
     {
@@ -96,8 +96,8 @@ test("taste neighbors use all themes, prefer specific overlap, and never invent 
     { ...base, id: 4, title: "Unconnected", genres: ["Sports"], tags: [] },
     { ...base, id: 5, title: "Another drama", tags: [] },
   ];
-  const atlas = buildAnimeAtlas(entries);
-  const neighbors = getAnimeNeighbors(atlas, 1);
+  const atlas = buildMediaAtlas(entries);
+  const neighbors = getMediaNeighbors(atlas, 1);
   assert.equal(neighbors[0].id, 3);
   assert.deepEqual(neighbors[0].shared, ["Disability", "School"]);
   assert.ok(
@@ -109,15 +109,15 @@ test("taste neighbors use all themes, prefer specific overlap, and never invent 
     false
   );
   assert.equal(atlas.length, 5);
-  assert.deepEqual(buildAnimeAtlas([...entries].reverse()), atlas);
-  const reordered = buildAnimeAtlas(
+  assert.deepEqual(buildMediaAtlas([...entries].reverse()), atlas);
+  const reordered = buildMediaAtlas(
     entries.map((entry) => ({
       ...entry,
       genres: [...entry.genres].reverse(),
       tags: [...(entry.tags ?? [])].reverse(),
     }))
   );
-  assert.deepEqual(getAnimeNeighbors(reordered, 1), neighbors);
+  assert.deepEqual(getMediaNeighbors(reordered, 1), neighbors);
   assert.deepEqual(
     reordered.map(({ id, x, y }) => ({ id, x, y })),
     atlas.map(({ id, x, y }) => ({ id, x, y }))

@@ -1,4 +1,6 @@
-export const animeStatuses = {
+export type MediaType = "ANIME" | "MANGA";
+
+export const mediaStatuses = {
   CURRENT: "Watching",
   COMPLETED: "Completed",
   PLANNING: "Planned",
@@ -7,7 +9,7 @@ export const animeStatuses = {
   REPEATING: "Rewatching",
 } as const;
 
-export interface AnimeEntry {
+export interface MediaEntry {
   id: number;
   title: string;
   romaji: string;
@@ -17,7 +19,9 @@ export interface AnimeEntry {
   year: number | null;
   format: string | null;
   episodes: number | null;
-  status: keyof typeof animeStatuses;
+  chapters?: number | null;
+  volumes?: number | null;
+  status: keyof typeof mediaStatuses;
   score: number;
   continuations: number[];
 }
@@ -55,16 +59,16 @@ export const neighborhoods = [
   },
 ] as const;
 
-export interface AnimeSeries {
+export interface MediaSeries {
   id: number;
   title: string;
-  entries: AnimeEntry[];
+  entries: MediaEntry[];
   neighborhood: number;
   x: number;
   y: number;
 }
 
-export function getAnimeNeighbors(series: AnimeSeries[], selectedId: number) {
+export function getMediaNeighbors(series: MediaSeries[], selectedId: number) {
   const features = series.map(
     (item) =>
       new Set(

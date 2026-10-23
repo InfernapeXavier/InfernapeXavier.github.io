@@ -4,6 +4,24 @@
   padding: 56px 24px 36px;
 }
 
+.mediaTabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+.mediaTabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-bottom: 2px solid transparent;
+  color: rgb(var(--color-subtle));
+}
+.mediaTabs a[aria-current="page"] {
+  color: rgb(var(--color-text));
+  border-color: rgb(var(--color-accent));
+}
+
 .intro {
   display: flex;
   justify-content: space-between;

@@ -14,6 +14,7 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/uses", label: "Uses" },
   { href: "/anime", label: "Anime" },
+  { href: "/manga", label: "Manga" },
   { href: "/#contact", label: "Contact" },
   { href: "https://bit.ly/rohitcresume", label: "Resume", external: true },
 ];
@@ -101,6 +102,11 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
+              prefetch={
+                link.href === "/anime" || link.href === "/manga"
+                  ? false
+                  : undefined
+              }
               className={link.external ? styles.resume : undefined}
               aria-current={pathname === link.href ? "page" : undefined}
               {...(link.external && {
