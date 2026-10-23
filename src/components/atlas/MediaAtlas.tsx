@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   FiArrowUpRight,
   FiList,
@@ -12,12 +13,13 @@ import {
   FiSearch,
 } from "react-icons/fi";
 import {
-  animeStatuses,
-  getAnimeNeighbors,
+  mediaStatuses,
+  getMediaNeighbors,
   neighborhoods,
-  type AnimeSeries,
-} from "@/data/anime";
-import styles from "./anime.module.css";
+  type MediaSeries,
+  type MediaType,
+} from "@/data/media";
+import styles from "./atlas.module.css";
 
 function subscribeToViewport(callback: () => void) {
   const media = window.matchMedia("(max-width: 767px)");
@@ -25,7 +27,21 @@ function subscribeToViewport(callback: () => void) {
   return () => media.removeEventListener("change", callback);
 }
 
-export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
+export default function MediaAtlas({
+  series,
+  mediaType,
+}: {
+  series: MediaSeries[];
+  mediaType: MediaType;
+}) {
+  const manga = mediaType === "MANGA";
+  const name = manga ? "Manga" : "Anime";
+  const kind = manga ? "manga" : "anime";
+  const statuses = {
+    ...mediaStatuses,
+    CURRENT: manga ? "Reading" : "Watching",
+    REPEATING: manga ? "Rereading" : "Rewatching",
+  };
   const entries = useMemo(
     () => series.flatMap((item) => item.entries),
     [series]
@@ -148,7 +164,7 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
   }
   const matchId = selected?.id;
   const matches = useMemo(
-    () => (matchId !== undefined ? getAnimeNeighbors(series, matchId) : []),
+    () => (matchId !== undefined ? getMediaNeighbors(series, matchId) : []),
     [series, matchId]
   );
   const nearby = matches
@@ -173,21 +189,39 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
 
   return (
     <div className={styles.page}>
+      <nav className={styles.mediaTabs} aria-label="Atlas collections">
+        <Link
+          href="/anime"
+          prefetch={false}
+          aria-current={!manga ? "page" : undefined}
+        >
+          Anime
+        </Link>
+        <Link
+          href="/manga"
+          prefetch={false}
+          aria-current={manga ? "page" : undefined}
+        >
+          Manga
+        </Link>
+      </nav>
       <header className={styles.intro}>
         <div>
           <h1 className={styles.title}>
-            Anime <span>Atlas</span>
+            {name} <span>Atlas</span>
             <b aria-hidden="true">✳</b>
           </h1>
-          <p className={styles.subtitle}>What I’ve been watching.</p>
+          <p className={styles.subtitle}>
+            {manga ? "What I’ve been reading." : "What I’ve been watching."}
+          </p>
           <p className={styles.description}>
-            My anime list, mapped by genre and theme. Pick a show to see my
-            score and similar titles.
+            My {kind} list, mapped by genre and theme. Pick a{" "}
+            {manga ? "title" : "show"} to see my score and similar titles.
           </p>
         </div>
         <a
           className={styles.sourceLink}
-          href="https://anilist.co/user/InfernapeXavier/"
+          href={`https://anilist.co/user/InfernapeXavier/${kind}list`}
           target="_blank"
           rel="noreferrer"
         >
@@ -198,23 +232,25 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
       <div className={styles.toolbar}>
         <label className={styles.search}>
           <FiSearch aria-hidden="true" />
-          <span className="sr-only">Search anime titles</span>
+          <span className="sr-only">Search {kind} titles</span>
           <input
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Find an anime…"
+            placeholder={manga ? "Find a manga…" : "Find an anime…"}
           />
         </label>
         <label className={styles.filter}>
-          <span className="sr-only">Watch status</span>
+          <span className="sr-only">{manga ? "Reading" : "Watch"} status</span>
           <select
             value={status}
             onChange={(event) => setStatus(event.target.value)}
           >
             <option value="ALL">Full list</option>
-            <option value="STARTED">Watch history</option>
-            {Object.entries(animeStatuses).map(([value, label]) => (
+            <option value="STARTED">
+              {manga ? "Reading" : "Watch"} history
+            </option>
+            {Object.entries(statuses).map(([value, label]) => (
               <option key={value} value={value}>
                 {label}
               </option>
@@ -264,7 +300,7 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
       <div className={styles.explorer}>
         <section
           className={styles.canvas}
-          aria-label={view === "map" ? "Anime taste map" : "Anime list"}
+          aria-label={view === "map" ? `${name} taste map` : `${name} list`}
         >
           {visible.length === 0 ? (
             <div className={styles.empty}>
@@ -278,8 +314,8 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
           ) : view === "map" ? (
             <>
               <div className={styles.mapHeading}>
-                <span className={styles.eyebrow}>My anime</span>
-                <span>Drag to move · click a show</span>
+                <span className={styles.eyebrow}>My {kind}</span>
+                <span>Drag to move · click a {manga ? "title" : "show"}</span>
               </div>
               <div
                 className={styles.colorKey}
@@ -424,7 +460,7 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
               <div className={styles.mapBottom}>
                 <div className={styles.legend}>
                   <span>
-                    <i /> Watched / watching
+                    <i /> {manga ? "Read / reading" : "Watched / watching"}
                   </span>
                   <span>
                     <i className={styles.hollow} /> Planned
@@ -475,8 +511,8 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
           ) : (
             <>
               <div className={styles.mapHeading}>
-                <span className={styles.eyebrow}>My anime</span>
-                <span>Pick a show for details</span>
+                <span className={styles.eyebrow}>My {kind}</span>
+                <span>Pick a {manga ? "title" : "show"} for details</span>
               </div>
               <ul className={styles.list}>
                 {visible.map((item) => (
@@ -497,7 +533,7 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
                           {[
                             ...new Set(
                               item.entries.map(
-                                (entry) => animeStatuses[entry.status]
+                                (entry) => statuses[entry.status]
                               )
                             ),
                           ].join(" / ")}
@@ -540,14 +576,21 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
                 {[
                   representative.year,
                   representative.format?.replaceAll("_", " "),
-                  representative.episodes &&
+                  !manga &&
+                    representative.episodes &&
                     `${representative.episodes} ${representative.episodes === 1 ? "episode" : "episodes"}`,
+                  manga &&
+                    representative.chapters &&
+                    `${representative.chapters} ${representative.chapters === 1 ? "chapter" : "chapters"}`,
+                  manga &&
+                    representative.volumes &&
+                    `${representative.volumes} ${representative.volumes === 1 ? "volume" : "volumes"}`,
                 ]
                   .filter(Boolean)
                   .join(" · ")}
               </p>
               <div className={styles.scoreRow}>
-                <span>{animeStatuses[representative.status]}</span>
+                <span>{statuses[representative.status]}</span>
                 <span>
                   My score{" "}
                   <strong>
@@ -575,7 +618,7 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
               </div>
               <a
                 className={styles.anilistLink}
-                href={`https://anilist.co/anime/${representative.id}`}
+                href={`https://anilist.co/${kind}/${representative.id}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -583,7 +626,7 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
               </a>
               {nearby.length > 0 && (
                 <div className={styles.nearby}>
-                  <h3>Similar anime</h3>
+                  <h3>Similar {kind}</h3>
                   <p>From my list, with shared genres and themes.</p>
                   {nearby.map((neighbor) => (
                     <button
@@ -602,19 +645,22 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
                   <h3>
                     In this series <span>{selected.entries.length}</span>
                   </h3>
-                  <p>Seasons and sequels that match the current filters.</p>
+                  <p>
+                    {manga ? "Titles" : "Seasons and sequels"} that match the
+                    current filters.
+                  </p>
                   <ul>
                     {selected.entries.map((entry) => (
                       <li key={entry.id}>
                         <a
-                          href={`https://anilist.co/anime/${entry.id}`}
+                          href={`https://anilist.co/${kind}/${entry.id}`}
                           target="_blank"
                           rel="noreferrer"
                         >
                           {entry.title} <FiArrowUpRight aria-hidden="true" />
                         </a>
                         <span>
-                          {animeStatuses[entry.status]} ·{" "}
+                          {statuses[entry.status]} ·{" "}
                           {entry.score > 0 ? `${entry.score}/100` : "Unscored"}
                         </span>
                       </li>
@@ -624,7 +670,7 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
               )}
             </>
           ) : (
-            <p>Pick a show to see the details.</p>
+            <p>Pick a {manga ? "title" : "show"} to see the details.</p>
           )}
         </section>
       </div>
@@ -633,9 +679,12 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
         <div>
           <span className={styles.eyebrow}>About the map</span>
           <p>
-            Shows with similar genres and themes sit near each other. Select one
-            to see up to five connections. Colors group genres; bigger dots mean
-            more seasons and sequels, not higher scores.
+            {manga ? "Titles" : "Shows"} with similar genres and themes sit near
+            each other. Select one to see up to five connections. Colors group
+            genres; bigger dots mean more{" "}
+            {manga ? "linked titles" : "seasons and sequels"}, not higher
+            scores.
+            {manga && " Includes light novels from my AniList manga list."}
           </p>
         </div>
         <p>
@@ -649,8 +698,8 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
           </a>
           . Updated hourly.
           <br />
-          Watch history excludes my plan-to-watch list. Adult titles aren’t
-          shown.
+          {manga ? "Reading" : "Watch"} history excludes my plan-to-
+          {manga ? "read" : "watch"} list. Adult titles aren’t shown.
         </p>
       </footer>
     </div>

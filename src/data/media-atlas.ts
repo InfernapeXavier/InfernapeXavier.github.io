@@ -1,14 +1,14 @@
 // Imported by the server page only; the layout library must not reach the browser.
 import { UMAP } from "umap-js";
 import {
-  getAnimeNeighbors,
+  getMediaNeighbors,
   neighborhoods,
-  type AnimeEntry,
-  type AnimeSeries,
-} from "./anime";
+  type MediaEntry,
+  type MediaSeries,
+} from "./media";
 
 // Only explicit prequel/sequel links join entries. Shared genres never merge them.
-export function buildAnimeAtlas(entries: AnimeEntry[]): AnimeSeries[] {
+export function buildMediaAtlas(entries: MediaEntry[]): MediaSeries[] {
   const unique = new Map(entries.map((entry) => [entry.id, entry]));
   const parents = new Map([...unique.keys()].map((id) => [id, id]));
   function root(id: number): number {
@@ -27,7 +27,7 @@ export function buildAnimeAtlas(entries: AnimeEntry[]): AnimeSeries[] {
       }
     }
   }
-  const groups = new Map<number, AnimeEntry[]>();
+  const groups = new Map<number, MediaEntry[]>();
   for (const entry of unique.values()) {
     const id = root(entry.id);
     groups.set(id, [...(groups.get(id) ?? []), entry]);
@@ -61,7 +61,7 @@ export function buildAnimeAtlas(entries: AnimeEntry[]): AnimeSeries[] {
     const distances = series.map((item, index) => {
       const row = Array<number>(series.length).fill(1);
       row[index] = 0;
-      for (const neighbor of getAnimeNeighbors(series, item.id))
+      for (const neighbor of getMediaNeighbors(series, item.id))
         row[indices.get(neighbor.id)!] = 1 - neighbor.similarity;
       return row;
     });
