@@ -91,6 +91,61 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
   const selected = visible.find((item) => item.id === selectedId) ?? visible[0];
   const representative = selected?.entries[0];
   const count = visible.reduce((sum, item) => sum + item.entries.length, 0);
+  const scores = new Map(
+    visible.map((item) => [
+      item.id,
+      Math.max(...item.entries.map((entry) => entry.score)),
+    ])
+  );
+  const landmarks: {
+    id: number;
+    left: number;
+    right: number;
+    top: number;
+    bottom: number;
+  }[] = [];
+  for (const item of [
+    ...(selected ? [selected] : []),
+    ...visible
+      .filter((item) => item.id !== selected?.id && scores.get(item.id)! >= 90)
+      .sort((a, b) => scores.get(b.id)! - scores.get(a.id)! || a.id - b.id),
+  ]) {
+    if (landmarks.length >= (smallScreen ? 3 : 6)) break;
+    const { x, y } = point(item);
+    const width =
+      Math.min(item.entries[0].title.length, 25) * (smallScreen ? 11 : 8);
+    const left = x > mapWidth * 0.75 ? x - 14 - width : x + 14;
+    const box = {
+      id: item.id,
+      left,
+      right: left + width,
+      top: y - 16,
+      bottom: y + 10,
+    };
+    if (
+      item.id === selected?.id ||
+      (box.left >= 8 &&
+        box.right <= mapWidth - 8 &&
+        landmarks.every(
+          (other) =>
+            box.right + 12 < other.left ||
+            box.left - 12 > other.right ||
+            box.bottom + 8 < other.top ||
+            box.top - 8 > other.bottom
+        ) &&
+        visible.every((other) => {
+          if (other.id === item.id) return true;
+          const dot = point(other);
+          return (
+            dot.x < box.left - 12 ||
+            dot.x > box.right + 12 ||
+            dot.y < box.top - 12 ||
+            dot.y > box.bottom + 12
+          );
+        }))
+    )
+      landmarks.push(box);
+  }
   const matchId = selected?.id;
   const matches = useMemo(
     () => (matchId !== undefined ? getAnimeNeighbors(series, matchId) : []),
@@ -103,20 +158,6 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
     }))
     .filter((neighbor) => neighbor.series !== undefined)
     .slice(0, 5);
-  const landmarks = selected ? [selected] : [];
-  for (const item of [...visible].sort(
-    (a, b) =>
-      Math.max(...b.entries.map((entry) => entry.score)) -
-      Math.max(...a.entries.map((entry) => entry.score))
-  )) {
-    if (landmarks.length >= (smallScreen ? 1 : 8)) break;
-    if (
-      landmarks.every(
-        (other) => Math.hypot(item.x - other.x, item.y - other.y) > 145
-      )
-    )
-      landmarks.push(item);
-  }
 
   function selectSeries(id: number, fromList = false) {
     setSelectedId(id);
@@ -326,15 +367,17 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
                       const planned = item.entries.every(
                         (entry) => entry.status === "PLANNING"
                       );
+                      const score = scores.get(item.id)!;
+                      const highRated = score >= 90;
                       const label = item.entries[0].title;
                       return (
                         <g
                           key={item.id}
                           role="button"
                           tabIndex={0}
-                          aria-label={`Open ${item.title}, ${item.entries.length} ${item.entries.length === 1 ? "entry" : "entries"}`}
+                          aria-label={`Open ${item.title}, ${item.entries.length} ${item.entries.length === 1 ? "entry" : "entries"}${highRated ? `, ${item.entries.length > 1 ? "highest score" : "my score"} ${score}/100` : ""}`}
                           aria-pressed={active}
-                          className={`${styles.node} ${styles[neighborhoods[item.neighborhood].color]} ${active ? styles.activeNode : ""} ${landmark ? styles.landmarkNode : ""}`}
+                          className={`${styles.node} ${styles[neighborhoods[item.neighborhood].color]} ${active ? styles.activeNode : ""} ${highRated ? styles.highRatedNode : ""} ${landmark ? styles.landmarkNode : ""}`}
                           onClick={() => selectSeries(item.id)}
                           onKeyDown={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
@@ -344,15 +387,15 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
                           }}
                         >
                           <title>
-                            {`${label} · ${item.entries.length} ${item.entries.length === 1 ? "entry" : "linked entries"}`}
+                            {`${label} · ${item.entries.length} ${item.entries.length === 1 ? "entry" : "linked entries"}${score > 0 ? ` · ${item.entries.length > 1 ? "Highest score" : "My score"} ${score}/100` : ""}`}
                           </title>
                           <circle cx={x} cy={y} r="16" fill="transparent" />
-                          {active && (
+                          {(active || highRated) && (
                             <circle
                               className={styles.halo}
                               cx={x}
                               cy={y}
-                              r="17"
+                              r={active ? 17 : 13}
                             />
                           )}
                           <circle
@@ -385,6 +428,9 @@ export default function AnimeAtlas({ series }: { series: AnimeSeries[] }) {
                   </span>
                   <span>
                     <i className={styles.hollow} /> Planned
+                  </span>
+                  <span>
+                    <i className={styles.highRated} /> My score 90+
                   </span>
                   <span>One dot = one series</span>
                 </div>
