@@ -75,6 +75,8 @@ and [Bun advisory](https://github.com/oven-sh/bun/security/advisories/GHSA-663w-
   imports. Do not create `src/lib/` or `src/styles/` just to match legacy examples.
 - Follow `.prettierrc` (two spaces, double quotes, semicolons) and
   `eslint.config.mjs`; unused variables and explicit `any` are lint errors.
+- Keep `src/app/sitemap.ts` and the sitemap reference in `public/robots.txt` in
+  sync when adding, removing, or renaming public pages or changing the site URL.
 - Reuse CSS custom properties/theme utilities. Preserve light/dark support,
   reduced-motion handling, skip links, visible focus, keyboard navigation, and
   meaningful ARIA labels when changing UI.
