@@ -5,7 +5,9 @@ coding-agent instructions in this file; `CLAUDE.md` only imports it.
 
 ## Setup and commands
 
-- Use Node.js **24 or newer** and Bun. `package.json` defines the scripts and
+- Use Node.js **24.22.1+ (24.x) or 26.12.1+ (26.x)** and **Bun 1.4.4+**.
+  Older runtimes contain the CVE-2026-111497 Brotli decoder vulnerability.
+  `package.json` defines the scripts and pins Bun 1.4.4 for reproducibility;
   `bun.lock` is the dependency lockfile; do not introduce npm or Yarn lockfiles.
 - Install dependencies with `bun install --frozen-lockfile`.
 - `bun run dev`: start Next.js development server (port 3000 by default).
@@ -22,9 +24,20 @@ coding-agent instructions in this file; `CLAUDE.md` only imports it.
   on staged JS/TS. It does not run type checks or tests.
 
 For Amp orbs, `.agents/setup` checks the toolchain and installs locked development
-dependencies. `.agents/resume` only checks the restored tools/dependencies; it
-does not reinstall them. These scripts are for the orb lifecycle, not prerequisites
-for every local task.
+dependencies and Debian's patched system Brotli library (1.0.9-2+deb12u1 or newer).
+Upgrade Node/Bun before setup if its runtime check fails. `.agents/resume` only
+checks the restored tools/dependencies; it does not reinstall them. These scripts
+are for the orb lifecycle, not prerequisites for every local task.
+
+`scripts/check-runtime.mjs` rejects vulnerable Node releases before development,
+builds, and startup, and checks Bun during installation and the orb lifecycle.
+Vercel selects a Node major and manages its patch version; verify deployment logs
+and rebuild/redeploy existing deployments after a platform runtime security update.
+`vercel.json` uses `npm exec --package=bun@1.4.4` to bootstrap the patched Bun
+executable rather than Vercel's default Bun; project dependencies still use only
+`bun.lock` and frozen Bun installs. The Node security check runs before bootstrap.
+See the [Node advisory](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases)
+and [Bun advisory](https://github.com/oven-sh/bun/security/advisories/GHSA-663w-cv8g-jj2p).
 
 ## Project map
 
