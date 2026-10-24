@@ -3,6 +3,15 @@ set -euo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 
+# Install the patched Bun release when the base Orb image is older.
+BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
+export BUN_INSTALL
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+if ! bun --version | awk -F. 'NR == 1 { exit !($1 > 1 || ($1 == 1 && ($2 > 4 || ($2 == 4 && $3 >= 4)))) }'; then
+  curl -fsSL https://bun.com/install | bash -s -- bun-v1.4.4
+fi
+
 # Reject vulnerable bundled decoders before downloading dependencies.
 echo "Checking the orb toolchain..."
 node --version
