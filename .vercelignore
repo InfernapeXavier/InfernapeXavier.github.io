@@ -6,4 +6,5 @@ README.md
 .husky
 _backup
 docs
-scripts 
+scripts/*
+!scripts/check-runtime.mjs
