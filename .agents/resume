@@ -6,6 +6,11 @@ cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 # Dependencies are restored with the orb; waking must not reinstall them.
 node --version
 bun --version
+node scripts/check-runtime.mjs --bun
+if ! dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libbrotli1)" ge '1.0.9-2+deb12u1'; then
+  echo "System Brotli is vulnerable; run .agents/setup to apply the Debian security update." >&2
+  exit 1
+fi
 if [[ ! -x node_modules/.bin/next ]]; then
   echo "Dependencies are missing; run .agents/setup to restore them." >&2
   exit 1

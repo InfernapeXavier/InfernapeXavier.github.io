@@ -3,11 +3,18 @@ set -euo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 
-# Amp's base image provides Node.js and Bun; no additional system packages are needed.
+# Reject vulnerable bundled decoders before downloading dependencies.
 echo "Checking the orb toolchain..."
 node --version
-node -e 'if (Number(process.versions.node.split(".")[0]) < 24) throw new Error("Node.js >=24 is required");'
 bun --version
+node scripts/check-runtime.mjs --bun
+
+# Debian backports the Brotli fix; curl links against this system library.
+if ! dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libbrotli1)" ge '1.0.9-2+deb12u1'; then
+  sudo apt-get update
+  sudo apt-get install -y --only-upgrade libbrotli1 libbrotli-dev
+  dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libbrotli1)" ge '1.0.9-2+deb12u1'
+fi
 
 # Keep dependencies and Bun's cache in the snapshot. Bun cheaply checks warm installs.
 echo "Installing locked dependencies (including development tools)..."
