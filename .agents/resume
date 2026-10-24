@@ -3,6 +3,9 @@ set -euo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 
+# Use the patched Bun installed by .agents/setup instead of the base image copy.
+export PATH="${BUN_INSTALL:-$HOME/.bun}/bin:$PATH"
+
 # Dependencies are restored with the orb; waking must not reinstall them.
 node --version
 bun --version
