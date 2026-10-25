@@ -82,6 +82,11 @@ const uses: UsesCategory[] = [
     icon: <FaTerminal />,
     items: [
       {
+        name: "Ghostty",
+        description: "GPU-accelerated terminal emulator",
+        url: "https://ghostty.org",
+      },
+      {
         name: "Warp",
         description: "Modern terminal with AI",
         url: "https://warp.dev",
@@ -98,9 +103,24 @@ const uses: UsesCategory[] = [
     icon: <FaRobot />,
     items: [
       {
-        name: "OpenCode",
-        description: "With Claude Opus or GPT Codex",
-        url: "https://opencode.ai",
+        name: "PX0",
+        description: "IDE for reviewing AI-generated code",
+        url: "https://px0.ai",
+      },
+      {
+        name: "Herdr",
+        description: "Persistent runtime for coding agents",
+        url: "https://herdr.dev",
+      },
+      {
+        name: "Pi",
+        description: "Extensible AI agent for the terminal",
+        url: "https://pi.dev",
+      },
+      {
+        name: "Amp",
+        description: "Coding agent and development environment",
+        url: "https://ampcode.com",
       },
     ],
   },
@@ -140,6 +160,11 @@ const uses: UsesCategory[] = [
     title: "Email",
     icon: <FaEnvelope />,
     items: [
+      {
+        name: "Superhuman",
+        description: "Fast email client",
+        url: "https://superhuman.com",
+      },
       {
         name: "Spark",
         description: "Smart email client",
