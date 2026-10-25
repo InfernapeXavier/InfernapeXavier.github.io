@@ -59,7 +59,10 @@ export default function Home() {
           </a>
         </div>
         <p className={styles.current}>
-          Off the clock? <Link href="/anime">Explore my anime atlas ↗</Link>
+          Off the clock?{" "}
+          <Link href="/anime" prefetch={false}>
+            Explore my anime &amp; manga atlas ↗
+          </Link>
         </p>
       </section>
 
