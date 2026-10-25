@@ -8,6 +8,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/` },
     { url: `${baseUrl}/blog` },
     { url: `${baseUrl}/uses` },
+    { url: `${baseUrl}/anime` },
+    { url: `${baseUrl}/manga` },
     ...getAllPosts().map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
     })),
