@@ -39,9 +39,8 @@ export default function Home() {
           I work on AI platforms and developer tools.
         </p>
         <p className={styles.current}>
-          Lately, that&apos;s meant building environments for AI-assisted
-          coding, writing internal tools, and looking after the infrastructure
-          they run on.
+          I build environments for AI-assisted coding, internal tools, and the
+          infrastructure that supports them.
         </p>
         <p className={styles.current}>
           Senior Software Engineer at{" "}
@@ -74,15 +73,15 @@ export default function Home() {
         <AnimateOnScroll>
           <div className={styles.sectionHeader}>
             <div>
-              <span className={styles.eyebrow}>01 / Outside the day job</span>
+              <span className={styles.eyebrow}>01 / Independent work</span>
               <h2 id="projects-title">
-                Side quests
+                Projects
                 <span className={styles.accent} aria-hidden="true">
                   ↘
                 </span>
               </h2>
             </div>
-            <p>A couple of things I work on outside my job.</p>
+            <p>A few projects I&apos;ve built outside of work.</p>
           </div>
         </AnimateOnScroll>
         <div className={styles.projectGrid}>
@@ -104,7 +103,7 @@ export default function Home() {
                   >
                     <div className={styles.cardTop}>
                       <span className={styles.cardLabel}>
-                        02 / From scratch
+                        02 / Independent project
                       </span>
                       <FiArrowUpRight aria-hidden="true" />
                     </div>
@@ -141,9 +140,11 @@ export default function Home() {
         <AnimateOnScroll>
           <div className={styles.sectionHeader}>
             <div>
-              <span className={styles.eyebrow}>02 / The day job</span>
+              <span className={styles.eyebrow}>
+                02 / Professional experience
+              </span>
               <h2 id="experience-title">
-                What I work on
+                Work experience
                 <span className={styles.accent} aria-hidden="true">
                   ↗
                 </span>
@@ -181,9 +182,9 @@ export default function Home() {
         aria-labelledby="contact-title"
       >
         <AnimateOnScroll>
-          <span className={styles.eyebrow}>03 / Say hello</span>
+          <span className={styles.eyebrow}>03 / Get in touch</span>
           <div className={styles.contactHeading}>
-            <h2 id="contact-title">Say hi</h2>
+            <h2 id="contact-title">Let&apos;s talk</h2>
             <span aria-hidden="true">↗</span>
           </div>
           <div className={styles.socials}>

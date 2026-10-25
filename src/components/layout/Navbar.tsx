@@ -9,8 +9,8 @@ import styles from "./Navbar.module.css";
 
 const navLinks = [
   { href: "/#about", label: "About" },
-  { href: "/#experience", label: "Experience" },
   { href: "/#projects", label: "Projects" },
+  { href: "/#experience", label: "Experience" },
   { href: "/blog", label: "Blog" },
   { href: "/uses", label: "Uses" },
   { href: "/anime", label: "Anime" },
@@ -23,7 +23,34 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, isReducedMotion, toggleTheme } = useTheme();
+
+  function handleSectionNavigation(
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) {
+    if (
+      pathname !== "/" ||
+      !href.startsWith("/#") ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const section = document.querySelector(href.slice(1));
+    if (!section) return;
+
+    event.preventDefault();
+    window.history.pushState(null, "", href);
+    section.scrollIntoView({
+      behavior: isReducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  }
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -114,7 +141,10 @@ export default function Navbar() {
                 rel: "noreferrer",
                 "aria-label": "Resume (opens in new tab)",
               })}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(event) => {
+                handleSectionNavigation(event, link.href);
+                setIsMenuOpen(false);
+              }}
             >
               {link.label}
               {link.external && <FiArrowUpRight aria-hidden="true" />}

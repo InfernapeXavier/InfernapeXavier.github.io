@@ -104,6 +104,9 @@ and [Bun advisory](https://github.com/oven-sh/bun/security/advisories/GHSA-663w-
   branch is `master`; do not assume it is `main` or commit directly to either.
 - Use focused Conventional Commits (`type(scope): summary`). Do not push, deploy,
   or rewrite published history without explicit authorization.
+- When the user asks to preview current work, create a focused feature branch,
+  commit the requested changes, and push that branch so the hosting provider can
+  create its preview deployment. Report the branch and preview URL when available.
 - Deployment configuration targets Vercel, not GitHub Pages despite the repository
   name. `next.config.js` defines Next.js image rules and security headers;
   `vercel.json` adds hosting headers and immutable caching specifically for
