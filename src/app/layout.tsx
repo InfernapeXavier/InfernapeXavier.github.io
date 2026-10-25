@@ -31,7 +31,7 @@ const jetbrainsMono = JetBrains_Mono({
 const profileTitle =
   "Rohit Choudhari - AI Platforms, Developer Tools & Infrastructure";
 const profileDescription =
-  "Rohit Choudhari builds AI platforms, developer tools, and production infrastructure. Senior Software Engineer at Academia.edu working on sandboxed AI development environments, reusable tooling, and agentic workflows.";
+  "Rohit Choudhari builds AI platforms, developer tools, and production infrastructure. Senior Software Engineer, Infrastructure at Academia.edu working on sandboxed AI development environments, reusable tooling, and agentic workflows.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rohitc.tech"),
@@ -117,7 +117,7 @@ export const metadata: Metadata = {
         url: "https://rohitc.tech/assets/logo/cover.png",
         width: 1200,
         height: 630,
-        alt: "Rohit Choudhari - Senior Software Engineer",
+        alt: "Rohit Choudhari - Senior Software Engineer, Infrastructure",
       },
     ],
   },
@@ -167,7 +167,7 @@ export default function RootLayout({
                     "https://linkedin.com/in/infernapexavier/",
                     "https://twitter.com/InfernapeXavier",
                   ],
-                  jobTitle: "Senior Software Engineer",
+                  jobTitle: "Senior Software Engineer, Infrastructure",
                   worksFor: {
                     "@type": "Organization",
                     name: "Academia.edu",

@@ -1,8 +1,8 @@
 export const experience = {
   company: "Academia.edu",
   companyUrl: "https://www.academia.edu",
-  role: "Senior Software Engineer",
-  tenure: "Here since 2021 · Senior since 2025",
+  role: "Senior Software Engineer, Infrastructure",
+  tenure: "Here since 2021",
   introduction:
     "I joined Academia.edu in 2021, working on payments and growth. I've since moved into infrastructure, internal tools, and AI development environments.",
   stories: [

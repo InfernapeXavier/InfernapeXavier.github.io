@@ -43,7 +43,7 @@ export default function Home() {
           infrastructure that supports them.
         </p>
         <p className={styles.current}>
-          Senior Software Engineer at{" "}
+          Senior Software Engineer, Infrastructure at{" "}
           <a href="https://www.academia.edu" target="_blank" rel="noreferrer">
             Academia.edu
           </a>
