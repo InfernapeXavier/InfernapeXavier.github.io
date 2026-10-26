@@ -197,7 +197,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              <FiGrid aria-hidden="true" /> Bento{" "}
+              <FiGrid aria-hidden="true" /> tl;dr{" "}
               <FiArrowUpRight aria-hidden="true" />
             </a>
             <a
