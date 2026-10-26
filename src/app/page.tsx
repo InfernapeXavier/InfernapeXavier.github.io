@@ -196,8 +196,9 @@ export default function Home() {
               href="https://links.rohitc.tech"
               target="_blank"
               rel="noreferrer"
+              aria-label="More from me (opens in new tab)"
             >
-              <FiGrid aria-hidden="true" /> tl;dr{" "}
+              <FiGrid aria-hidden="true" /> More from me{" "}
               <FiArrowUpRight aria-hidden="true" />
             </a>
             <a

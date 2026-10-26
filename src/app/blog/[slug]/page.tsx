@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: Props) {
               className="inline-flex items-center gap-2 text-theme-subtle hover:text-theme-text transition-colors mb-8"
             >
               <FaArrowLeft className="text-sm" />
-              <span>Back to blog</span>
+              <span>Back to writing archive</span>
             </Link>
 
             <article>

@@ -11,10 +11,9 @@ const navLinks = [
   { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
   { href: "/#projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "Writing archive" },
   { href: "/uses", label: "Uses" },
-  { href: "/anime", label: "Anime" },
-  { href: "/manga", label: "Manga" },
+  { href: "/anime", label: "Media atlas" },
   { href: "/#contact", label: "Contact" },
   { href: "https://bit.ly/rohitcresume", label: "Resume", external: true },
 ];

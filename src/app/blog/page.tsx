@@ -3,8 +3,8 @@ import Link from "next/link";
 import { getAllPosts } from "@/data/posts";
 
 export const metadata: Metadata = {
-  title: "Blog | Rohit Choudhari",
-  description: "Thoughts on technology, engineering, and more.",
+  title: "Writing archive",
+  description: "Early writing on technology and education, published in 2017.",
 };
 
 export default function BlogPage() {
@@ -17,14 +17,13 @@ export default function BlogPage() {
         <div className="grid-pattern" />
         <div className="section-container">
           <div className="max-w-3xl">
-            <h1 className="section-heading mb-4">Blog</h1>
+            <h1 className="section-heading mb-4">Writing archive</h1>
             <p className="text-xl text-theme-subtle mb-12">
-              Thoughts on technology, engineering, and more.
+              Early writing on technology and education, published in 2017.
             </p>
 
             <p className="text-sm text-theme-muted mb-8 p-4 rounded-lg bg-theme-surface/50 border border-theme-highlight">
-              These posts are from my early days in tech (2017). Keeping them
-              here for nostalgia.
+              Posts written in 2017, preserved as an early-career archive.
             </p>
 
             <div className="space-y-6">
