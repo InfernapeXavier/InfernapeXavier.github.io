@@ -66,6 +66,50 @@ export default function Home() {
       </section>
 
       <section
+        id="experience"
+        className={styles.experience}
+        aria-labelledby="experience-title"
+      >
+        <AnimateOnScroll>
+          <div className={styles.sectionHeader}>
+            <div>
+              <span className={styles.eyebrow}>
+                01 / Professional experience
+              </span>
+              <h2 id="experience-title">
+                Work experience
+                <span className={styles.accent} aria-hidden="true">
+                  ↗
+                </span>
+              </h2>
+            </div>
+          </div>
+          <Experience />
+          <div className="mt-6">
+            <Skills />
+          </div>
+          <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-sm leading-relaxed text-theme-subtle">
+            <p>
+              {education.map((qualification, index) => (
+                <span key={qualification.institution}>
+                  {index > 0 && " · "}
+                  {qualification.degree} at {qualification.institution}
+                </span>
+              ))}
+            </p>
+            <a
+              href="https://bit.ly/rohitcresume"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-11 items-center gap-2 text-theme-text underline underline-offset-4"
+            >
+              Full résumé <FiArrowUpRight aria-hidden="true" />
+            </a>
+          </div>
+        </AnimateOnScroll>
+      </section>
+
+      <section
         id="projects"
         className={styles.projects}
         aria-labelledby="projects-title"
@@ -73,7 +117,7 @@ export default function Home() {
         <AnimateOnScroll>
           <div className={styles.sectionHeader}>
             <div>
-              <span className={styles.eyebrow}>01 / Independent work</span>
+              <span className={styles.eyebrow}>02 / Independent work</span>
               <h2 id="projects-title">
                 Projects
                 <span className={styles.accent} aria-hidden="true">
@@ -130,50 +174,6 @@ export default function Home() {
             </div>
           )}
         </div>
-      </section>
-
-      <section
-        id="experience"
-        className={styles.experience}
-        aria-labelledby="experience-title"
-      >
-        <AnimateOnScroll>
-          <div className={styles.sectionHeader}>
-            <div>
-              <span className={styles.eyebrow}>
-                02 / Professional experience
-              </span>
-              <h2 id="experience-title">
-                Work experience
-                <span className={styles.accent} aria-hidden="true">
-                  ↗
-                </span>
-              </h2>
-            </div>
-          </div>
-          <Experience />
-          <div className="mt-6">
-            <Skills />
-          </div>
-          <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-sm leading-relaxed text-theme-subtle">
-            <p>
-              {education.map((qualification, index) => (
-                <span key={qualification.institution}>
-                  {index > 0 && " · "}
-                  {qualification.degree} at {qualification.institution}
-                </span>
-              ))}
-            </p>
-            <a
-              href="https://bit.ly/rohitcresume"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 text-theme-text underline underline-offset-4"
-            >
-              Full résumé <FiArrowUpRight aria-hidden="true" />
-            </a>
-          </div>
-        </AnimateOnScroll>
       </section>
 
       <section
